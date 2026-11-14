@@ -3,7 +3,10 @@
  * StockPulse AI — Multi-Agent Microstock Trend Radar
  * =================================================
  * Riset tren mikrostock harian (Adobe Stock, Vecteezy, Dreamstime) dengan
- * 5 agen AI berurutan ke Gemini 2.5 Flash (Google Search Grounding).
+ * 5 agen AI berurutan ke Gemini 3.8 Flash (Google Search Grounding).
+ * (gemini-2.5-flash sudah deprecated Google per 2 Nov 2026 — untuk
+ * key/proyek yang belum pernah memakainya, API mengembalikan 404
+ * "no longer available to new users". Model utama kini gemini-3.8-flash.)
  *
  * Alur:
  *   0. Sinyal mentah: Google Trends RSS (US + ID), 15 topik teratas.
@@ -31,8 +34,11 @@ import path from 'node:path';
 // ---------------------------------------------------------------------------
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
 const THEME = (process.env.THEME || '').trim();
-const MODEL = 'gemini-2.5-flash';
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
+// Model utama + fallback. gemini-2.5-flash deprecated 2 Nov 2026 (404 untuk
+// key/proyek baru) — Google menyarankan gemini-3.8-flash sebagai pengganti.
+const MODELS = ['gemini-3.8-flash', 'gemini-3.5-flash-lite', 'gemini-2.5-flash-lite'];
+const MODEL = MODELS[0];
+const geminiUrl = (model) => `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const HISTORY_PATH = path.join(ROOT, 'public', 'data', 'history.json');
@@ -199,28 +205,41 @@ async function callGemini(prompt, { useSearch = false, jsonMode = false } = {}) 
   if (jsonMode) body.generationConfig = { responseMimeType: 'application/json' };
 
   let lastErr = null;
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    try {
-      const res = await fetch(`${GEMINI_URL}?key=${GEMINI_API_KEY}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-        signal: AbortSignal.timeout(120000),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        const msg = data?.error?.message || `HTTP ${res.status}`;
-        throw new Error(msg);
+  // Coba tiap model secara berurutan. Error 404 (model tidak tersedia untuk
+  // key ini) langsung pindah ke model berikutnya; error 429/5xx di-retry
+  // pada model yang sama dengan backoff.
+  for (const model of MODELS) {
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const res = await fetch(`${geminiUrl(model)}?key=${GEMINI_API_KEY}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+          signal: AbortSignal.timeout(120000),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          const msg = data?.error?.message || `HTTP ${res.status}`;
+          const err = new Error(msg);
+          err.status = res.status;
+          throw err;
+        }
+        const text = extractText(data);
+        if (!text) throw new Error('Respons Gemini kosong (tanpa teks).');
+        if (model !== MODEL) log(`Model ${MODEL} tidak tersedia, memakai fallback ${model}.`);
+        return text;
+      } catch (e) {
+        lastErr = e;
+        const is404 = e.status === 404 || /404|not found|no longer available/i.test(e.message);
+        if (is404) {
+          log(`Model ${model} tidak tersedia untuk key ini (${e.message}) — coba model berikutnya.`);
+          break; // pindah ke model berikutnya, jangan retry model yang sama
+        }
+        const retryable = /429|500|502|503|504|overloaded|timeout|fetch failed/i.test(e.message);
+        log(`Gemini (${model}) percobaan ${attempt}/3 gagal: ${e.message}`);
+        if (!retryable || attempt === 3) break;
+        await sleep(5000 * attempt); // backoff 5s, 10s
       }
-      const text = extractText(data);
-      if (!text) throw new Error('Respons Gemini kosong (tanpa teks).');
-      return text;
-    } catch (e) {
-      lastErr = e;
-      const retryable = /429|500|502|503|504|overloaded|timeout|fetch failed/i.test(e.message);
-      log(`Gemini percobaan ${attempt}/3 gagal: ${e.message}`);
-      if (!retryable || attempt === 3) break;
-      await sleep(5000 * attempt); // backoff 5s, 10s
     }
   }
   throw lastErr;
