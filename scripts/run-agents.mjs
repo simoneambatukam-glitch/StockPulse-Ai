@@ -34,9 +34,11 @@ import path from 'node:path';
 // ---------------------------------------------------------------------------
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
 const THEME = (process.env.THEME || '').trim();
-// Model utama + fallback. gemini-2.5-flash deprecated 2 Nov 2026 (404 untuk
-// key/proyek baru) — Google menyarankan gemini-3.8-flash sebagai pengganti.
-const MODELS = ['gemini-3.8-flash', 'gemini-3.5-flash-lite', 'gemini-2.5-flash-lite'];
+// Model utama + fallback. gemini-2.5-flash & gemini-2.5-flash-lite sudah
+// deprecated 2 Nov 2026 (404 "no longer available to new users" untuk
+// key/proyek baru) — jangan dipakai lagi. Tiap model punya kuota
+// gratisnya sendiri, jadi daftar ini menambah peluang ada yang tersisa.
+const MODELS = ['gemini-3.8-flash', 'gemini-3.5-flash', 'gemini-3.5-flash-lite'];
 const MODEL = MODELS[0];
 const geminiUrl = (model) => `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 
@@ -205,6 +207,7 @@ async function callGemini(prompt, { useSearch = false, jsonMode = false } = {}) 
   if (jsonMode) body.generationConfig = { responseMimeType: 'application/json' };
 
   let lastErr = null;
+  const failures = []; // ringkasan kegagalan tiap model, untuk pesan FATAL
   // Coba tiap model secara berurutan. Error 404 (model tidak tersedia untuk
   // key ini) langsung pindah ke model berikutnya; error 429/5xx di-retry
   // pada model yang sama dengan backoff.
@@ -232,17 +235,29 @@ async function callGemini(prompt, { useSearch = false, jsonMode = false } = {}) 
         lastErr = e;
         const is404 = e.status === 404 || /404|not found|no longer available/i.test(e.message);
         if (is404) {
-          log(`Model ${model} tidak tersedia untuk key ini (${e.message}) — coba model berikutnya.`);
+          log(`Model ${model} tidak tersedia untuk key ini — coba model berikutnya.`);
+          failures.push(`${model}: 404 model tidak tersedia`);
           break; // pindah ke model berikutnya, jangan retry model yang sama
         }
-        const retryable = /429|500|502|503|504|overloaded|timeout|fetch failed/i.test(e.message);
+        // Cek status HTTP juga, bukan cuma teks pesan — pesan kuota Gemini
+        // ("You exceeded your current quota") tidak mengandung angka 429.
+        const retryable = [429, 500, 502, 503, 504].includes(e.status)
+          || /429|500|502|503|504|overloaded|timeout|fetch failed|exceeded.*quota/i.test(e.message);
         log(`Gemini (${model}) percobaan ${attempt}/3 gagal: ${e.message}`);
-        if (!retryable || attempt === 3) break;
+        if (!retryable || attempt === 3) {
+          failures.push(`${model}: ${e.message.slice(0, 120)}`);
+          break;
+        }
         await sleep(5000 * attempt); // backoff 5s, 10s
       }
     }
   }
-  throw lastErr;
+  // Sertakan ringkasan semua kegagalan agar FATAL tidak menampilkan cuma
+  // error terakhir (yang bisa menyesatkan, mis. 404 model terakhir padahal
+  // akar masalahnya kuota di model utama).
+  const summary = new Error(`Semua model gagal. ${failures.join(' | ')}`);
+  summary.cause = lastErr;
+  throw summary;
 }
 
 // ---------------------------------------------------------------------------
