@@ -8,7 +8,7 @@ name: Daily Trend Radar — StockPulse AI
 # Bisa juga dipicu manual dari tab Actions, atau dari tombol
 # "Update Asset Hari Ini" di frontend (via GitHub REST API + PAT).
 
-"on":
+on:
   schedule:
     - cron: '0 15 * * *' # setiap hari 15:00 UTC / 22:00 WIB
   workflow_dispatch:
@@ -51,4 +51,3 @@ jobs:
             git commit -m "chore(trends): auto-update stock trends $(TZ='Asia/Jakarta' date +'%d %B %Y')"
             git push
           fi
-
