@@ -1,0 +1,1796 @@
+{
+  "lastUpdated": "2026-11-14T22:00:00+07:00",
+  "days": [
+    {
+      "date": "2026-11-14",
+      "dateLabel": "14 November 2026",
+      "fullLabel": "Sabtu, 14 November 2026",
+      "lastUpdated": "2026-11-14T22:00:00+07:00",
+      "dayOverDayGrowth": "+28.4%",
+      "peakWindow": "21:00–01:00 WIB",
+      "totalQueriesAnalyzed": "48,920",
+      "confidence": "96.8%",
+      "platformInsights": {
+        "adobeStock": {
+          "name": "Adobe Stock",
+          "topSearch": "abstract glassmorphism AI workflow loop 4k",
+          "demandScore": 97,
+          "supplyGap": "Tinggi (84%)",
+          "insight": "Loop abstrak bertema AI paling dicari buyer korporat untuk video background; supply video 4K masih tipis, dan aset Imlek kambing api mulai dipesan agensi untuk kampanye akhir tahun."
+        },
+        "vecteezy": {
+          "name": "Vecteezy",
+          "topSearch": "fire goat sticker pack lunar new year 2027",
+          "demandScore": 95,
+          "supplyGap": "Sangat Tinggi (89%)",
+          "insight": "Stiker dan ikon kambing api Imlek 2027 hampir kosong di Vecteezy; buyer mencari paket stiker siap pakai untuk kartu ucapan dan media sosial."
+        },
+        "dreamstime": {
+          "name": "Dreamstime",
+          "topSearch": "ramadan lantern family lifestyle",
+          "demandScore": 91,
+          "supplyGap": "Tinggi (81%)",
+          "insight": "Foto gaya hidup Ramadan dan lampion mulai naik; buyer editorial mencari suasana keluarga yang autentik, bukan sekadar objek terisolasi."
+        }
+      },
+      "agentLogs": [
+        "[Agent 01 • Peak Search Radar] Lonjakan pencarian 'fire goat' dan 'glassmorphism AI loop' memuncak 21:00–01:00 WIB; sinyal Google Trends US dan ID selaras.",
+        "[Agent 02 • Insight Auditor] Adobe Stock kekurangan loop abstrak AI-ready; Vecteezy defisit stiker kambing api Imlek 2027; Dreamstime butuh lifestyle Ramadan.",
+        "[Agent 03 • Format Classifier] 12 peluang dipetakan: 3 Video (loop abstrak, B-roll, animasi), 3 Foto (golden hour, copy space, editorial), 3 Ilustrasi, 3 Vector.",
+        "[Agent 04 • Lead-Time Predictor] Imlek 2027 (84 hari lagi) dan Ramadan (86 hari) masuk jendela produksi ideal 45–90 hari; Natal 41 hari — unggah segera.",
+        "[Agent 05 • Fable 5.2 Synthesizer] 12 ide final disintesis; skor tertinggi loop glassmorphism AI (98) dan stiker kambing api (97)."
+      ],
+      "ideas": [
+        {
+          "id": "v-20261114-01",
+          "title": "Kambing Api Imlek Melompat di Atas Awan Emas",
+          "category": "Video",
+          "formatType": "Musiman (Natal, Lebaran, Imlek)",
+          "visualStyle": "Animasi 2D Flat / Motion Graphic",
+          "videoMeta": {
+            "ratio": "9:16 Vertikal",
+            "camera": "Diam / Static",
+            "loop": "Looping Mulus"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 98,
+              "reason": "Permintaan kambing api Imlek naik di Adobe Stock; format Musiman (Natal, Lebaran, Imlek) cocok untuk kampanye komersial."
+            },
+            "vecteezy": {
+              "score": 96,
+              "reason": "Pengguna Vecteezy banyak mengunduh kambing api Imlek; variasi Musiman (Natal, Lebaran, Imlek) masih sedikit."
+            },
+            "dreamstime": {
+              "score": 94,
+              "reason": "Buyer Dreamstime mencari kambing api Imlek dengan sentuhan autentik dan natural."
+            }
+          },
+          "demandScore": 98,
+          "growthPercent": "+42%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Imlek 2027 (6 Feb 2027) — produksi hingga 15 Des 2026",
+          "productionPrompt": "2D flat animation of a cute fire goat mascot with golden flame horns jumping joyfully over stylized golden clouds, red and gold Chinese New Year palette, smooth looping motion, clean vector shapes, festive lanterns floating in background, no text, vertical 9:16, seamless loop",
+          "seoTitle": "Cute Fire Goat Mascot Jumping Over Golden Clouds Chinese New Year 2027 Animation Loop",
+          "keywords": [
+            "fire goat",
+            "chinese new year 2027",
+            "lunar new year",
+            "goat mascot",
+            "fire goat animation",
+            "golden clouds",
+            "red lantern",
+            "festive animation",
+            "vertical video",
+            "loop animation",
+            "asian new year",
+            "zodiac goat",
+            "golden goat",
+            "celebration animation",
+            "flat animation"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian kambing api Imlek pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 98."
+        },
+        {
+          "id": "v-20261114-02",
+          "title": "Loop Abstrak Glassmorphism Alur Kerja AI",
+          "category": "Video",
+          "formatType": "Looping Background Abstrak",
+          "visualStyle": "Teknologi Futuristik",
+          "videoMeta": {
+            "ratio": "16:9 Horizontal",
+            "camera": "Diam / Static",
+            "loop": "Looping Mulus"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 97,
+              "reason": "Buyer Adobe Stock aktif mencari loop glassmorphism AI dalam format Looping Background Abstrak untuk kebutuhan iklan."
+            },
+            "vecteezy": {
+              "score": 95,
+              "reason": "Format Looping Background Abstrak untuk loop glassmorphism AI punya celah supply besar di Vecteezy."
+            },
+            "dreamstime": {
+              "score": 93,
+              "reason": "Konten loop glassmorphism AI punya peluang editorial yang kuat di Dreamstime."
+            }
+          },
+          "demandScore": 97,
+          "growthPercent": "+38%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Abstract glassmorphism loop background with translucent frosted glass panels, glowing neural network nodes and flowing data streams, deep blue and violet gradient, soft depth of field, seamless loop, 4k, horizontal 16:9, no text",
+          "seoTitle": "Abstract Glassmorphism AI Workflow Loop Background 4K Seamless",
+          "keywords": [
+            "glassmorphism",
+            "abstract background",
+            "ai workflow",
+            "loop background",
+            "technology loop",
+            "futuristic background",
+            "neural network",
+            "data stream",
+            "4k loop",
+            "seamless loop",
+            "digital background",
+            "blue gradient",
+            "glass panels",
+            "motion background",
+            "tech abstract"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian loop glassmorphism AI pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 97."
+        },
+        {
+          "id": "v-20261114-03",
+          "title": "Slow Motion Cokelat Panas Natal dengan Marshmallow",
+          "category": "Video",
+          "formatType": "Food & Drink B-roll",
+          "visualStyle": "Slow Motion Makro",
+          "videoMeta": {
+            "ratio": "9:16 Vertikal",
+            "camera": "Zoom in",
+            "loop": "Klip Biasa"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 94,
+              "reason": "Format Food & Drink B-roll bertema cokelat panas Natal sedang dicari buyer korporat dan iklan di Adobe Stock."
+            },
+            "vecteezy": {
+              "score": 92,
+              "reason": "Aset Food & Drink B-roll bertema cokelat panas Natal laris di Vecteezy dengan supply yang masih tipis."
+            },
+            "dreamstime": {
+              "score": 90,
+              "reason": "Tema cokelat panas Natal cocok untuk pasar editorial dan gaya hidup Dreamstime."
+            }
+          },
+          "demandScore": 94,
+          "growthPercent": "+31%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Natal 2026 (25 Des 2026) — unggah segera, jendela hampir tutup",
+          "productionPrompt": "Slow motion macro video of hot chocolate being poured into a ceramic mug topped with melting marshmallows, steam rising, warm cozy Christmas lights bokeh in background, cinematic lighting, vertical 9:16, 120fps slow motion",
+          "seoTitle": "Slow Motion Hot Chocolate Pour with Marshmallows Christmas Cozy Vertical Video",
+          "keywords": [
+            "hot chocolate",
+            "slow motion",
+            "christmas drink",
+            "marshmallow",
+            "cozy winter",
+            "pouring chocolate",
+            "food b-roll",
+            "vertical video",
+            "warm drink",
+            "holiday beverage",
+            "cocoa",
+            "steam",
+            "christmas lights",
+            "bokeh background",
+            "macro food"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian cokelat panas Natal pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 94."
+        },
+        {
+          "id": "f-20261114-04",
+          "title": "Festival Lampion Imlek di Jalanan Kota Saat Senja",
+          "category": "Foto",
+          "formatType": "Scene Penuh",
+          "visualStyle": "Golden Hour",
+          "platforms": {
+            "adobeStock": {
+              "score": 96,
+              "reason": "Permintaan festival lampion Imlek naik di Adobe Stock; format Scene Penuh cocok untuk kampanye komersial."
+            },
+            "vecteezy": {
+              "score": 94,
+              "reason": "Pengguna Vecteezy banyak mengunduh festival lampion Imlek; variasi Scene Penuh masih sedikit."
+            },
+            "dreamstime": {
+              "score": 92,
+              "reason": "Buyer Dreamstime mencari festival lampion Imlek dengan sentuhan autentik dan natural."
+            }
+          },
+          "demandScore": 96,
+          "growthPercent": "+35%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Imlek 2027 (6 Feb 2027) — produksi hingga 15 Des 2026",
+          "productionPrompt": "Wide golden hour photograph of a vibrant Chinese New Year lantern festival street, rows of glowing red and gold lanterns, people walking with festive decorations, warm sunset light, cinematic composition, no visible faces in focus, horizontal 16:9",
+          "seoTitle": "Chinese New Year Lantern Festival Street Golden Hour Photography",
+          "keywords": [
+            "chinese new year",
+            "lantern festival",
+            "red lantern",
+            "golden hour",
+            "lunar new year 2027",
+            "festive street",
+            "asian festival",
+            "lanterns",
+            "celebration",
+            "evening light",
+            "street photography",
+            "cultural festival",
+            "red and gold",
+            "night market",
+            "holiday lights"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian festival lampion Imlek pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 96."
+        },
+        {
+          "id": "f-20261114-05",
+          "title": "Angpao Merah Imlek dengan Ruang Kosong untuk Teks",
+          "category": "Foto",
+          "formatType": "Copy Space",
+          "visualStyle": "Studio Putih Minimalis",
+          "platforms": {
+            "adobeStock": {
+              "score": 93,
+              "reason": "Buyer Adobe Stock aktif mencari angpao merah Imlek dalam format Copy Space untuk kebutuhan iklan."
+            },
+            "vecteezy": {
+              "score": 91,
+              "reason": "Format Copy Space untuk angpao merah Imlek punya celah supply besar di Vecteezy."
+            },
+            "dreamstime": {
+              "score": 89,
+              "reason": "Konten angpao merah Imlek punya peluang editorial yang kuat di Dreamstime."
+            }
+          },
+          "demandScore": 93,
+          "growthPercent": "+29%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Imlek 2027 (6 Feb 2027) — produksi hingga 15 Des 2026",
+          "productionPrompt": "Minimalist studio photograph of elegant red hongbao envelopes with gold foil patterns arranged on a clean white background, generous copy space on the left side, soft shadows, top-down flat lay, high-key lighting, no text",
+          "seoTitle": "Red Hongbao Envelopes Gold Foil Isolated White Background Copy Space",
+          "keywords": [
+            "hongbao",
+            "red envelope",
+            "angpao",
+            "chinese new year",
+            "gold foil",
+            "copy space",
+            "white background",
+            "lunar new year",
+            "red packet",
+            "minimalist",
+            "flat lay",
+            "festive envelope",
+            "gold pattern",
+            "isolated object",
+            "new year gift"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian angpao merah Imlek pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 93."
+        },
+        {
+          "id": "f-20261114-06",
+          "title": "Kurma Medjool Premium untuk Buka Puasa Ramadan",
+          "category": "Foto",
+          "formatType": "Subjek Isolasi (BG polos)",
+          "visualStyle": "Food Editorial",
+          "platforms": {
+            "adobeStock": {
+              "score": 92,
+              "reason": "Format Subjek Isolasi (BG polos) bertema kurma Ramadan sedang dicari buyer korporat dan iklan di Adobe Stock."
+            },
+            "vecteezy": {
+              "score": 90,
+              "reason": "Aset Subjek Isolasi (BG polos) bertema kurma Ramadan laris di Vecteezy dengan supply yang masih tipis."
+            },
+            "dreamstime": {
+              "score": 88,
+              "reason": "Tema kurma Ramadan cocok untuk pasar editorial dan gaya hidup Dreamstime."
+            }
+          },
+          "demandScore": 92,
+          "growthPercent": "+27%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Ramadan 2027 (mulai 8 Feb 2027) — produksi hingga 20 Des 2026",
+          "productionPrompt": "Editorial food photograph of premium Medjool dates arranged in a small ceramic bowl on a plain warm beige background, soft natural window light, macro detail of date texture, isolated subject, no text, vertical composition",
+          "seoTitle": "Premium Medjool Dates Bowl Isolated Beige Background Ramadan Food",
+          "keywords": [
+            "medjool dates",
+            "ramadan food",
+            "dates fruit",
+            "iftar",
+            "islamic food",
+            "food photography",
+            "isolated food",
+            "beige background",
+            "healthy snack",
+            "middle eastern food",
+            "dates bowl",
+            "ramadan 2027",
+            "editorial food",
+            "natural light",
+            "sweet fruit"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian kurma Ramadan pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 92."
+        },
+        {
+          "id": "i-20261114-07",
+          "title": "Pola Batik Kawung dengan Motif Kambing Api Imlek",
+          "category": "Ilustrasi",
+          "formatType": "Ilustrasi Full Layar",
+          "visualStyle": "Batik Motif Nusantara",
+          "platforms": {
+            "adobeStock": {
+              "score": 95,
+              "reason": "Permintaan batik kawung kambing api naik di Adobe Stock; format Ilustrasi Full Layar cocok untuk kampanye komersial."
+            },
+            "vecteezy": {
+              "score": 93,
+              "reason": "Pengguna Vecteezy banyak mengunduh batik kawung kambing api; variasi Ilustrasi Full Layar masih sedikit."
+            },
+            "dreamstime": {
+              "score": 91,
+              "reason": "Buyer Dreamstime mencari batik kawung kambing api dengan sentuhan autentik dan natural."
+            }
+          },
+          "demandScore": 95,
+          "growthPercent": "+33%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Imlek 2027 (6 Feb 2027) — produksi hingga 15 Des 2026",
+          "productionPrompt": "Seamless batik kawung pattern in deep indigo and warm gold, with subtle stylized fire goat silhouettes woven into the traditional four-petal kawung motif, flat vector illustration, symmetrical geometric layout, Indonesian heritage textile style, no text",
+          "seoTitle": "Batik Kawung Seamless Pattern Fire Goat Lunar New Year 2027 Vector",
+          "keywords": [
+            "batik",
+            "kawung pattern",
+            "indonesian batik",
+            "seamless pattern",
+            "fire goat",
+            "lunar new year",
+            "traditional pattern",
+            "indigo gold",
+            "heritage textile",
+            "geometric pattern",
+            "batik motif",
+            "asian pattern",
+            "cultural design",
+            "ornamental pattern",
+            "textile design"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian batik kawung kambing api pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 95."
+        },
+        {
+          "id": "i-20261114-08",
+          "title": "Lampion Ramadan Kaca 3D dengan Cahaya Hangat",
+          "category": "Ilustrasi",
+          "formatType": "Isolated Background",
+          "visualStyle": "3D Glassmorphism",
+          "platforms": {
+            "adobeStock": {
+              "score": 94,
+              "reason": "Buyer Adobe Stock aktif mencari lampion Ramadan kaca dalam format Isolated Background untuk kebutuhan iklan."
+            },
+            "vecteezy": {
+              "score": 92,
+              "reason": "Format Isolated Background untuk lampion Ramadan kaca punya celah supply besar di Vecteezy."
+            },
+            "dreamstime": {
+              "score": 90,
+              "reason": "Konten lampion Ramadan kaca punya peluang editorial yang kuat di Dreamstime."
+            }
+          },
+          "demandScore": 94,
+          "growthPercent": "+30%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Ramadan 2027 (mulai 8 Feb 2027) — produksi hingga 20 Des 2026",
+          "productionPrompt": "3D glassmorphism illustration of an ornate Ramadan lantern with translucent frosted glass panels glowing warm amber light, isolated on transparent-style white background, soft shadows, elegant gold metal frame, crescent moon detail, no text",
+          "seoTitle": "3D Glassmorphism Ramadan Lantern Glowing Amber Isolated Illustration",
+          "keywords": [
+            "ramadan lantern",
+            "glassmorphism",
+            "3d lantern",
+            "islamic lantern",
+            "glowing lantern",
+            "crescent moon",
+            "eid decoration",
+            "amber light",
+            "isolated illustration",
+            "ramadan 2027",
+            "muslim holiday",
+            "lantern illustration",
+            "gold frame",
+            "festive lantern",
+            "3d render"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian lampion Ramadan kaca pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 94."
+        },
+        {
+          "id": "i-20261114-09",
+          "title": "Keluarga Merayakan Natal di Ruang Tamu yang Hangat",
+          "category": "Ilustrasi",
+          "formatType": "Ilustrasi Full Layar",
+          "visualStyle": "Modern Flat 2.0 (Soft Gradient)",
+          "platforms": {
+            "adobeStock": {
+              "score": 91,
+              "reason": "Format Ilustrasi Full Layar bertema keluarga Natal flat sedang dicari buyer korporat dan iklan di Adobe Stock."
+            },
+            "vecteezy": {
+              "score": 89,
+              "reason": "Aset Ilustrasi Full Layar bertema keluarga Natal flat laris di Vecteezy dengan supply yang masih tipis."
+            },
+            "dreamstime": {
+              "score": 87,
+              "reason": "Tema keluarga Natal flat cocok untuk pasar editorial dan gaya hidup Dreamstime."
+            }
+          },
+          "demandScore": 91,
+          "growthPercent": "+24%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Natal 2026 (25 Des 2026) — unggah segera, jendela hampir tutup",
+          "productionPrompt": "Modern flat 2.0 illustration of a happy family decorating a Christmas tree in a cozy living room, soft gradient colors, warm fireplace glow, wrapped gifts and string lights, clean geometric shapes, full scene composition, no text",
+          "seoTitle": "Happy Family Decorating Christmas Tree Cozy Living Room Flat Illustration",
+          "keywords": [
+            "christmas family",
+            "flat illustration",
+            "christmas tree",
+            "cozy living room",
+            "holiday illustration",
+            "modern flat",
+            "family celebration",
+            "christmas decor",
+            "soft gradient",
+            "festive scene",
+            "winter holiday",
+            "gift wrapping",
+            "fireplace",
+            "christmas lights",
+            "family together"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian keluarga Natal flat pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 91."
+        },
+        {
+          "id": "x-20261114-10",
+          "title": "Paket Stiker Kambing Api Imlek 12 Ekspresi",
+          "category": "Vector",
+          "formatType": "Sticker Pack",
+          "visualStyle": "Anime / Kartun Vektor",
+          "platforms": {
+            "adobeStock": {
+              "score": 97,
+              "reason": "Permintaan stiker kambing api naik di Adobe Stock; format Sticker Pack cocok untuk kampanye komersial."
+            },
+            "vecteezy": {
+              "score": 95,
+              "reason": "Pengguna Vecteezy banyak mengunduh stiker kambing api; variasi Sticker Pack masih sedikit."
+            },
+            "dreamstime": {
+              "score": 93,
+              "reason": "Buyer Dreamstime mencari stiker kambing api dengan sentuhan autentik dan natural."
+            }
+          },
+          "demandScore": 97,
+          "growthPercent": "+40%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Imlek 2027 (6 Feb 2027) — produksi hingga 15 Des 2026",
+          "productionPrompt": "Cute anime vector sticker pack of a fire goat mascot in twelve expressions, happy, winking, dancing, holding red lantern and gold ingot, thick white sticker outline, vibrant red and gold palette, flat vector style, clean shapes, no text",
+          "seoTitle": "Cute Fire Goat Mascot Sticker Pack Lunar New Year 2027 Vector",
+          "keywords": [
+            "fire goat sticker",
+            "sticker pack",
+            "chinese new year",
+            "goat mascot",
+            "cute sticker",
+            "lunar new year 2027",
+            "anime vector",
+            "kawaii goat",
+            "red lantern",
+            "gold ingot",
+            "festive sticker",
+            "vector sticker",
+            "zodiac sticker",
+            "cartoon goat",
+            "new year sticker"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian stiker kambing api pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 97."
+        },
+        {
+          "id": "x-20261114-11",
+          "title": "Set Ikon Monoline Ramadan: Lampion, Kurma, Masjid",
+          "category": "Vector",
+          "formatType": "Icon Set",
+          "visualStyle": "Monoline Icon",
+          "platforms": {
+            "adobeStock": {
+              "score": 93,
+              "reason": "Buyer Adobe Stock aktif mencari ikon monoline Ramadan dalam format Icon Set untuk kebutuhan iklan."
+            },
+            "vecteezy": {
+              "score": 91,
+              "reason": "Format Icon Set untuk ikon monoline Ramadan punya celah supply besar di Vecteezy."
+            },
+            "dreamstime": {
+              "score": 89,
+              "reason": "Konten ikon monoline Ramadan punya peluang editorial yang kuat di Dreamstime."
+            }
+          },
+          "demandScore": 93,
+          "growthPercent": "+28%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Ramadan 2027 (mulai 8 Feb 2027) — produksi hingga 20 Des 2026",
+          "productionPrompt": "Minimal monoline icon set for Ramadan, single continuous line style, lantern, dates fruit, mosque dome, crescent moon, prayer beads, teapot, consistent stroke weight, dark green on white, flat vector icons, no text",
+          "seoTitle": "Ramadan Monoline Icon Set Lantern Dates Mosque Minimal Line Vector",
+          "keywords": [
+            "ramadan icon",
+            "monoline icon",
+            "line icon",
+            "islamic icon",
+            "mosque icon",
+            "lantern icon",
+            "minimal icon",
+            "icon set",
+            "crescent moon",
+            "prayer beads",
+            "vector icon",
+            "ramadan 2027",
+            "muslim icon",
+            "thin line",
+            "elegant icon"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian ikon monoline Ramadan pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 93."
+        },
+        {
+          "id": "x-20261114-12",
+          "title": "Elemen Infografis Isometrik Alur Kerja AI",
+          "category": "Vector",
+          "formatType": "Flat Vector",
+          "visualStyle": "Isometrik Flat Infografis",
+          "platforms": {
+            "adobeStock": {
+              "score": 95,
+              "reason": "Format Flat Vector bertema infografis AI isometrik sedang dicari buyer korporat dan iklan di Adobe Stock."
+            },
+            "vecteezy": {
+              "score": 93,
+              "reason": "Aset Flat Vector bertema infografis AI isometrik laris di Vecteezy dengan supply yang masih tipis."
+            },
+            "dreamstime": {
+              "score": 91,
+              "reason": "Tema infografis AI isometrik cocok untuk pasar editorial dan gaya hidup Dreamstime."
+            }
+          },
+          "demandScore": 95,
+          "growthPercent": "+36%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Isometric flat vector infographic elements for AI workflow, server racks, robot arm, data charts, cloud upload, human and robot collaboration, soft blue and teal palette, clean geometric shapes, editable vector, no text",
+          "seoTitle": "Isometric AI Workflow Infographic Vector Elements Business Technology",
+          "keywords": [
+            "isometric infographic",
+            "ai workflow",
+            "vector infographic",
+            "business technology",
+            "data chart",
+            "cloud computing",
+            "robot automation",
+            "flat vector",
+            "infographic elements",
+            "corporate vector",
+            "tech illustration",
+            "isometric vector",
+            "ai technology",
+            "workflow diagram",
+            "digital business"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian infografis AI isometrik pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 95."
+        }
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "dateLabel": "13 November 2026",
+      "fullLabel": "Jumat, 13 November 2026",
+      "lastUpdated": "2026-11-13T22:00:00+07:00",
+      "dayOverDayGrowth": "+19.7%",
+      "peakWindow": "21:00–01:00 WIB",
+      "totalQueriesAnalyzed": "44,310",
+      "confidence": "95.2%",
+      "platformInsights": {
+        "adobeStock": {
+          "name": "Adobe Stock",
+          "topSearch": "new year countdown city timelapse 4k",
+          "demandScore": 94,
+          "supplyGap": "Tinggi (79%)",
+          "insight": "Timelapse kota akhir tahun dan footage drone Asia Tenggara naik; buyer iklan butuh klip hitung mundur untuk kampanye Tahun Baru."
+        },
+        "vecteezy": {
+          "name": "Vecteezy",
+          "topSearch": "flat vector business icon set minimal",
+          "demandScore": 92,
+          "supplyGap": "Tinggi (82%)",
+          "insight": "Set ikon bisnis dan keuangan minimalis tetap laris; gaya flat design dan siluet mendominasi unduhan template presentasi."
+        },
+        "dreamstime": {
+          "name": "Dreamstime",
+          "topSearch": "corporate team meeting candid office",
+          "demandScore": 90,
+          "supplyGap": "Medium (68%)",
+          "insight": "Foto korporat candid stabil; persaingan tinggi di tema rapat, tapi foto tim beragam dengan pencahayaan alami masih dicari."
+        }
+      },
+      "agentLogs": [
+        "[Agent 01 • Peak Search Radar] 'New year countdown timelapse' dan 'flat vector business icon' naik tajam di jam sibuk buyer; tren korporat menguat.",
+        "[Agent 02 • Insight Auditor] Adobe Stock butuh timelapse kota akhir tahun; Vecteezy kekurangan ikon bisnis siluet; Dreamstime stabil di foto korporat candid.",
+        "[Agent 03 • Format Classifier] 12 peluang dipetakan: timelapse dan drone, foto korporat sinematik, ilustrasi doodle dan vintage, vektor flat dan pop art.",
+        "[Agent 04 • Lead-Time Predictor] Tahun Baru 48 hari lagi — jendela produksi hampir tutup; Imlek tetap prioritas utama hingga 15 Des.",
+        "[Agent 05 • Fable 5.2 Synthesizer] 12 ide final disintesis; skor tertinggi karakter kambing api flat (96) dan timelapse kota (95)."
+      ],
+      "ideas": [
+        {
+          "id": "v-20261113-01",
+          "title": "Timelapse Lampu Kota Menjelang Hitung Mundur Tahun Baru",
+          "category": "Video",
+          "formatType": "Timelapse",
+          "visualStyle": "Hyperlapse Kota",
+          "videoMeta": {
+            "ratio": "16:9 Horizontal",
+            "camera": "Diam / Static",
+            "loop": "Klip Biasa"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 95,
+              "reason": "Permintaan timelapse hitung mundur tahun baru naik di Adobe Stock; format Timelapse cocok untuk kampanye komersial."
+            },
+            "vecteezy": {
+              "score": 93,
+              "reason": "Pengguna Vecteezy banyak mengunduh timelapse hitung mundur tahun baru; variasi Timelapse masih sedikit."
+            },
+            "dreamstime": {
+              "score": 91,
+              "reason": "Buyer Dreamstime mencari timelapse hitung mundur tahun baru dengan sentuhan autentik dan natural."
+            }
+          },
+          "demandScore": 95,
+          "growthPercent": "+32%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Tahun Baru 2027 (1 Jan 2027) — unggah segera, jendela hampir tutup",
+          "productionPrompt": "Fast timelapse video of a city skyline at dusk transitioning to night, skyscraper lights turning on, fireworks bursting over the skyline, countdown energy, cinematic color grade, horizontal 16:9, 4k",
+          "seoTitle": "City Skyline Timelapse Dusk to Night Fireworks New Year Countdown 4K",
+          "keywords": [
+            "timelapse",
+            "city skyline",
+            "new year countdown",
+            "fireworks",
+            "night city",
+            "dusk timelapse",
+            "urban night",
+            "skyscraper lights",
+            "celebration",
+            "city lights",
+            "new year eve",
+            "metropolis",
+            "night skyline",
+            "festive city",
+            "4k timelapse"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian timelapse hitung mundur tahun baru pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 95."
+        },
+        {
+          "id": "v-20261113-02",
+          "title": "Slow Motion Tuangan Kopi Susu Gula Aren",
+          "category": "Video",
+          "formatType": "Slow Motion Makro",
+          "visualStyle": "Food & Drink B-roll",
+          "videoMeta": {
+            "ratio": "9:16 Vertikal",
+            "camera": "Zoom in",
+            "loop": "Klip Biasa"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 92,
+              "reason": "Buyer Adobe Stock aktif mencari kopi susu gula aren dalam format Slow Motion Makro untuk kebutuhan iklan."
+            },
+            "vecteezy": {
+              "score": 90,
+              "reason": "Format Slow Motion Makro untuk kopi susu gula aren punya celah supply besar di Vecteezy."
+            },
+            "dreamstime": {
+              "score": 88,
+              "reason": "Konten kopi susu gula aren punya peluang editorial yang kuat di Dreamstime."
+            }
+          },
+          "demandScore": 92,
+          "growthPercent": "+26%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Slow motion macro video of palm sugar coffee milk being poured into a glass, swirling caramel ribbons mixing with milk, condensation on glass, warm cafe lighting, vertical 9:16, shallow depth of field",
+          "seoTitle": "Slow Motion Palm Sugar Coffee Milk Pour Swirl Vertical Video",
+          "keywords": [
+            "coffee pour",
+            "slow motion",
+            "palm sugar coffee",
+            "iced coffee",
+            "milk swirl",
+            "cafe drink",
+            "macro food",
+            "vertical video",
+            "coffee milk",
+            "caramel swirl",
+            "beverage video",
+            "cold coffee",
+            "coffee art",
+            "drink pour",
+            "food b-roll"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian kopi susu gula aren pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 92."
+        },
+        {
+          "id": "v-20261113-03",
+          "title": "Drone Sinematik Sawah Terasering Bali Saat Kabut Pagi",
+          "category": "Video",
+          "formatType": "Sinematik Alam (Aerial/Drone)",
+          "visualStyle": "Alam & Satwa",
+          "videoMeta": {
+            "ratio": "16:9 Horizontal",
+            "camera": "Drone",
+            "loop": "Klip Biasa"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 94,
+              "reason": "Format Sinematik Alam (Aerial/Drone) bertema drone sawah Bali sedang dicari buyer korporat dan iklan di Adobe Stock."
+            },
+            "vecteezy": {
+              "score": 92,
+              "reason": "Aset Sinematik Alam (Aerial/Drone) bertema drone sawah Bali laris di Vecteezy dengan supply yang masih tipis."
+            },
+            "dreamstime": {
+              "score": 90,
+              "reason": "Tema drone sawah Bali cocok untuk pasar editorial dan gaya hidup Dreamstime."
+            }
+          },
+          "demandScore": 94,
+          "growthPercent": "+29%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Cinematic aerial drone video flying over lush green Bali rice terraces at sunrise, morning mist drifting through valleys, golden sunlight on water-filled paddies, smooth forward drone movement, horizontal 16:9, 4k",
+          "seoTitle": "Aerial Drone Bali Rice Terraces Sunrise Mist Cinematic 4K Video",
+          "keywords": [
+            "bali rice terrace",
+            "aerial drone",
+            "rice fields",
+            "sunrise mist",
+            "indonesia travel",
+            "drone footage",
+            "terraced fields",
+            "morning fog",
+            "tropical landscape",
+            "cinematic drone",
+            "green valley",
+            "asia travel",
+            "rice paddy",
+            "aerial view",
+            "nature video"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian drone sawah Bali pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 94."
+        },
+        {
+          "id": "f-20261113-04",
+          "title": "Tim Korporat Berdiskusi di Ruang Rapat Modern",
+          "category": "Foto",
+          "formatType": "Scene Penuh",
+          "visualStyle": "Cinematic",
+          "platforms": {
+            "adobeStock": {
+              "score": 93,
+              "reason": "Permintaan tim korporat rapat naik di Adobe Stock; format Scene Penuh cocok untuk kampanye komersial."
+            },
+            "vecteezy": {
+              "score": 91,
+              "reason": "Pengguna Vecteezy banyak mengunduh tim korporat rapat; variasi Scene Penuh masih sedikit."
+            },
+            "dreamstime": {
+              "score": 89,
+              "reason": "Buyer Dreamstime mencari tim korporat rapat dengan sentuhan autentik dan natural."
+            }
+          },
+          "demandScore": 93,
+          "growthPercent": "+25%",
+          "competitionLevel": "High",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Cinematic photograph of a diverse corporate team in a modern glass meeting room discussing strategy around a table with laptops and charts, natural window light, shallow depth of field, authentic business atmosphere, horizontal composition",
+          "seoTitle": "Diverse Corporate Team Meeting Modern Office Strategy Discussion",
+          "keywords": [
+            "corporate team",
+            "business meeting",
+            "office teamwork",
+            "strategy discussion",
+            "modern office",
+            "diverse team",
+            "business people",
+            "meeting room",
+            "professional team",
+            "workplace collaboration",
+            "corporate photography",
+            "teamwork",
+            "business strategy",
+            "office life",
+            "professional meeting"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian tim korporat rapat pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 93."
+        },
+        {
+          "id": "f-20261113-05",
+          "title": "Flat Lay Meja Kerja Minimalis dengan Laptop dan Kopi",
+          "category": "Foto",
+          "formatType": "Copy Space",
+          "visualStyle": "Flat Lay Top-Down",
+          "platforms": {
+            "adobeStock": {
+              "score": 90,
+              "reason": "Buyer Adobe Stock aktif mencari flat lay workspace dalam format Copy Space untuk kebutuhan iklan."
+            },
+            "vecteezy": {
+              "score": 88,
+              "reason": "Format Copy Space untuk flat lay workspace punya celah supply besar di Vecteezy."
+            },
+            "dreamstime": {
+              "score": 86,
+              "reason": "Konten flat lay workspace punya peluang editorial yang kuat di Dreamstime."
+            }
+          },
+          "demandScore": 90,
+          "growthPercent": "+21%",
+          "competitionLevel": "High",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Top-down flat lay photograph of a minimalist workspace, laptop, notebook, coffee cup, smartphone and green plant on a clean light wooden desk, generous copy space at top, soft natural light, bright airy tones",
+          "seoTitle": "Minimalist Workspace Flat Lay Laptop Coffee Notebook Top View",
+          "keywords": [
+            "workspace flat lay",
+            "desk flat lay",
+            "minimal workspace",
+            "laptop desk",
+            "top view",
+            "copy space",
+            "home office",
+            "productivity desk",
+            "coffee laptop",
+            "clean desk",
+            "work from home",
+            "flat lay photography",
+            "office desk",
+            "minimal desk",
+            "workstation"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian flat lay workspace pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 90."
+        },
+        {
+          "id": "f-20261113-06",
+          "title": "Ornamen Natal Kaca dengan Bokeh Lampu Hangat",
+          "category": "Foto",
+          "formatType": "Subjek Isolasi (BG polos)",
+          "visualStyle": "Bokeh Shallow DOF",
+          "platforms": {
+            "adobeStock": {
+              "score": 91,
+              "reason": "Format Subjek Isolasi (BG polos) bertema ornamen Natal bokeh sedang dicari buyer korporat dan iklan di Adobe Stock."
+            },
+            "vecteezy": {
+              "score": 89,
+              "reason": "Aset Subjek Isolasi (BG polos) bertema ornamen Natal bokeh laris di Vecteezy dengan supply yang masih tipis."
+            },
+            "dreamstime": {
+              "score": 87,
+              "reason": "Tema ornamen Natal bokeh cocok untuk pasar editorial dan gaya hidup Dreamstime."
+            }
+          },
+          "demandScore": 91,
+          "growthPercent": "+23%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Natal 2026 (25 Des 2026) — unggah segera, jendela hampir tutup",
+          "productionPrompt": "Isolated photograph of a red glass Christmas bauble ornament hanging with warm golden bokeh lights in the background, shallow depth of field, macro detail of ornament reflection, festive holiday mood, vertical composition",
+          "seoTitle": "Red Glass Christmas Bauble Ornament Golden Bokeh Lights Isolated",
+          "keywords": [
+            "christmas bauble",
+            "christmas ornament",
+            "bokeh lights",
+            "holiday decoration",
+            "red ornament",
+            "golden bokeh",
+            "festive ornament",
+            "christmas decor",
+            "glass bauble",
+            "shallow depth of field",
+            "holiday lights",
+            "winter decoration",
+            "christmas ball",
+            "festive background",
+            "ornament closeup"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian ornamen Natal bokeh pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 91."
+        },
+        {
+          "id": "i-20261113-07",
+          "title": "Doodle Keluarga Kambing Merayakan Imlek",
+          "category": "Ilustrasi",
+          "formatType": "Isolated Background",
+          "visualStyle": "Hand-drawn Doodle",
+          "platforms": {
+            "adobeStock": {
+              "score": 92,
+              "reason": "Permintaan doodle kambing Imlek naik di Adobe Stock; format Isolated Background cocok untuk kampanye komersial."
+            },
+            "vecteezy": {
+              "score": 90,
+              "reason": "Pengguna Vecteezy banyak mengunduh doodle kambing Imlek; variasi Isolated Background masih sedikit."
+            },
+            "dreamstime": {
+              "score": 88,
+              "reason": "Buyer Dreamstime mencari doodle kambing Imlek dengan sentuhan autentik dan natural."
+            }
+          },
+          "demandScore": 92,
+          "growthPercent": "+27%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Imlek 2027 (6 Feb 2027) — produksi hingga 15 Des 2026",
+          "productionPrompt": "Hand-drawn doodle illustration of a cute goat family celebrating Lunar New Year, playful sketchy lines, red envelopes and firecrackers, warm red and gold accents on white background, isolated on white, charming imperfect strokes, no text",
+          "seoTitle": "Hand Drawn Doodle Goat Family Lunar New Year Celebration Illustration",
+          "keywords": [
+            "doodle illustration",
+            "goat family",
+            "lunar new year",
+            "hand drawn",
+            "cute doodle",
+            "chinese new year",
+            "sketchy illustration",
+            "red envelope",
+            "firecracker",
+            "playful doodle",
+            "goat illustration",
+            "festive doodle",
+            "white background",
+            "whimsical art",
+            "new year doodle"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian doodle kambing Imlek pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 92."
+        },
+        {
+          "id": "i-20261113-08",
+          "title": "Set Lencana Vintage Natal Klasik 1950-an",
+          "category": "Ilustrasi",
+          "formatType": "Ilustrasi Full Layar",
+          "visualStyle": "Retro Vintage Badge",
+          "platforms": {
+            "adobeStock": {
+              "score": 89,
+              "reason": "Buyer Adobe Stock aktif mencari lencana vintage Natal dalam format Ilustrasi Full Layar untuk kebutuhan iklan."
+            },
+            "vecteezy": {
+              "score": 87,
+              "reason": "Format Ilustrasi Full Layar untuk lencana vintage Natal punya celah supply besar di Vecteezy."
+            },
+            "dreamstime": {
+              "score": 85,
+              "reason": "Konten lencana vintage Natal punya peluang editorial yang kuat di Dreamstime."
+            }
+          },
+          "demandScore": 89,
+          "growthPercent": "-5%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Natal 2026 (25 Des 2026) — unggah segera, jendela hampir tutup",
+          "productionPrompt": "Retro vintage badge set for Christmas, 1950s style emblems with reindeer, snowman, Christmas tree and Santa hat, distressed texture, muted red green and cream palette, circular badge layouts, flat vector illustration, no text",
+          "seoTitle": "Retro Vintage Christmas Badge Set 1950s Reindeer Snowman Vector",
+          "keywords": [
+            "vintage christmas",
+            "retro badge",
+            "christmas emblem",
+            "1950s style",
+            "reindeer badge",
+            "snowman badge",
+            "retro illustration",
+            "vintage label",
+            "christmas sticker",
+            "distressed texture",
+            "classic christmas",
+            "badge set",
+            "retro vector",
+            "holiday badge",
+            "vintage design"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian lencana vintage Natal pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 89."
+        },
+        {
+          "id": "i-20261113-09",
+          "title": "Rangkaian Bunga Tropis Flat untuk Undangan",
+          "category": "Ilustrasi",
+          "formatType": "Isolated Background",
+          "visualStyle": "Floral Botanical Flat",
+          "platforms": {
+            "adobeStock": {
+              "score": 90,
+              "reason": "Format Isolated Background bertema bunga tropis flat sedang dicari buyer korporat dan iklan di Adobe Stock."
+            },
+            "vecteezy": {
+              "score": 88,
+              "reason": "Aset Isolated Background bertema bunga tropis flat laris di Vecteezy dengan supply yang masih tipis."
+            },
+            "dreamstime": {
+              "score": 86,
+              "reason": "Tema bunga tropis flat cocok untuk pasar editorial dan gaya hidup Dreamstime."
+            }
+          },
+          "demandScore": 90,
+          "growthPercent": "+20%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Flat botanical illustration of tropical flowers and leaves, monstera, hibiscus and palm fronds in vibrant coral and deep green, isolated on white background, clean vector shapes, elegant wedding invitation style, no text",
+          "seoTitle": "Tropical Floral Botanical Flat Illustration Monstera Hibiscus Vector",
+          "keywords": [
+            "tropical flowers",
+            "botanical illustration",
+            "flat floral",
+            "monstera leaf",
+            "hibiscus flower",
+            "palm leaves",
+            "floral vector",
+            "wedding invitation",
+            "botanical art",
+            "tropical leaves",
+            "floral design",
+            "isolated flowers",
+            "elegant floral",
+            "plant illustration",
+            "flower arrangement"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian bunga tropis flat pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 90."
+        },
+        {
+          "id": "x-20261113-10",
+          "title": "Karakter Kambing Api Flat Vector untuk Kartu Imlek",
+          "category": "Vector",
+          "formatType": "Flat Vector",
+          "visualStyle": "Flat Design",
+          "platforms": {
+            "adobeStock": {
+              "score": 96,
+              "reason": "Permintaan kambing api flat vector naik di Adobe Stock; format Flat Vector cocok untuk kampanye komersial."
+            },
+            "vecteezy": {
+              "score": 94,
+              "reason": "Pengguna Vecteezy banyak mengunduh kambing api flat vector; variasi Flat Vector masih sedikit."
+            },
+            "dreamstime": {
+              "score": 92,
+              "reason": "Buyer Dreamstime mencari kambing api flat vector dengan sentuhan autentik dan natural."
+            }
+          },
+          "demandScore": 96,
+          "growthPercent": "+38%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Imlek 2027 (6 Feb 2027) — produksi hingga 15 Des 2026",
+          "productionPrompt": "Flat vector illustration of a cheerful fire goat character with flame-shaped horns and golden bell collar, standing pose, bold red and gold colors, clean geometric shapes, Chinese New Year greeting card style, isolated on white, no text",
+          "seoTitle": "Cheerful Fire Goat Flat Vector Character Chinese New Year Greeting",
+          "keywords": [
+            "fire goat vector",
+            "flat vector",
+            "goat character",
+            "chinese new year",
+            "lunar new year 2027",
+            "goat illustration",
+            "zodiac goat",
+            "red gold",
+            "greeting card",
+            "cute goat",
+            "flat design",
+            "festive vector",
+            "asian new year",
+            "animal vector",
+            "holiday character"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian kambing api flat vector pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 96."
+        },
+        {
+          "id": "x-20261113-11",
+          "title": "Set Ikon Siluet Minimalis Bisnis dan Keuangan",
+          "category": "Vector",
+          "formatType": "Icon Set",
+          "visualStyle": "Ikon Siluet Minimalis",
+          "platforms": {
+            "adobeStock": {
+              "score": 91,
+              "reason": "Buyer Adobe Stock aktif mencari ikon bisnis siluet dalam format Icon Set untuk kebutuhan iklan."
+            },
+            "vecteezy": {
+              "score": 89,
+              "reason": "Format Icon Set untuk ikon bisnis siluet punya celah supply besar di Vecteezy."
+            },
+            "dreamstime": {
+              "score": 87,
+              "reason": "Konten ikon bisnis siluet punya peluang editorial yang kuat di Dreamstime."
+            }
+          },
+          "demandScore": 91,
+          "growthPercent": "+22%",
+          "competitionLevel": "High",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Minimal silhouette icon set for business and finance, solid black icons, briefcase, chart, coins, handshake, calculator, target, consistent style, grid layout, flat vector icons, white background, no text",
+          "seoTitle": "Minimal Silhouette Business Finance Icon Set Black Vector Icons",
+          "keywords": [
+            "business icon",
+            "silhouette icon",
+            "finance icon",
+            "minimal icon",
+            "icon set",
+            "black icon",
+            "briefcase icon",
+            "chart icon",
+            "corporate icon",
+            "vector icon",
+            "flat icon",
+            "money icon",
+            "handshake icon",
+            "professional icon",
+            "simple icon"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian ikon bisnis siluet pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 91."
+        },
+        {
+          "id": "x-20261113-12",
+          "title": "Paket Stiker Pop Art Makanan Indonesia",
+          "category": "Vector",
+          "formatType": "Sticker Pack",
+          "visualStyle": "Halftone Pop Art",
+          "platforms": {
+            "adobeStock": {
+              "score": 93,
+              "reason": "Format Sticker Pack bertema stiker pop art makanan sedang dicari buyer korporat dan iklan di Adobe Stock."
+            },
+            "vecteezy": {
+              "score": 91,
+              "reason": "Aset Sticker Pack bertema stiker pop art makanan laris di Vecteezy dengan supply yang masih tipis."
+            },
+            "dreamstime": {
+              "score": 89,
+              "reason": "Tema stiker pop art makanan cocok untuk pasar editorial dan gaya hidup Dreamstime."
+            }
+          },
+          "demandScore": 93,
+          "growthPercent": "+30%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Halftone pop art sticker pack of Indonesian street food, satay, bakso, nasi goreng, es teh manis, bold comic colors with halftone dot texture, thick white sticker borders, playful retro style, flat vector, no text",
+          "seoTitle": "Indonesian Street Food Pop Art Sticker Pack Halftone Vector",
+          "keywords": [
+            "pop art sticker",
+            "indonesian food",
+            "street food sticker",
+            "halftone art",
+            "satay sticker",
+            "bakso",
+            "nasi goreng",
+            "food sticker",
+            "retro sticker",
+            "comic style",
+            "sticker pack",
+            "asian food",
+            "bold colors",
+            "vector sticker",
+            "food illustration"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian stiker pop art makanan pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 93."
+        }
+      ]
+    },
+    {
+      "date": "2026-11-12",
+      "dateLabel": "12 November 2026",
+      "fullLabel": "Kamis, 12 November 2026",
+      "lastUpdated": "2026-11-12T22:00:00+07:00",
+      "dayOverDayGrowth": "+12.3%",
+      "peakWindow": "21:00–01:00 WIB",
+      "totalQueriesAnalyzed": "41,780",
+      "confidence": "94.6%",
+      "platformInsights": {
+        "adobeStock": {
+          "name": "Adobe Stock",
+          "topSearch": "jakarta hyperlapse night city lights",
+          "demandScore": 93,
+          "supplyGap": "Tinggi (77%)",
+          "insight": "Hyperlapse kota-kota Asia naik daun; buyer travel dan iklan mencari sudut pandang kota yang belum jenuh seperti Jakarta."
+        },
+        "vecteezy": {
+          "name": "Vecteezy",
+          "topSearch": "batik kawung seamless pattern vector",
+          "demandScore": 96,
+          "supplyGap": "Sangat Tinggi (91%)",
+          "insight": "Pola batik kawung nyaris tanpa pesaing serius di Vecteezy; motif Nusantara jadi pembeda kuat untuk desainer yang butuh pola tekstil autentik."
+        },
+        "dreamstime": {
+          "name": "Dreamstime",
+          "topSearch": "sahur family cooking together lifestyle",
+          "demandScore": 89,
+          "supplyGap": "Tinggi (74%)",
+          "insight": "Tema sahur keluarga mulai dicari lebih awal; foto lifestyle Ramadan yang hangat dan natural punya peluang editorial tinggi."
+        }
+      },
+      "agentLogs": [
+        "[Agent 01 • Peak Search Radar] 'Jakarta hyperlapse' dan 'batik kawung pattern' menanjak; pencarian 'sahur family' mulai muncul lebih awal.",
+        "[Agent 02 • Insight Auditor] Vecteezy defisit pola batik kawung (supply gap 91%); Adobe Stock butuh hyperlapse kota Asia; Dreamstime kuat di lifestyle sahur.",
+        "[Agent 03 • Format Classifier] 12 peluang dipetakan: motion graphic AI, hyperlapse, foto lifestyle sahur, ilustrasi mandala dan cyber-UI, vektor batik.",
+        "[Agent 04 • Lead-Time Predictor] Idul Fitri 20 Mar 2027 (128 hari) — produksi mandala bisa dimulai; Imlek dan Ramadan tetap di jendela ideal.",
+        "[Agent 05 • Fable 5.2 Synthesizer] 12 ide final disintesis; skor tertinggi pola batik kawung (95) dan motion graphic AI (95)."
+      ],
+      "ideas": [
+        {
+          "id": "v-20261112-01",
+          "title": "Motion Graphic Penjelasan Alur Kerja AI untuk Bisnis",
+          "category": "Video",
+          "formatType": "Animasi 2D Flat / Motion Graphic",
+          "visualStyle": "Teknologi Futuristik",
+          "videoMeta": {
+            "ratio": "16:9 Horizontal",
+            "camera": "Diam / Static",
+            "loop": "Klip Biasa"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 95,
+              "reason": "Permintaan motion graphic AI bisnis naik di Adobe Stock; format Animasi 2D Flat / Motion Graphic cocok untuk kampanye komersial."
+            },
+            "vecteezy": {
+              "score": 93,
+              "reason": "Pengguna Vecteezy banyak mengunduh motion graphic AI bisnis; variasi Animasi 2D Flat / Motion Graphic masih sedikit."
+            },
+            "dreamstime": {
+              "score": 91,
+              "reason": "Buyer Dreamstime mencari motion graphic AI bisnis dengan sentuhan autentik dan natural."
+            }
+          },
+          "demandScore": 95,
+          "growthPercent": "+31%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "2D flat motion graphic explainer video about AI workflow for business, animated icons of data input, robot processing and output charts, smooth transitions, blue and teal corporate palette, clean typography-free animation, horizontal 16:9",
+          "seoTitle": "AI Workflow Business Explainer Motion Graphic Animation 2D Flat",
+          "keywords": [
+            "motion graphic",
+            "ai explainer",
+            "business animation",
+            "2d animation",
+            "flat animation",
+            "ai workflow",
+            "corporate video",
+            "animated infographic",
+            "tech explainer",
+            "data animation",
+            "robot animation",
+            "business technology",
+            "animated video",
+            "process animation",
+            "digital transformation"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian motion graphic AI bisnis pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 95."
+        },
+        {
+          "id": "v-20261112-02",
+          "title": "Hyperlapse Malam Jakarta: Lampu Kota Bergerak Cepat",
+          "category": "Video",
+          "formatType": "Hyperlapse Kota",
+          "visualStyle": "Sinematik Alam (Aerial/Drone)",
+          "videoMeta": {
+            "ratio": "16:9 Horizontal",
+            "camera": "Drone",
+            "loop": "Klip Biasa"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 93,
+              "reason": "Buyer Adobe Stock aktif mencari hyperlapse Jakarta malam dalam format Hyperlapse Kota untuk kebutuhan iklan."
+            },
+            "vecteezy": {
+              "score": 91,
+              "reason": "Format Hyperlapse Kota untuk hyperlapse Jakarta malam punya celah supply besar di Vecteezy."
+            },
+            "dreamstime": {
+              "score": 89,
+              "reason": "Konten hyperlapse Jakarta malam punya peluang editorial yang kuat di Dreamstime."
+            }
+          },
+          "demandScore": 93,
+          "growthPercent": "+28%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Fast hyperlapse video of Jakarta city at night, moving through busy streets with car light trails, skyscrapers and Monas glowing, dynamic camera movement, cinematic color grade, horizontal 16:9, 4k",
+          "seoTitle": "Jakarta Night Hyperlapse City Lights Car Trails Monas 4K Video",
+          "keywords": [
+            "jakarta hyperlapse",
+            "city hyperlapse",
+            "night city",
+            "car light trails",
+            "indonesia city",
+            "urban hyperlapse",
+            "monas",
+            "skyscraper night",
+            "city lights",
+            "fast motion",
+            "metropolis night",
+            "asian city",
+            "night traffic",
+            "cinematic city",
+            "4k hyperlapse"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian hyperlapse Jakarta malam pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 93."
+        },
+        {
+          "id": "v-20261112-03",
+          "title": "Timelapse Meja Kerja dari Pagi hingga Senja",
+          "category": "Video",
+          "formatType": "Workspace & Produktivitas",
+          "visualStyle": "Timelapse",
+          "videoMeta": {
+            "ratio": "16:9 Horizontal",
+            "camera": "Diam / Static",
+            "loop": "Klip Biasa"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 89,
+              "reason": "Format Workspace & Produktivitas bertema timelapse meja kerja sedang dicari buyer korporat dan iklan di Adobe Stock."
+            },
+            "vecteezy": {
+              "score": 87,
+              "reason": "Aset Workspace & Produktivitas bertema timelapse meja kerja laris di Vecteezy dengan supply yang masih tipis."
+            },
+            "dreamstime": {
+              "score": 85,
+              "reason": "Tema timelapse meja kerja cocok untuk pasar editorial dan gaya hidup Dreamstime."
+            }
+          },
+          "demandScore": 89,
+          "growthPercent": "+19%",
+          "competitionLevel": "High",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Timelapse video of a modern workspace desk from morning to evening, hands typing, coffee cups changing, sunlight moving across the desk, plants and laptop in frame, warm to cool light transition, horizontal 16:9",
+          "seoTitle": "Workspace Desk Timelapse Morning to Evening Productivity 4K",
+          "keywords": [
+            "workspace timelapse",
+            "desk timelapse",
+            "productivity video",
+            "home office",
+            "typing timelapse",
+            "work desk",
+            "office timelapse",
+            "morning to evening",
+            "work from home",
+            "desk setup",
+            "time lapse",
+            "creative workspace",
+            "laptop desk",
+            "office life",
+            "daily work"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian timelapse meja kerja pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 89."
+        },
+        {
+          "id": "f-20261112-04",
+          "title": "Keluarga Memasak Sahur Bersama di Dapur",
+          "category": "Foto",
+          "formatType": "Scene Penuh",
+          "visualStyle": "Lifestyle Candid",
+          "platforms": {
+            "adobeStock": {
+              "score": 94,
+              "reason": "Permintaan keluarga sahur naik di Adobe Stock; format Scene Penuh cocok untuk kampanye komersial."
+            },
+            "vecteezy": {
+              "score": 92,
+              "reason": "Pengguna Vecteezy banyak mengunduh keluarga sahur; variasi Scene Penuh masih sedikit."
+            },
+            "dreamstime": {
+              "score": 90,
+              "reason": "Buyer Dreamstime mencari keluarga sahur dengan sentuhan autentik dan natural."
+            }
+          },
+          "demandScore": 94,
+          "growthPercent": "+33%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Ramadan 2027 (mulai 8 Feb 2027) — produksi hingga 20 Des 2026",
+          "productionPrompt": "Candid lifestyle photograph of a warm Indonesian family cooking sahur meal together in a cozy kitchen before dawn, mother and children preparing food, warm tungsten light, authentic joyful moments, horizontal composition",
+          "seoTitle": "Indonesian Family Cooking Sahur Meal Together Cozy Kitchen Ramadan",
+          "keywords": [
+            "sahur family",
+            "ramadan family",
+            "family cooking",
+            "muslim family",
+            "kitchen lifestyle",
+            "candid family",
+            "ramadan 2027",
+            "family together",
+            "cooking together",
+            "indonesian family",
+            "dawn meal",
+            "home cooking",
+            "family lifestyle",
+            "warm kitchen",
+            "iftar preparation"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian keluarga sahur pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 94."
+        },
+        {
+          "id": "f-20261112-05",
+          "title": "Jejak Cahaya Kendaraan di Jalan Tol Kota",
+          "category": "Foto",
+          "formatType": "Copy Space",
+          "visualStyle": "Long Exposure",
+          "platforms": {
+            "adobeStock": {
+              "score": 91,
+              "reason": "Buyer Adobe Stock aktif mencari jejak cahaya jalan tol dalam format Copy Space untuk kebutuhan iklan."
+            },
+            "vecteezy": {
+              "score": 89,
+              "reason": "Format Copy Space untuk jejak cahaya jalan tol punya celah supply besar di Vecteezy."
+            },
+            "dreamstime": {
+              "score": 87,
+              "reason": "Konten jejak cahaya jalan tol punya peluang editorial yang kuat di Dreamstime."
+            }
+          },
+          "demandScore": 91,
+          "growthPercent": "+24%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Long exposure photograph of highway car light trails at blue hour, red and white streaks curving through a modern city, copy space in the upper sky area, deep blue twilight tones, horizontal composition, no people",
+          "seoTitle": "Highway Car Light Trails Long Exposure Blue Hour City Copy Space",
+          "keywords": [
+            "light trails",
+            "long exposure",
+            "car lights",
+            "blue hour",
+            "highway night",
+            "city traffic",
+            "night photography",
+            "light streaks",
+            "urban night",
+            "copy space",
+            "twilight city",
+            "motion blur",
+            "night highway",
+            "city lights",
+            "long exposure photography"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian jejak cahaya jalan tol pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 91."
+        },
+        {
+          "id": "f-20261112-06",
+          "title": "Makro Kain Batik Tulis dengan Detail Canting",
+          "category": "Foto",
+          "formatType": "Subjek Isolasi (BG polos)",
+          "visualStyle": "Macro Close-up",
+          "platforms": {
+            "adobeStock": {
+              "score": 92,
+              "reason": "Format Subjek Isolasi (BG polos) bertema makro kain batik sedang dicari buyer korporat dan iklan di Adobe Stock."
+            },
+            "vecteezy": {
+              "score": 90,
+              "reason": "Aset Subjek Isolasi (BG polos) bertema makro kain batik laris di Vecteezy dengan supply yang masih tipis."
+            },
+            "dreamstime": {
+              "score": 88,
+              "reason": "Tema makro kain batik cocok untuk pasar editorial dan gaya hidup Dreamstime."
+            }
+          },
+          "demandScore": 92,
+          "growthPercent": "+26%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Macro close-up photograph of hand-drawn batik fabric texture, intricate wax-resist patterns in indigo and brown, visible canting tool lines, isolated on plain background, soft side lighting revealing fabric weave, no text",
+          "seoTitle": "Hand Drawn Batik Fabric Macro Texture Indigo Traditional Textile",
+          "keywords": [
+            "batik fabric",
+            "batik texture",
+            "macro textile",
+            "indonesian batik",
+            "traditional fabric",
+            "hand drawn batik",
+            "canting",
+            "indigo pattern",
+            "textile closeup",
+            "cultural textile",
+            "batik detail",
+            "fabric macro",
+            "heritage craft",
+            "wax resist",
+            "batik pattern"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian makro kain batik pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 92."
+        },
+        {
+          "id": "i-20261112-07",
+          "title": "Ornamen Mandala Emas untuk Kartu Lebaran",
+          "category": "Ilustrasi",
+          "formatType": "Ilustrasi Full Layar",
+          "visualStyle": "Mandala Ornament",
+          "platforms": {
+            "adobeStock": {
+              "score": 93,
+              "reason": "Permintaan mandala emas Lebaran naik di Adobe Stock; format Ilustrasi Full Layar cocok untuk kampanye komersial."
+            },
+            "vecteezy": {
+              "score": 91,
+              "reason": "Pengguna Vecteezy banyak mengunduh mandala emas Lebaran; variasi Ilustrasi Full Layar masih sedikit."
+            },
+            "dreamstime": {
+              "score": 89,
+              "reason": "Buyer Dreamstime mencari mandala emas Lebaran dengan sentuhan autentik dan natural."
+            }
+          },
+          "demandScore": 93,
+          "growthPercent": "+29%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Idul Fitri 2027 (20 Mar 2027) — produksi hingga 20 Jan 2027",
+          "productionPrompt": "Ornate golden mandala illustration for Eid greeting card, symmetrical intricate geometric and floral patterns, deep emerald green background with gold line work, luxurious Islamic art style, full frame composition, no text",
+          "seoTitle": "Golden Mandala Ornament Eid Greeting Card Emerald Islamic Art",
+          "keywords": [
+            "mandala ornament",
+            "eid card",
+            "islamic pattern",
+            "gold mandala",
+            "ramadan art",
+            "eid decoration",
+            "geometric mandala",
+            "luxury pattern",
+            "islamic art",
+            "emerald gold",
+            "ornamental design",
+            "eid greeting",
+            "mandala art",
+            "festive pattern",
+            "gold ornament"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian mandala emas Lebaran pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 93."
+        },
+        {
+          "id": "i-20261112-08",
+          "title": "Ilustrasi Dashboard Cyber-UI Neon untuk Startup AI",
+          "category": "Ilustrasi",
+          "formatType": "Isolated Background",
+          "visualStyle": "Cyber-UI Dark Neon",
+          "platforms": {
+            "adobeStock": {
+              "score": 94,
+              "reason": "Buyer Adobe Stock aktif mencari dashboard cyber neon dalam format Isolated Background untuk kebutuhan iklan."
+            },
+            "vecteezy": {
+              "score": 92,
+              "reason": "Format Isolated Background untuk dashboard cyber neon punya celah supply besar di Vecteezy."
+            },
+            "dreamstime": {
+              "score": 90,
+              "reason": "Konten dashboard cyber neon punya peluang editorial yang kuat di Dreamstime."
+            }
+          },
+          "demandScore": 94,
+          "growthPercent": "+32%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Cyber-UI dark neon illustration of a futuristic AI startup dashboard, glowing cyan and magenta interface panels, holographic charts and robot avatar, dark background with neon grid, isolated composition, sleek tech style, no text",
+          "seoTitle": "Cyber UI Dark Neon AI Startup Dashboard Holographic Illustration",
+          "keywords": [
+            "cyber ui",
+            "dark neon",
+            "ai dashboard",
+            "futuristic interface",
+            "holographic ui",
+            "neon illustration",
+            "tech dashboard",
+            "startup illustration",
+            "cyberpunk ui",
+            "glowing interface",
+            "digital dashboard",
+            "ai startup",
+            "neon tech",
+            "futuristic design",
+            "sci fi ui"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian dashboard cyber neon pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 94."
+        },
+        {
+          "id": "i-20261112-09",
+          "title": "Pola Memphis Warna Cerah untuk Kemasan Produk",
+          "category": "Ilustrasi",
+          "formatType": "Isolated Background",
+          "visualStyle": "Memphis Pattern",
+          "platforms": {
+            "adobeStock": {
+              "score": 88,
+              "reason": "Format Isolated Background bertema pola Memphis kemasan sedang dicari buyer korporat dan iklan di Adobe Stock."
+            },
+            "vecteezy": {
+              "score": 86,
+              "reason": "Aset Isolated Background bertema pola Memphis kemasan laris di Vecteezy dengan supply yang masih tipis."
+            },
+            "dreamstime": {
+              "score": 84,
+              "reason": "Tema pola Memphis kemasan cocok untuk pasar editorial dan gaya hidup Dreamstime."
+            }
+          },
+          "demandScore": 88,
+          "growthPercent": "-8%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Bright Memphis pattern illustration for product packaging, bold geometric shapes, squiggles, dots and triangles in coral, yellow, teal and purple, playful 80s style, seamless repeat pattern, isolated on white, no text",
+          "seoTitle": "Bright Memphis Pattern Geometric Shapes Product Packaging Vector",
+          "keywords": [
+            "memphis pattern",
+            "geometric pattern",
+            "80s pattern",
+            "packaging pattern",
+            "bold shapes",
+            "seamless pattern",
+            "retro pattern",
+            "colorful pattern",
+            "memphis design",
+            "playful pattern",
+            "abstract pattern",
+            "vibrant design",
+            "geometric shapes",
+            "pattern design",
+            "pop pattern"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian pola Memphis kemasan pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 88."
+        },
+        {
+          "id": "x-20261112-10",
+          "title": "Set Lencana Diskon Tahun Baru 2027",
+          "category": "Vector",
+          "formatType": "Icon Set",
+          "visualStyle": "Badge & Sale",
+          "platforms": {
+            "adobeStock": {
+              "score": 92,
+              "reason": "Permintaan lencana diskon tahun baru naik di Adobe Stock; format Icon Set cocok untuk kampanye komersial."
+            },
+            "vecteezy": {
+              "score": 90,
+              "reason": "Pengguna Vecteezy banyak mengunduh lencana diskon tahun baru; variasi Icon Set masih sedikit."
+            },
+            "dreamstime": {
+              "score": 88,
+              "reason": "Buyer Dreamstime mencari lencana diskon tahun baru dengan sentuhan autentik dan natural."
+            }
+          },
+          "demandScore": 92,
+          "growthPercent": "+27%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Tahun Baru 2027 (1 Jan 2027) — unggah segera, jendela hampir tutup",
+          "productionPrompt": "New Year 2027 sale badge icon set, starburst discount labels, ribbon banners and percent tags, bold red and gold with deep green accents, flat vector style, consistent stroke, isolated on white, no text",
+          "seoTitle": "New Year 2027 Sale Badge Set Discount Starburst Vector Icons",
+          "keywords": [
+            "sale badge",
+            "discount label",
+            "new year sale",
+            "starburst badge",
+            "sale icon",
+            "promotion badge",
+            "discount tag",
+            "new year 2027",
+            "ribbon banner",
+            "shopping badge",
+            "sale sticker",
+            "retail badge",
+            "percent tag",
+            "holiday sale",
+            "vector badge"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian lencana diskon tahun baru pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 92."
+        },
+        {
+          "id": "x-20261112-11",
+          "title": "Pola Batik Kawung Vector Seamless untuk Tekstil",
+          "category": "Vector",
+          "formatType": "Flat Vector",
+          "visualStyle": "Batik Motif Nusantara",
+          "platforms": {
+            "adobeStock": {
+              "score": 95,
+              "reason": "Buyer Adobe Stock aktif mencari batik kawung vector dalam format Flat Vector untuk kebutuhan iklan."
+            },
+            "vecteezy": {
+              "score": 93,
+              "reason": "Format Flat Vector untuk batik kawung vector punya celah supply besar di Vecteezy."
+            },
+            "dreamstime": {
+              "score": 91,
+              "reason": "Konten batik kawung vector punya peluang editorial yang kuat di Dreamstime."
+            }
+          },
+          "demandScore": 95,
+          "growthPercent": "+34%",
+          "competitionLevel": "Low",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Seamless batik kawung vector pattern, traditional four-petal flower motif in elegant indigo and cream, perfect tile repeat, flat vector style, Indonesian heritage textile, clean lines, no text",
+          "seoTitle": "Batik Kawung Seamless Vector Pattern Indigo Cream Traditional Textile",
+          "keywords": [
+            "batik kawung",
+            "seamless vector",
+            "batik pattern",
+            "indonesian textile",
+            "traditional pattern",
+            "indigo pattern",
+            "vector pattern",
+            "heritage design",
+            "kawung motif",
+            "textile pattern",
+            "cultural pattern",
+            "batik vector",
+            "ornamental pattern",
+            "flat vector",
+            "asian textile"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian batik kawung vector pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 95."
+        },
+        {
+          "id": "x-20261112-12",
+          "title": "Paket Stiker Line Art Hewan Peliharaan Lucu",
+          "category": "Vector",
+          "formatType": "Sticker Pack",
+          "visualStyle": "Line Art",
+          "platforms": {
+            "adobeStock": {
+              "score": 90,
+              "reason": "Format Sticker Pack bertema stiker line art hewan sedang dicari buyer korporat dan iklan di Adobe Stock."
+            },
+            "vecteezy": {
+              "score": 88,
+              "reason": "Aset Sticker Pack bertema stiker line art hewan laris di Vecteezy dengan supply yang masih tipis."
+            },
+            "dreamstime": {
+              "score": 86,
+              "reason": "Tema stiker line art hewan cocok untuk pasar editorial dan gaya hidup Dreamstime."
+            }
+          },
+          "demandScore": 90,
+          "growthPercent": "+22%",
+          "competitionLevel": "Medium",
+          "seasonalWindow": "Evergreen — tanpa batas musiman",
+          "productionPrompt": "Minimal line art sticker pack of cute pets, cat, dog, rabbit, hamster and bird, single elegant line style with soft pastel accents, thick white sticker outline, flat vector, playful and clean, no text",
+          "seoTitle": "Cute Pets Line Art Sticker Pack Cat Dog Rabbit Minimal Vector",
+          "keywords": [
+            "line art sticker",
+            "pet sticker",
+            "cute animals",
+            "cat sticker",
+            "dog sticker",
+            "minimal sticker",
+            "sticker pack",
+            "animal sticker",
+            "pastel sticker",
+            "rabbit sticker",
+            "bird sticker",
+            "vector sticker",
+            "cute pets",
+            "simple line art",
+            "pet illustration"
+          ],
+          "agentLogs": "Agent 01 menangkap lonjakan pencarian stiker line art hewan pada jam sibuk buyer; Agent 02 mengonfirmasi celah supply di Adobe Stock dengan skor permintaan 90."
+        }
+      ]
+    }
+  ]
+}
