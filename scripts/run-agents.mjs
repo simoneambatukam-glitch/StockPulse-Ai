@@ -33,6 +33,10 @@ import path from 'node:path';
 // Konfigurasi & path
 // ---------------------------------------------------------------------------
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
+// Key cadangan (opsional): key Gemini kedua dari akun Google lain.
+// Dipakai kalau key utama habis kuota — tiap key punya kuota gratisnya
+// sendiri, jadi dua key = dua kali jatah harian.
+const GEMINI_KEYS = [process.env.GEMINI_API_KEY, process.env.GEMINI_API_KEY_2].filter(Boolean);
 const THEME = (process.env.THEME || '').trim();
 // Model utama + fallback. gemini-2.5-flash & gemini-2.5-flash-lite sudah
 // deprecated 2 Nov 2026 (404 "no longer available to new users" untuk
@@ -207,14 +211,19 @@ async function callGemini(prompt, { useSearch = false, jsonMode = false } = {}) 
   if (jsonMode) body.generationConfig = { responseMimeType: 'application/json' };
 
   let lastErr = null;
-  const failures = []; // ringkasan kegagalan tiap model, untuk pesan FATAL
-  // Coba tiap model secara berurutan. Error 404 (model tidak tersedia untuk
-  // key ini) langsung pindah ke model berikutnya; error 429/5xx di-retry
-  // pada model yang sama dengan backoff.
-  for (const model of MODELS) {
+  const failures = []; // ringkasan kegagalan tiap pasangan model+key, untuk pesan FATAL
+  // Urutan coba: model terbaik dulu, tiap model dicoba di semua key.
+  // Jadi key cadangan dipakai untuk model yang sama sebelum turun ke model
+  // lain — kualitas jawaban dijaga setinggi mungkin.
+  // Error 404 (model tidak tersedia untuk key ini) langsung pindah ke
+  // pasangan berikutnya; error 429/5xx di-retry pada pasangan yang sama.
+  const pairs = [];
+  for (const model of MODELS) for (const key of GEMINI_KEYS) pairs.push({ model, key });
+  for (const { model, key } of pairs) {
+    const keyLabel = key === GEMINI_KEYS[0] ? 'key-1' : 'key-2';
     for (let attempt = 1; attempt <= 3; attempt++) {
       try {
-        const res = await fetch(`${geminiUrl(model)}?key=${GEMINI_API_KEY}`, {
+        const res = await fetch(`${geminiUrl(model)}?key=${key}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
@@ -229,23 +238,23 @@ async function callGemini(prompt, { useSearch = false, jsonMode = false } = {}) 
         }
         const text = extractText(data);
         if (!text) throw new Error('Respons Gemini kosong (tanpa teks).');
-        if (model !== MODEL) log(`Model ${MODEL} tidak tersedia, memakai fallback ${model}.`);
+        if (model !== MODEL || key !== GEMINI_KEYS[0]) log(`Memakai fallback ${model} (${keyLabel}).`);
         return text;
       } catch (e) {
         lastErr = e;
         const is404 = e.status === 404 || /404|not found|no longer available/i.test(e.message);
         if (is404) {
-          log(`Model ${model} tidak tersedia untuk key ini — coba model berikutnya.`);
-          failures.push(`${model}: 404 model tidak tersedia`);
-          break; // pindah ke model berikutnya, jangan retry model yang sama
+          log(`Model ${model} tidak tersedia untuk ${keyLabel} — coba pasangan berikutnya.`);
+          failures.push(`${model}/${keyLabel}: 404 model tidak tersedia`);
+          break; // pindah ke pasangan berikutnya, jangan retry pasangan yang sama
         }
         // Cek status HTTP juga, bukan cuma teks pesan — pesan kuota Gemini
         // ("You exceeded your current quota") tidak mengandung angka 429.
         const retryable = [429, 500, 502, 503, 504].includes(e.status)
           || /429|500|502|503|504|overloaded|timeout|fetch failed|exceeded.*quota/i.test(e.message);
-        log(`Gemini (${model}) percobaan ${attempt}/3 gagal: ${e.message}`);
+        log(`Gemini (${model}/${keyLabel}) percobaan ${attempt}/3 gagal: ${e.message}`);
         if (!retryable || attempt === 3) {
-          failures.push(`${model}: ${e.message.slice(0, 120)}`);
+          failures.push(`${model}/${keyLabel}: ${e.message.slice(0, 120)}`);
           break;
         }
         await sleep(5000 * attempt); // backoff 5s, 10s
@@ -255,7 +264,7 @@ async function callGemini(prompt, { useSearch = false, jsonMode = false } = {}) 
   // Sertakan ringkasan semua kegagalan agar FATAL tidak menampilkan cuma
   // error terakhir (yang bisa menyesatkan, mis. 404 model terakhir padahal
   // akar masalahnya kuota di model utama).
-  const summary = new Error(`Semua model gagal. ${failures.join(' | ')}`);
+  const summary = new Error(`Semua model & key gagal. ${failures.join(' | ')}`);
   summary.cause = lastErr;
   throw summary;
 }
@@ -310,8 +319,8 @@ function validateDayOutput(obj) {
 // MAIN
 // ---------------------------------------------------------------------------
 async function main() {
-  if (!GEMINI_API_KEY) {
-    console.error('[stockpulse] ERROR: GEMINI_API_KEY belum diset. Isi secrets.GEMINI_API_KEY di repo (GitHub Actions) atau export GEMINI_API_KEY untuk jalan lokal.');
+  if (GEMINI_KEYS.length === 0) {
+    console.error('[stockpulse] ERROR: GEMINI_API_KEY belum diset. Isi secrets.GEMINI_API_KEY di repo (GitHub Actions) atau export GEMINI_API_KEY untuk jalan lokal. Opsional: GEMINI_API_KEY_2 sebagai key cadangan dari akun Google kedua.');
     process.exit(1);
   }
 

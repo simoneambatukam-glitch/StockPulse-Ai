@@ -2,7 +2,7 @@
 
 Riset tren aset mikrostock harian yang **otomatis**, untuk **Adobe Stock, Vecteezy, dan Dreamstime** — tanpa server berbayar.
 
-Setiap hari pukul **22:00 WIB** (jam sibuk buyer internasional), 5 agen AI berurutan menganalisis tren lewat **Gemini 3.8 Flash** (dengan **Google Search Grounding**), lalu hasilnya disimpan sebagai **database JSON statis** (`public/data/history.json`). Frontend-nya tinggal membaca JSON itu, jadi bisa di-deploy ke **Vercel** atau **GitHub Pages** tanpa backend sama sekali.
+Setiap hari pukul **22:00 WIB** (jam sibuk buyer internasional), 5 agen AI berurutan menganalisis tren lewat **Gemini 3.8 Flash** (dengan **Google Search Grounding**), lalu hasilnya disimpan sebagai **database JSON statis** (`public/data/history.json`). Frontend-nya tinggal membaca JSON itu, jadi bisa di-deploy ke **Vercel** atau **GitHub Pages** tanpa backend sama sekali. Kalau kuota gratis key pertama habis, script otomatis pindah ke model lain lalu ke **key cadangan `GEMINI_API_KEY_2`** (opsional, dari akun Google kedua) — jadi riset harian tidak mati gara-gara satu key.
 
 ## Arsitektur 5 Agen (Sequential Chaining)
 
