@@ -1,47 +1,36 @@
-name: Deploy to GitHub Pages
-
-# Deploy frontend StockPulse AI (folder public/) ke GitHub Pages.
-# Jalan otomatis setiap ada push ke main — termasuk commit harian
-# dari workflow Daily Trend Radar — jadi situs selalu menampilkan
-# data tren terbaru tanpa deploy manual.
-#
-# Aktifkan dulu di repo: Settings → Pages → Build and deployment →
-# Source: GitHub Actions.
-#
-# URL situs: https://simoneambatukam-glitch.github.io/StockPulse-Ai/
+name: Daily Trend Radar — StockPulse AI
 
 on:
-  push:
-    branches: ["main"]
+  schedule:
+    - cron: '0 15 * * *'
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  contents: write
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  predict:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact (folder public/)
-        uses: actions/upload-pages-artifact@v3
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
         with:
-          path: public
+          node-version: 20
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Run predictive engine (zero API key)
+        run: node scripts/predict-trends.mjs
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- public/data/history.json; then
+            echo "No changes to history.json"
+          else
+            git add public/data/history.json
+            git commit -m "chore(predict): update 60-90 day stock forecast $(TZ='Asia/Jakarta' date +'%d %B %Y')"
+            git push
+          fi
