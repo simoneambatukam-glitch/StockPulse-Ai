@@ -1,29 +1,15 @@
 name: Daily Trend Radar — StockPulse AI
 
-# Riset tren mikrostock harian (Adobe Stock, Vecteezy, Dreamstime)
-# 5 agen AI berurutan ke Gemini 2.5 Flash (Google Search Grounding),
-# hasilnya disimpan sebagai database JSON statis di public/data/history.json.
-#
-# Jadwal: 15:00 UTC = 22:00 WIB (jam sibuk buyer internasional).
-# Bisa juga dipicu manual dari tab Actions, atau dari tombol
-# "Update Asset Hari Ini" di frontend (via GitHub REST API + PAT).
-
 on:
   schedule:
-    - cron: '0 15 * * *' # setiap hari 15:00 UTC / 22:00 WIB
+    - cron: '0 15 * * *'
   workflow_dispatch:
-    inputs:
-      theme:
-        description: 'Tema/niche khusus (opsional, kosongkan untuk riset umum)'
-        required: false
-        default: ''
-        type: string
 
 permissions:
   contents: write
 
 jobs:
-  run-trend-radar:
+  predict:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -34,20 +20,17 @@ jobs:
         with:
           node-version: 20
 
-      - name: Jalankan 5 Agen AI (Gemini 2.5 Flash)
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          THEME: ${{ inputs.theme }}
-        run: node scripts/run-agents.mjs
+      - name: Run predictive engine (zero API key)
+        run: node scripts/predict-trends.mjs
 
-      - name: Commit & push hasil riset
+      - name: Commit & push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if git diff --quiet -- public/data/history.json; then
-            echo "Tidak ada perubahan pada public/data/history.json — skip commit."
+            echo "No changes to history.json"
           else
             git add public/data/history.json
-            git commit -m "chore(trends): auto-update stock trends $(TZ='Asia/Jakarta' date +'%d %B %Y')"
+            git commit -m "chore(predict): update 60-90 day stock forecast $(TZ='Asia/Jakarta' date +'%d %B %Y')"
             git push
           fi
