@@ -1,2505 +1,709 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StockPulse AI — Multi-Agent Trend Radar (Adobe Stock • Vecteezy • Dreamstime)</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        if (typeof tailwind !== 'undefined') tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
-                    },
-                    colors: {
-                        emeraldForest: '#15803D',
-                        emeraldDeep: '#166534',
-                        softMint: '#F0FDF4',
-                        mintCard: '#F4FBF7',
-                        mintBorder: '#D1FAE5',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #F0FDF4;
-            color: #0F172A;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        /* Custom subtle scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #F0FDF4;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #BBF7D0;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #15803D;
-        }
-        /* Reference-inspired tactile pill buttons */
-        .pill-btn {
-            transition: all 0.16s cubic-bezier(0.22, 1, 0.36, 1);
-            border: 1.5px solid #D1FAE5;
-            background-color: #F4FBF7;
-            color: #1E293B;
-        }
-        .pill-btn:hover {
-            border-color: #15803D;
-            background-color: #DCFCE7;
-            transform: translateY(-1px);
-        }
-        .pill-btn.active {
-            background-color: #15803D;
-            border-color: #15803D;
-            color: #FFFFFF;
-            box-shadow: 0 4px 12px rgba(21, 128, 61, 0.24);
-        }
-        /* Card elevation */
-        .creator-card {
-            background-color: #FFFFFF;
-            border: 1px solid #DCFCE7;
-            box-shadow: 0 4px 20px -2px rgba(21, 128, 61, 0.06);
-        }
-        /* Pulse ring animation */
-        @keyframes pulseEmerald {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(21, 128, 61, 0.45); }
-            50% { box-shadow: 0 0 0 6px rgba(21, 128, 61, 0); }
-        }
-        .live-dot {
-            animation: pulseEmerald 2s infinite;
-        }
-        /* Agent progress shimmer */
-        @keyframes shimmerSlide {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        .agent-scanning-bar {
-            background: linear-gradient(90deg, #DCFCE7 25%, #15803D 50%, #DCFCE7 75%);
-            background-size: 200% 100%;
-            animation: shimmerSlide 1.4s infinite linear;
-        }
-    </style>
+<meta charset="UTF-8">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2315803D'/%3E%3Cpath d='M8 22V10l8 7 8-7v12' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StockPulse AI — Radar Tren Mikrostock Prediktif 60–90 Hari</title>
+<style>
+  :root {
+    --bg: #F8FAFC;
+    --card: #FFFFFF;
+    --green: #15803D;
+    --green-dark: #166534;
+    --mint: #F0FDF4;
+    --mint-border: #BBF7D0;
+    --ink: #0F172A;
+    --muted: #64748B;
+    --line: #E2E8F0;
+    --amber: #B45309;
+    --amber-bg: #FFFBEB;
+    --red: #B91C1C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 16px; }
+  header { background: linear-gradient(135deg, #14532D, #15803D); color: #fff; border-radius: 16px; padding: 22px 20px; margin-bottom: 16px; }
+  header h1 { font-size: 1.5rem; line-height: 1.2; }
+  header h1 span { color: #BBF7D0; }
+  header p { opacity: .92; margin-top: 6px; font-size: .95rem; }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .badge { display: inline-block; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); color: #fff; border-radius: 999px; padding: 5px 12px; font-size: .82rem; font-weight: 600; }
+  .badge.solid { background: #fff; color: var(--green-dark); border-color: #fff; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 16px; }
+  .card h2 { font-size: 1.05rem; margin-bottom: 4px; }
+  .card .sub { color: var(--muted); font-size: .88rem; margin-bottom: 12px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { border: 1px solid var(--mint-border); background: var(--mint); color: var(--green-dark); border-radius: 999px; padding: 8px 14px; font-size: .88rem; font-weight: 600; cursor: pointer; min-height: 40px; }
+  .chip:hover { border-color: var(--green); }
+  .chip.active { background: var(--green); border-color: var(--green); color: #fff; }
+  .chip:disabled { opacity: .45; cursor: default; }
+  .filter-label { font-size: .8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 14px 0 6px; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; border: none; border-radius: 10px; padding: 11px 18px; font-size: .95rem; font-weight: 700; cursor: pointer; min-height: 44px; }
+  .btn-primary { background: var(--green); color: #fff; }
+  .btn-primary:disabled { opacity: .6; cursor: wait; }
+  .btn-ghost { background: var(--mint); color: var(--green-dark); border: 1px solid var(--mint-border); }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .progress { display: none; margin-top: 12px; }
+  .progress.show { display: block; }
+  .progress-step { display: flex; gap: 8px; align-items: center; padding: 6px 0; color: var(--muted); font-size: .9rem; }
+  .progress-step.done { color: var(--green-dark); font-weight: 600; }
+  .progress-step .dot { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--mint-border); display: inline-flex; align-items: center; justify-content: center; font-size: .7rem; flex: none; }
+  .progress-step.done .dot { background: var(--green); border-color: var(--green); color: #fff; }
+  .progress-step.run .dot { border-color: var(--green); animation: pulse 1s infinite; }
+  @keyframes pulse { 50% { opacity: .4; } }
+  .agent-log { background: #0F172A; color: #D1FAE5; border-radius: 10px; padding: 12px 14px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .82rem; line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+  .horizon { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 8px; }
+  .horizon-item { flex: none; background: var(--mint); border: 1px solid var(--mint-border); border-radius: 10px; padding: 8px 12px; font-size: .82rem; }
+  .horizon-item b { color: var(--green-dark); display: block; font-size: .95rem; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 12px; }
+  .stat { background: var(--mint); border: 1px solid var(--mint-border); border-radius: 10px; padding: 10px 12px; }
+  .stat b { display: block; font-size: 1.2rem; color: var(--green-dark); }
+  .stat span { font-size: .78rem; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+  .idea { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .idea h3 { font-size: 1rem; line-height: 1.35; }
+  .countdown { display: inline-block; background: var(--amber-bg); color: var(--amber); border: 1px solid #FDE68A; border-radius: 999px; padding: 3px 10px; font-size: .78rem; font-weight: 700; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { background: var(--mint); color: var(--green-dark); border-radius: 6px; padding: 3px 8px; font-size: .78rem; font-weight: 600; }
+  .tag.neutral { background: #F1F5F9; color: var(--muted); }
+  .scores { display: flex; gap: 14px; font-size: .88rem; }
+  .scores b { font-size: 1.05rem; }
+  .up { color: var(--green); font-weight: 700; }
+  .down { color: var(--red); font-weight: 700; }
+  .idea .btn { margin-top: auto; align-self: flex-start; }
+  .empty { text-align: center; color: var(--muted); padding: 32px 16px; }
+  .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(15,23,42,.55); z-index: 50; padding: 16px; overflow-y: auto; }
+  .modal-backdrop.show { display: block; }
+  .modal { background: #fff; border-radius: 16px; max-width: 680px; margin: 24px auto; padding: 20px; }
+  .modal h2 { font-size: 1.15rem; margin-bottom: 4px; }
+  .modal .close { float: right; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--muted); line-height: 1; }
+  .field-label { font-size: .8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 16px 0 6px; display: flex; justify-content: space-between; align-items: center; }
+  .copy-btn { background: var(--mint); color: var(--green-dark); border: 1px solid var(--mint-border); border-radius: 8px; padding: 5px 10px; font-size: .78rem; font-weight: 700; cursor: pointer; }
+  .copy-btn.copied { background: var(--green); color: #fff; border-color: var(--green); }
+  .field-box { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px; font-size: .92rem; white-space: pre-wrap; word-break: break-word; }
+  .kw-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .kw-list span { background: var(--mint); border: 1px solid var(--mint-border); color: var(--green-dark); border-radius: 6px; padding: 3px 8px; font-size: .82rem; }
+  .pat-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .pat-row input { flex: 1; min-width: 220px; border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; font-size: .9rem; }
+  .status-msg { font-size: .88rem; margin-top: 10px; min-height: 1.2em; }
+  .status-msg.ok { color: var(--green); font-weight: 600; }
+  .status-msg.err { color: var(--red); font-weight: 600; }
+  .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--ink); color: #fff; border-radius: 999px; padding: 10px 18px; font-size: .9rem; font-weight: 600; z-index: 100; display: none; }
+  .toast.show { display: block; }
+  .count-line { color: var(--muted); font-size: .88rem; margin-bottom: 12px; }
+  footer { text-align: center; color: var(--muted); font-size: .82rem; padding: 8px 0 24px; }
+  @media (max-width: 560px) {
+    header h1 { font-size: 1.25rem; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
-<body class="min-h-screen pb-16 selection:bg-emerald-700 selection:text-white">
-
-    <!-- =========================================================================
-         TOP STICKY HEADER & DAILY AUTO-UPDATE ENGINE BAR
-    ========================================================================== -->
-    <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-emerald-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3">
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
-                <!-- Brand Identity & Persona Badge -->
-                <div class="flex items-start sm:items-center justify-between gap-2">
-                    <div class="flex items-center gap-3">
-                        <div class="w-11 h-11 rounded-2xl bg-[#15803D] text-white flex items-center justify-center shadow-md shadow-emerald-700/20 shrink-0">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <div class="flex flex-wrap items-center gap-2">
-                                <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-slate-900">
-                                    StockPulse <span class="text-[#15803D]">AI</span>
-                                </h1>
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#F0FDF4] text-[#15803D] border border-emerald-200">
-                                    <span class="w-2 h-2 rounded-full bg-[#15803D] live-dot"></span>
-                                    Auto-Update Harian: AKTIF
-                                </span>
-                                <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-slate-900 text-emerald-300">
-                                    FABLE 5.2 ENGINE
-                                </span>
-                            </div>
-                            <p class="text-xs text-slate-500 font-medium mt-0.5">
-                                Multi-Agent Trend Radar • <span class="text-slate-700 font-semibold">Adobe Stock</span> • <span class="text-slate-700 font-semibold">Vecteezy</span> • <span class="text-slate-700 font-semibold">Dreamstime</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Date Context, Last Synced Timestamp & Primary CTA -->
-                <div class="flex flex-wrap items-center justify-between lg:justify-end gap-2.5">
-                    <div class="bg-[#F0FDF4] border border-emerald-200 rounded-xl px-3 py-1.5 text-left">
-                        <div class="flex items-center gap-1.5 text-xs font-bold text-[#15803D]">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg>
-                            <span id="header-full-date">Sabtu, 14 November 2026</span>
-                            <span class="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-[#15803D] text-white whitespace-nowrap">Auto-Sync 22:00 WIB</span>
-                        </div>
-                        <div id="last-synced-label" class="text-[11px] text-slate-500 font-medium mt-0.5">
-                            Terakhir disinkronkan: 14 November 2026, 22:09 WIB
-                        </div>
-                    </div>
-
-                    <button id="btn-update-today" onclick="triggerDailyUpdate(false)" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#15803D] hover:bg-[#166534] active:scale-[0.99] text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-700/25 transition cursor-pointer">
-                        <svg id="btn-update-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                        </svg>
-                        <span id="btn-update-text">Update Asset Hari Ini (14 November 2026)</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- =========================================================================
-         MAIN DASHBOARD CONTAINER
-    ========================================================================== -->
-    <main class="max-w-7xl mx-auto px-3 sm:px-6 pt-5 space-y-5">
-
-        <!-- =====================================================================
-             SECTION 1: RIWAYAT UPDATE HARIAN & DAY-OVER-DAY COMPARISON BAR
-        ====================================================================== -->
-        <section class="creator-card rounded-2xl p-4 sm:p-5">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3">
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span class="w-6 h-6 rounded-lg bg-[#15803D] text-white text-xs font-extrabold flex items-center justify-center">1</span>
-                        <h2 class="text-sm sm:text-base font-extrabold text-slate-900">Riwayat Update Harian & Perbandingan Tren</h2>
-                    </div>
-                    <p class="text-xs text-slate-500 mt-0.5 ml-8">Pilih tanggal laporan untuk meninjau lonjakan pencarian buyer dan perbandingan pertumbuhan vs hari sebelumnya.</p>
-                </div>
-                <div class="flex items-center gap-2 ml-8 md:ml-0">
-                    <button onclick="exportReport('csv')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-[#F0FDF4] hover:bg-emerald-100 text-[#15803D] border border-emerald-200 transition cursor-pointer">
-                        Export CSV
-                    </button>
-                    <button onclick="exportReport('json')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-[#F0FDF4] hover:bg-emerald-100 text-[#15803D] border border-emerald-200 transition cursor-pointer">
-                        Export JSON
-                    </button>
-                </div>
-            </div>
-
-            <!-- Horizontal Date Archive Pills -->
-            <div id="history-date-pills" class="flex items-center gap-2 overflow-x-auto pb-2 pt-1">
-                <!-- Populated dynamically via JS -->
-            </div>
-
-            <!-- Selected Date Executive Summary Strip -->
-            <div id="date-summary-strip" class="mt-3 pt-3 border-t border-emerald-100 grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                <!-- Populated dynamically via JS -->
-            </div>
-        </section>
-
-        <!-- =====================================================================
-             SECTION 2: 5-AGENT AI ORCHESTRATION CONSOLE & PEAK BUYER HOUR RADAR
-        ====================================================================== -->
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-5">
-            <!-- Left 7 Cols: 5-Agent AI Pipeline & Live Reasoning Log -->
-            <section class="xl:col-span-7 creator-card rounded-2xl p-4 sm:p-5 flex flex-col justify-between">
-                <div>
-                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-                        <div class="flex items-center gap-2">
-                            <span class="w-6 h-6 rounded-lg bg-[#15803D] text-white text-xs font-extrabold flex items-center justify-center">2</span>
-                            <h2 class="text-sm sm:text-base font-extrabold text-slate-900">Orkestrasi 5 Agen AI — Pencarian Buyer & Insight Auditor</h2>
-                        </div>
-                        <button onclick="triggerDailyUpdate(true)" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-50 hover:bg-[#15803D] text-[#15803D] hover:text-white border border-emerald-300 transition cursor-pointer">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                            </svg>
-                            Jalankan Deep Scan Agent
-                        </button>
-                    </div>
-
-                    <!-- 5 Specialized Agent Cards -->
-                    <div id="agents-grid" class="grid grid-cols-1 sm:grid-cols-5 gap-2 mb-3">
-                        <!-- Rendered dynamically -->
-                    </div>
-                </div>
-
-                <!-- Live Multi-Agent Console & Reasoning Log -->
-                <div class="bg-[#F0FDF4] border border-emerald-200 rounded-xl p-3">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <span class="text-[11px] font-extrabold uppercase tracking-wider text-[#15803D] flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-[#15803D]"></span>
-                            Live Multi-Agent Console & Reasoning Log
-                        </span>
-                        <span id="agent-overall-confidence" class="text-[11px] font-mono font-bold text-slate-700 bg-white px-2 py-0.5 rounded-md border border-emerald-200">
-                            Confidence: 96.4%
-                        </span>
-                    </div>
-                    <div id="agent-console-log" class="space-y-1.5 max-h-36 overflow-y-auto pr-1 text-xs font-mono text-slate-700">
-                        <!-- Live agent reasoning lines -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Right 5 Cols: Peak Buyer Hour Radar & 3-Platform Comparative Matrix -->
-            <section class="xl:col-span-5 creator-card rounded-2xl p-4 sm:p-5 flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-between gap-2 mb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="w-6 h-6 rounded-lg bg-[#15803D] text-white text-xs font-extrabold flex items-center justify-center">3</span>
-                            <h2 class="text-sm sm:text-base font-extrabold text-slate-900">Peak Buyer Hour Radar (WIB)</h2>
-                        </div>
-                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
-                            22:00 WIB • PEAK RUSH
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-500 mb-3">
-                        Jam <strong>22:00 WIB</strong> adalah puncak <em>US East Coast & Europe Evening Agency Rush</em> (trafik buyer 96/100) di Adobe Stock, Vecteezy, dan Dreamstime.
-                    </p>
-
-                    <!-- 24-Hour Buyer Traffic Bar Chart -->
-                    <div class="bg-[#F0FDF4] border border-emerald-200 rounded-xl p-3 mb-3">
-                        <div class="flex items-end justify-between gap-1 h-24 pt-2" id="hourly-radar-bars">
-                            <!-- 24 bars generated via JS -->
-                        </div>
-                        <div class="flex justify-between text-[10px] font-mono font-semibold text-slate-500 mt-1.5 pt-1 border-t border-emerald-200/70">
-                            <span>00:00</span>
-                            <span class="text-[#15803D] font-bold">09-14 APAC</span>
-                            <span>16:00</span>
-                            <span class="text-[#15803D] font-bold">20-02 US/EU ★</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3-Platform Snapshot Badges -->
-                <div id="platform-mini-matrix" class="grid grid-cols-3 gap-2">
-                    <!-- Populated via JS -->
-                </div>
-            </section>
-        </div>
-
-        <!-- =====================================================================
-             SECTION 4: 3-PLATFORM COMPARATIVE INSIGHT CARDS (AGENT 01 + AGENT 02)
-        ====================================================================== -->
-        <section id="platform-insight-cards" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <!-- Adobe Stock, Vecteezy, Dreamstime Deep Insight Cards -->
-        </section>
-
-        <!-- =====================================================================
-             SECTION 5: REFERENCE-ACCURATE TAXONOMY FILTER & MATCHING ENGINE
-             (Matching all 4 uploaded screenshots: Kategori Utama, Gaya/Tipe Format,
-              Rasio/Kamera/Looping, Gaya Visual Foto, Gaya Visual Modifikasi)
-        ====================================================================== -->
-        <section class="creator-card rounded-2xl p-4 sm:p-6 space-y-5">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-emerald-100">
-                <div>
-                    <h2 class="text-base sm:text-lg font-extrabold text-slate-900">Filter Taksonomi Format & Gaya Visual</h2>
-                    <p class="text-xs text-slate-500">Pilih platform, kategori utama, tipe format, dan gaya visual untuk menyaring peluang aset bernilai tinggi.</p>
-                </div>
-                <button onclick="resetTaxonomyFilters()" class="self-start sm:self-auto px-3 py-1.5 rounded-xl text-xs font-bold bg-[#F0FDF4] hover:bg-emerald-100 text-[#15803D] border border-emerald-200 transition cursor-pointer">
-                    Reset Semua Filter
-                </button>
-            </div>
-
-            <!-- Platform Selector -->
-            <div>
-                <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-2">
-                    0. Filter Platform Microstock
-                </label>
-                <div id="filter-platforms" class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    <!-- Rendered via JS -->
-                </div>
-            </div>
-
-            <!-- 3. Kategori Utama (Exact order/style from screenshots: Foto, Ilustrasi, Vector, Video) -->
-            <div>
-                <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-2">
-                    3. Kategori Utama
-                </label>
-                <div id="filter-categories" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                    <!-- Rendered via JS -->
-                </div>
-            </div>
-
-            <!-- 4. Gaya / Tipe Format (Dynamic based on selected Kategori Utama) -->
-            <div class="pt-2 border-t border-emerald-100">
-                <div class="flex items-center justify-between mb-2">
-                    <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700">
-                        4. Gaya / Tipe Format <span id="format-count-badge" class="ml-1 text-[11px] font-semibold text-[#15803D]"></span>
-                    </label>
-                    <button id="btn-clear-format" onclick="clearFormatFilter()" class="hidden text-xs font-bold text-[#15803D] hover:underline cursor-pointer">
-                        Tampilkan Semua Format
-                    </button>
-                </div>
-                <div id="filter-formats" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
-                    <!-- Rendered dynamically per Category -->
-                </div>
-            </div>
-
-            <!-- VIDEO-SPECIFIC TECHNICAL CONTROLS (Rasio Video, Gerak Kamera, Tipe Looping) -->
-            <div id="video-tech-filters" class="hidden space-y-4 pt-3 border-t border-emerald-100">
-                <p class="text-[11px] font-medium text-slate-500 bg-[#F0FDF4] border border-emerald-200 rounded-xl px-3 py-2">
-                    <span class="font-bold text-[#15803D]">Catatan Video Stock:</span> Pastikan footage tidak memuat wajah orang nyata tanpa model release atau logo merek terdaftar.
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <!-- Rasio Video -->
-                    <div>
-                        <label class="block text-xs font-extrabold text-slate-800 mb-2">Rasio Video</label>
-                        <div id="filter-video-ratio" class="grid grid-cols-2 gap-2"></div>
-                    </div>
-                    <!-- Gerak Kamera -->
-                    <div>
-                        <label class="block text-xs font-extrabold text-slate-800 mb-2">Gerak Kamera</label>
-                        <div id="filter-video-camera" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-3 gap-2"></div>
-                    </div>
-                    <!-- Tipe Looping -->
-                    <div>
-                        <label class="block text-xs font-extrabold text-slate-800 mb-2">Tipe Looping</label>
-                        <div id="filter-video-loop" class="grid grid-cols-2 gap-2"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- VISUAL STYLE MODIFICATION GRID (Foto JPEG / Ilustrasi / Vector) -->
-            <div id="visual-style-section" class="pt-3 border-t border-emerald-100">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-                    <label id="visual-style-heading" class="block text-xs font-extrabold uppercase tracking-wider text-slate-700">
-                        Gaya Visual Modifikasi
-                    </label>
-                    <div class="flex items-center gap-2">
-                        <input id="style-search-input" type="text" oninput="renderVisualStyleGrid()" placeholder="Cari gaya visual..." class="px-3 py-1.5 text-xs rounded-xl bg-[#F0FDF4] border border-emerald-200 focus:outline-none focus:border-[#15803D] text-slate-800 placeholder-slate-400">
-                        <button id="btn-clear-style" onclick="clearStyleFilter()" class="hidden text-xs font-bold text-[#15803D] hover:underline cursor-pointer">
-                            Semua Gaya
-                        </button>
-                    </div>
-                </div>
-                <div id="filter-visual-styles" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
-                    <!-- Rendered dynamically per Category -->
-                </div>
-            </div>
-
-            <!-- 5. Tema atau Deskripsi Aset (Live Keyword / Niche Search Bar) -->
-            <div class="pt-3 border-t border-emerald-100">
-                <label for="theme-search-input" class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-2">
-                    5. Tema atau Deskripsi Aset (Filter Kata Kunci Buyer)
-                </label>
-                <div class="flex flex-col sm:flex-row gap-2">
-                    <div class="relative flex-1">
-                        <input id="theme-search-input" type="text" oninput="renderTrendCards()" placeholder="Contoh: Ramadan keluarga indonesia, AI cybersecurity, Tahun Baru Imlek 2027, kopi nusantara..." class="w-full px-4 py-2.5 rounded-xl bg-[#F0FDF4] border border-emerald-200 focus:bg-white focus:outline-none focus:border-[#15803D] text-xs sm:text-sm font-medium text-slate-800">
-                    </div>
-                    <button onclick="triggerDailyUpdate(true)" class="px-4 py-2.5 rounded-xl bg-[#15803D] hover:bg-[#166534] text-white font-bold text-xs sm:text-sm shadow-sm transition cursor-pointer shrink-0">
-                        + Riset Tema Ini dengan 5 Agen AI
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- =====================================================================
-             SECTION 6: ACTIONABLE TREND ASSET REPORT CARDS
-        ====================================================================== -->
-        <section class="space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <div>
-                    <h2 class="text-base sm:text-lg font-extrabold text-slate-900">
-                        Laporan Peluang Aset Teratas — <span id="active-report-date-title" class="text-[#15803D]">14 November 2026</span>
-                    </h2>
-                    <p id="results-count-subtitle" class="text-xs text-slate-500">Menampilkan 16 peluang aset hasil tangkapan search buyer & audit insight 3 platform.</p>
-                </div>
-
-                <!-- Sort Selector -->
-                <div class="flex items-center gap-2">
-                    <span class="text-xs font-semibold text-slate-500">Urutkan:</span>
-                    <select id="sort-select" onchange="renderTrendCards()" class="px-3 py-1.5 rounded-xl bg-white border border-emerald-200 text-xs font-bold text-slate-800 focus:outline-none focus:border-[#15803D] cursor-pointer">
-                        <option value="velocity">Lonjakan Search Tertinggi (%)</option>
-                        <option value="gap">Supply Gap Terbesar (Minim Saingan)</option>
-                        <option value="score">Skor Komersial Gabungan</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Cards Grid -->
-            <div id="trend-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Populated dynamically via JS -->
-            </div>
-        </section>
-    </main>
-
-    <!-- =========================================================================
-         PRODUCTION BRIEF MODAL (PROMPT, COMMERCIAL TITLE & TOP 15 SEO KEYWORDS)
-    ========================================================================== -->
-    <div id="prompt-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-5 bg-slate-950/60 backdrop-blur-sm">
-        <div class="bg-white border border-emerald-200 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-5 sm:p-7 space-y-5">
-            <!-- Modal Header -->
-            <div class="flex items-start justify-between gap-3 pb-3 border-b border-emerald-100">
-                <div>
-                    <div class="flex flex-wrap items-center gap-2">
-                        <span id="modal-category-badge" class="px-2.5 py-0.5 rounded-lg text-xs font-extrabold bg-[#15803D] text-white">VIDEO</span>
-                        <span id="modal-velocity-badge" class="px-2.5 py-0.5 rounded-lg text-xs font-bold bg-[#F0FDF4] text-[#15803D] border border-emerald-200">+285% Search Surge</span>
-                    </div>
-                    <h3 id="modal-query-title" class="text-base sm:text-lg font-extrabold text-slate-900 mt-1.5">
-                        Buyer Search Query
-                    </h3>
-                </div>
-                <button onclick="closePromptModal()" class="p-2 rounded-xl bg-[#F0FDF4] hover:bg-emerald-100 text-slate-600 hover:text-slate-900 transition cursor-pointer">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Mapped Taxonomy & Technical Spec Strip -->
-            <div class="bg-[#F0FDF4] border border-emerald-200 rounded-2xl p-3.5 grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-                <div>
-                    <span class="text-slate-500 font-semibold block">Gaya / Tipe Format:</span>
-                    <span id="modal-format-spec" class="font-extrabold text-slate-900">-</span>
-                </div>
-                <div>
-                    <span class="text-slate-500 font-semibold block">Gaya Visual & Spesifikasi Teknis:</span>
-                    <span id="modal-style-spec" class="font-extrabold text-[#15803D]">-</span>
-                </div>
-            </div>
-
-            <!-- Agent 02 & Agent 04 Strategic Reasoning -->
-            <div class="space-y-2">
-                <h4 class="text-xs font-extrabold uppercase tracking-wider text-[#15803D]">Analisis Gabungan Agent 02 (Insight) & Agent 04 (Seasonal Lead-Time)</h4>
-                <p id="modal-agent-insight" class="text-xs sm:text-sm text-slate-700 leading-relaxed bg-slate-50 p-3.5 rounded-xl border border-slate-200/80"></p>
-            </div>
-
-            <!-- Copyable AI Generation Prompt -->
-            <div class="space-y-2">
-                <div class="flex items-center justify-between">
-                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">Prompt Produksi AI Siap Pakai (Agent 05 — Fable 5.2)</h4>
-                    <button onclick="copyModalField('modal-prompt-text', 'Prompt AI')" class="px-3 py-1 rounded-lg text-xs font-bold bg-[#15803D] hover:bg-[#166534] text-white transition cursor-pointer">
-                        Salin Prompt
-                    </button>
-                </div>
-                <div id="modal-prompt-text" class="p-3.5 rounded-xl bg-slate-900 text-emerald-100 font-mono text-xs leading-relaxed select-all"></div>
-            </div>
-
-            <!-- Copyable Commercial Microstock Title -->
-            <div class="space-y-2">
-                <div class="flex items-center justify-between">
-                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">Judul SEO Komersial (Adobe Stock • Vecteezy • Dreamstime)</h4>
-                    <button onclick="copyModalField('modal-seo-title', 'Judul SEO')" class="px-3 py-1 rounded-lg text-xs font-bold bg-[#F0FDF4] hover:bg-emerald-100 text-[#15803D] border border-emerald-200 transition cursor-pointer">
-                        Salin Judul
-                    </button>
-                </div>
-                <div id="modal-seo-title" class="p-3 rounded-xl bg-[#F0FDF4] border border-emerald-200 text-xs sm:text-sm font-bold text-slate-900"></div>
-            </div>
-
-            <!-- Top 15 High-Converting Microstock Keywords -->
-            <div class="space-y-2">
-                <div class="flex items-center justify-between">
-                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">Top 15 Keyword Konversi Tinggi (Urutan Prioritas)</h4>
-                    <button onclick="copyAllKeywords()" class="px-3 py-1 rounded-lg text-xs font-bold bg-[#15803D] hover:bg-[#166534] text-white transition cursor-pointer">
-                        Salin Semua 15 Keyword
-                    </button>
-                </div>
-                <div id="modal-keywords-list" class="flex flex-wrap gap-1.5">
-                    <!-- Keyword pills -->
-                </div>
-            </div>
-        </div>
+<body>
+<div class="wrap">
+  <header>
+    <h1>StockPulse <span>AI</span> — Radar Tren Mikrostock Prediktif</h1>
+    <p>Prediksi aset yang sedang diborong buyer Adobe Stock, Vecteezy &amp; Dreamstime — 60 sampai 90 hari sebelum musim tiba.</p>
+    <div class="badge-row">
+      <span class="badge solid" id="todayBadge">Memuat…</span>
+      <span class="badge">Mode Prediksi: +60 s/d +90 Hari Kedepan (0 API Key)</span>
+      <span class="badge" id="countBadge"></span>
     </div>
+  </header>
 
-    <!-- =========================================================================
-         GITHUB WORKFLOW MODAL (TRIGGER daily-trend-radar.yml & PANTAU 5 AGEN)
-    ========================================================================== -->
-    <div id="github-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-5 bg-slate-950/60 backdrop-blur-sm">
-        <div class="bg-white border border-emerald-200 rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-5 sm:p-7 space-y-5">
-            <div class="flex items-start justify-between gap-3 pb-3 border-b border-emerald-100">
-                <div>
-                    <h3 class="text-base sm:text-lg font-extrabold text-slate-900">Update Asset Hari Ini — GitHub Actions</h3>
-                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">Memulai workflow <span class="font-mono font-bold text-slate-700">daily-trend-radar.yml</span> (5 Agen AI) dan memantau progresnya secara live. Data baru otomatis tersimpan ke <span class="font-mono">data/history.json</span> lalu tampil di halaman ini.</p>
-                </div>
-                <button onclick="closeGithubModal()" class="p-2 rounded-xl bg-[#F0FDF4] hover:bg-emerald-100 text-slate-600 hover:text-slate-900 transition cursor-pointer shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
-
-            <div class="space-y-3">
-                <div>
-                    <label for="gh-pat" class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">GitHub Personal Access Token (PAT)</label>
-                    <input id="gh-pat" type="password" placeholder="ghp_••••••••••••••••" autocomplete="off" class="w-full px-4 py-2.5 rounded-xl bg-[#F0FDF4] border border-emerald-200 focus:bg-white focus:outline-none focus:border-[#15803D] text-xs sm:text-sm font-mono text-slate-800">
-                    <p id="gh-pat-status" class="text-[11px] font-semibold text-slate-500 mt-1">Belum ada PAT tersimpan</p>
-                    <p class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">PAT butuh scope <span class="font-mono font-bold">repo</span> + <span class="font-mono font-bold">workflow</span>. Disimpan hanya di browser ini (localStorage), tidak pernah dikirim ke mana pun selain api.github.com.</p>
-                </div>
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label for="gh-owner" class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">Owner</label>
-                        <input id="gh-owner" type="text" value="simoneambatukam-glitch" class="w-full px-4 py-2.5 rounded-xl bg-[#F0FDF4] border border-emerald-200 focus:bg-white focus:outline-none focus:border-[#15803D] text-xs sm:text-sm font-semibold text-slate-800">
-                    </div>
-                    <div>
-                        <label for="gh-repo" class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">Repository</label>
-                        <input id="gh-repo" type="text" value="stockpulse-ai" class="w-full px-4 py-2.5 rounded-xl bg-[#F0FDF4] border border-emerald-200 focus:bg-white focus:outline-none focus:border-[#15803D] text-xs sm:text-sm font-semibold text-slate-800">
-                    </div>
-                </div>
-                <div>
-                    <label for="gh-theme" class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">Tema / Niche (opsional)</label>
-                    <input id="gh-theme" type="text" placeholder="Contoh: Ramadan keluarga indonesia, kopi nusantara..." class="w-full px-4 py-2.5 rounded-xl bg-[#F0FDF4] border border-emerald-200 focus:bg-white focus:outline-none focus:border-[#15803D] text-xs sm:text-sm font-medium text-slate-800">
-                </div>
-            </div>
-
-            <button id="gh-trigger-btn" onclick="triggerGithubWorkflow()" class="w-full py-3 rounded-xl bg-[#15803D] hover:bg-[#166534] text-white font-extrabold text-sm shadow-md shadow-emerald-700/25 transition cursor-pointer">
-                Trigger Workflow & Pantau 5 Agen
-            </button>
-
-            <div id="gh-status" class="text-xs font-semibold text-slate-600 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5">Belum ada workflow yang dipicu dari browser ini.</div>
-
-            <div>
-                <div class="flex items-center justify-between gap-2 mb-2">
-                    <span class="text-[11px] font-extrabold uppercase tracking-wider text-[#15803D]">Progres 5 Agen (Live)</span>
-                    <a id="gh-actions-link" href="#" target="_blank" rel="noopener" class="hidden text-[11px] font-bold text-[#15803D] hover:underline">Lihat di GitHub Actions →</a>
-                </div>
-                <div id="gh-agent-steps" class="grid grid-cols-1 sm:grid-cols-5 gap-2"></div>
-            </div>
-
-            <button id="gh-cancel-btn" onclick="cancelGhPolling()" class="hidden w-full py-2.5 rounded-xl bg-[#F0FDF4] hover:bg-emerald-100 text-[#15803D] border border-emerald-200 font-bold text-xs transition cursor-pointer">
-                Batalkan pantauan
-            </button>
-        </div>
+  <div class="card">
+    <h2>Riwayat Update Harian</h2>
+    <p class="sub">Pilih hari untuk melihat prediksi hari itu. Data terbaru selalu dihitung otomatis tiap 22:00 WIB.</p>
+    <div class="chip-row" id="dayChips"></div>
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn btn-primary" id="updateBtn">↻ Update Asset Hari Ini</button>
+      <button class="btn btn-ghost" id="exportCsvBtn">Export CSV (yang tampil)</button>
+      <button class="btn btn-ghost" id="exportJsonBtn">Export JSON (yang tampil)</button>
     </div>
-
-    <!-- =========================================================================
-         TOAST NOTIFICATION BANNER
-    ========================================================================== -->
-    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900 text-white text-xs font-bold shadow-xl border border-emerald-500/40">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-        <span id="toast-message">Berhasil disalin!</span>
+    <div class="progress" id="progress"></div>
+    <div class="status-msg" id="updateStatus"></div>
+    <div class="pat-row">
+      <input type="password" id="patInput" placeholder="GitHub PAT (opsional, untuk trigger workflow manual)" autocomplete="off">
+      <button class="btn btn-ghost" id="triggerBtn">▶ Trigger Workflow di GitHub</button>
     </div>
-
-    <script>
-        /**
-         * =========================================================================
-         * 1. COMPLETE REFERENCE TAXONOMY DEFINITIONS (EXACT 4 SCREENSHOTS MATCH)
-         * =========================================================================
-         */
-        const PLATFORMS = ['Semua Platform', 'Adobe Stock', 'Vecteezy', 'Dreamstime'];
-
-        const CATEGORIES = ['Foto', 'Ilustrasi', 'Vector', 'Video'];
-
-        const TAXONOMY = {
-            Video: {
-                formats: [
-                    'Looping Background Abstrak',
-                    'Sinematik Alam (Aerial/Drone)',
-                    'Timelapse',
-                    'Slow Motion Makro',
-                    'Food & Drink B-roll',
-                    'Teknologi Futuristik',
-                    'Animasi 2D Flat / Motion Graphic',
-                    'Musiman (Natal, Lebaran, Imlek)',
-                    'Budaya Nusantara',
-                    'Unboxing & Hands-on',
-                    'Tutorial Langkah-demi-Langkah',
-                    'Stop Motion',
-                    'Hyperlapse Kota',
-                    'Product Reveal Sinematik',
-                    'Alam & Satwa',
-                    'Olahraga & Fitness',
-                    'Workspace & Produktivitas'
-                ],
-                ratios: ['16:9 Horizontal', '9:16 Vertikal'],
-                cameras: ['Diam / Static', 'Pan', 'Zoom in', 'Drone', 'Orbit'],
-                loops: ['Looping Mulus', 'Klip Biasa'],
-                styleLabel: null,
-                styles: []
-            },
-            Foto: {
-                formats: [
-                    'Scene Penuh',
-                    'Subjek Isolasi (BG polos)',
-                    'Copy Space'
-                ],
-                styleLabel: 'Gaya Visual Foto (JPEG)',
-                styles: [
-                    'Cinematic',
-                    'Studio Putih Minimalis',
-                    'Flat Lay Top-Down',
-                    'Macro Close-up',
-                    'Golden Hour',
-                    'Blue Hour Twilight',
-                    'Moody Low-Key',
-                    'High-Key Bright Airy',
-                    'Aerial Drone View',
-                    'Long Exposure',
-                    'Bokeh Shallow DOF',
-                    'Lifestyle Candid',
-                    'Product Clean Mockup',
-                    'Food Editorial'
-                ]
-            },
-            Ilustrasi: {
-                formats: [
-                    'Ilustrasi Full Layar',
-                    'Isolated Background'
-                ],
-                styleLabel: 'Gaya Visual Modifikasi (Opsional)',
-                styles: [
-                    'Bebas (Tanpa Gaya Khusus)',
-                    '3D Glassmorphism',
-                    'Cyber-UI Dark Neon',
-                    'Isometrik Data & Cloud',
-                    'Modern Flat 2.0 (Soft Gradient)',
-                    'Hand-drawn Doodle',
-                    'Memphis Pattern',
-                    'Retro Vintage Badge',
-                    'Halftone Pop Art',
-                    'Batik Motif Nusantara',
-                    'Mandala Ornament',
-                    'Tribal Ornament Flat',
-                    'Floral Botanical Flat'
-                ]
-            },
-            Vector: {
-                formats: [
-                    'Flat Vector',
-                    'Sticker Pack',
-                    'Icon Set'
-                ],
-                styleLabel: 'Gaya Visual Modifikasi',
-                styles: [
-                    'Line Art',
-                    'WPAP',
-                    'Flat Design',
-                    'Siluet',
-                    'Karikatur Vektor',
-                    'Anime / Kartun Vektor',
-                    'Flat Pattern',
-                    'Op Art Geometris Abstrak',
-                    'Minimalis Tradisional',
-                    'Isometrik Flat Infografis',
-                    'Cut Out Gaya Naif',
-                    'Ikon Siluet Minimalis',
-                    'Ikon Logo Flat',
-                    'Badge & Sale',
-                    'Banner Template',
-                    'Frame Template',
-                    'Background Gradient',
-                    'Layout Kartu Ucapan',
-                    'Elemen Infografis',
-                    '3D Glassmorphism',
-                    'Cyber-UI Dark Neon',
-                    'Isometrik Data & Cloud',
-                    'Modern Flat 2.0 (Soft Gradient)',
-                    'Hand-drawn Doodle',
-                    'Memphis Pattern',
-                    'Retro Vintage Badge',
-                    'Gradient Mesh Abstract',
-                    'Low Poly',
-                    'Monoline Icon',
-                    'Duotone',
-                    'Halftone Pop Art',
-                    'Stained Glass Mosaic',
-                    'Batik Motif Nusantara',
-                    'Mandala Ornament',
-                    'Art Deco Geometric',
-                    'Bauhaus Shapes',
-                    'Swiss Minimal',
-                    'Tribal Ornament Flat',
-                    'Floral Botanical Flat'
-                ]
-            }
-        };
-
-        /**
-         * =========================================================================
-         * 2. DATE & STORAGE CONSTANTS (Sabtu, 14 November 2026)
-         * =========================================================================
-         */
-        let TODAY_KEY = '14 November 2026';
-        let TODAY_FULL_LABEL = 'Sabtu, 14 November 2026';
-
-        const UI_STATE = {
-            selectedDate: TODAY_KEY,
-            selectedPlatform: 'Semua Platform',
-            selectedCategory: 'Semua Kategori', // 'Semua Kategori' | 'Foto' | 'Ilustrasi' | 'Vector' | 'Video'
-            selectedFormat: '',
-            selectedStyle: '',
-            selectedVideoRatio: '',
-            selectedVideoCamera: '',
-            selectedVideoLoop: '',
-            activeModalItem: null,
-            isScanning: false
-        };
-
-        /**
-         * =========================================================================
-         * 3. RICH MULTI-DAY HISTORICAL & TODAY TREND SNAPSHOTS
-         *    Pre-populated for 14 Nov 2026 (Hari Ini) down to 10 Nov 2026
-         * =========================================================================
-         */
-        const INITIAL_SNAPSHOTS = {
-            '14 November 2026': {
-                dateKey: '14 November 2026',
-                fullDateLabel: 'Sabtu, 14 November 2026',
-                lastSynced: '14 November 2026, 22:09 WIB',
-                dayOverDayGrowth: '+28.4%',
-                peakWindow: '22:00 WIB (US East Coast & Europe Evening Agency Rush)',
-                totalQueriesAnalyzed: '48,920',
-                confidence: '96.8%',
-                platformInsights: {
-                    adobe: {
-                        name: 'Adobe Stock',
-                        topSearch: '"abstract glassmorphism AI workflow loop 4k"',
-                        demandScore: 97,
-                        supplyGap: 'Tinggi (84%)',
-                        insight: 'Agensi AS & Eropa memborong footage 9:16 looping abstrak & foto bisnis dengan copy space untuk kampanye Q1 2027 dan integrasi Adobe Express.'
-                    },
-                    vecteezy: {
-                        name: 'Vecteezy',
-                        topSearch: '"chinese new year 2027 fire goat sticker pack vector"',
-                        demandScore: 95,
-                        supplyGap: 'Sangat Tinggi (89%)',
-                        insight: 'Lonjakan +310% unduhan Pro SVG/EPS untuk Sticker Pack & Layout Kartu Ucapan Imlek 2027 serta elemen infografis modern flat.'
-                    },
-                    dreamstime: {
-                        name: 'Dreamstime',
-                        topSearch: '"sustainable green data center server room editorial"',
-                        demandScore: 91,
-                        supplyGap: 'Tinggi (81%)',
-                        insight: 'Buyer korporat & media Eropa mencari foto editorial infrastruktur energi hijau, ketahanan pangan, dan persiapan Ramadan keluarga Asia Tenggara.'
-                    }
-                },
-                agentLogs: [
-                    '[Agent 01 • Peak Search Radar] Menangkap lonjakan pencarian jam sibuk 22:00 WIB: "luxury gold ribbon 2027 new year reveal" & "cybersecurity AI shield 3D".',
-                    '[Agent 02 • Insight Auditor] Data search mentah diperkuat sinyal Adobe Stock Firefly Trends & Vecteezy Pro SVG velocity (+240% YoY).',
-                    '[Agent 03 • Format Classifier] Memetakan 16 peluang teratas ke taksonomi Video (9:16 & 16:9), Foto Copy Space, Ilustrasi 3D Glassmorphism, dan Vector Sticker Pack.',
-                    '[Agent 04 • Lead-Time Predictor] Jendela 45-60 hari dari 14 November 2026 memicu permintaan puncak aset Natal/Tahun Baru 2027, Imlek 2027, & persiapan awal Ramadan.',
-                    '[Agent 05 • Fable 5.2 Synthesizer] Berhasil meracik 16 brief produksi lengkap dengan prompt siap pakai, judul SEO komersial, dan 15 keyword konversi tinggi.'
-                ],
-                items: [
-                    // --- VIDEO (4 items) ---
-                    {
-                        id: 'v-14-1',
-                        category: 'Video',
-                        format: 'Looping Background Abstrak',
-                        visualStyle: 'Teknologi Futuristik',
-                        techSpec: '9:16 Vertikal • Orbit • Looping Mulus',
-                        videoRatio: '9:16 Vertikal',
-                        videoCamera: 'Orbit',
-                        videoLoop: 'Looping Mulus',
-                        platforms: [
-                            { name: 'Adobe Stock', score: 98 },
-                            { name: 'Vecteezy', score: 91 },
-                            { name: 'Dreamstime', score: 87 }
-                        ],
-                        buyerQuery: 'emerald glass wave AI data flow vertical loop background 4k',
-                        velocity: '+294% Search Surge',
-                        dodDelta: '+38% vs kemarin',
-                        supplyGap: 'Sangat Rendah Saingan',
-                        commercialScore: 97,
-                        agentInsight: 'Agent 01 menangkap ribuan pencarian kreator TikTok/Reels & agensi SaaS pada jam 22:00 WIB untuk latar video vertikal 9:16 mulus. Agent 02 mengonfirmasi kategori Motion Background di Adobe Stock naik 3x lipat menjelang peluncuran produk AI Q1 2027.',
-                        prompt: 'Seamless looping 3D abstract emerald green and soft mint translucent glass waves flowing smoothly in vertical 9:16 aspect ratio, gentle camera orbit motion, caustic light reflections, clean minimalist futuristic tech background, 4K 60fps, ultra crisp studio lighting, no text, no logos.',
-                        seoTitle: 'Seamless Looping Emerald Green Translucent Glass Waves Abstract 3D Tech Background Vertical',
-                        keywords: ['abstract background', 'seamless loop', 'vertical video', 'emerald green', '3d glass', 'futuristic technology', 'data flow', 'motion background', 'minimalist wave', 'digital art', 'modern gradient', 'ai concept', 'clean backdrop', 'corporate presentation', '4k loop']
-                    },
-                    {
-                        id: 'v-14-2',
-                        category: 'Video',
-                        format: 'Musiman (Natal, Lebaran, Imlek)',
-                        visualStyle: 'Product Reveal Sinematik',
-                        techSpec: '16:9 Horizontal • Zoom in • Klip Biasa',
-                        videoRatio: '16:9 Horizontal',
-                        videoCamera: 'Zoom in',
-                        videoLoop: 'Klip Biasa',
-                        platforms: [
-                            { name: 'Adobe Stock', score: 96 },
-                            { name: 'Dreamstime', score: 92 },
-                            { name: 'Vecteezy', score: 89 }
-                        ],
-                        buyerQuery: 'golden red lantern 2027 lunar new year luxury gift podium',
-                        velocity: '+268% Search Surge',
-                        dodDelta: '+41% vs kemarin',
-                        supplyGap: 'Supply Gap 86%',
-                        commercialScore: 95,
-                        agentInsight: 'Agent 04 mendeteksi siklus 60 hari sebelum Imlek 2027 di mana brand e-commerce APAC mulai memproduksi iklan promo. Pencarian fokus pada podium produk bernuansa merah-emas elegan tanpa teks spesifik.',
-                        prompt: 'Cinematic slow zoom-in shot of a luxury crimson and brushed gold circular display podium surrounded by glowing silk lanterns and subtle golden bokeh particles, warm festive studio lighting, shallow depth of field, 16:9 horizontal 4K commercial product reveal background, no text.',
-                        seoTitle: 'Luxury Red and Gold Festive Podium with Glowing Lanterns for 2027 Product Reveal Background',
-                        keywords: ['lunar new year', 'product podium', 'gold lanterns', 'luxury background', 'festive reveal', 'red and gold', 'commercial backdrop', 'cinematic zoom', 'celebration 2027', 'asian festival', 'bokeh lights', 'stage display', 'e-commerce promo', 'elegant studio', '4k video']
-                    },
-                    {
-                        id: 'v-14-3',
-                        category: 'Video',
-                        format: 'Sinematik Alam (Aerial/Drone)',
-                        visualStyle: 'Alam & Satwa',
-                        techSpec: '16:9 Horizontal • Drone • Klip Biasa',
-                        videoRatio: '16:9 Horizontal',
-                        videoCamera: 'Drone',
-                        videoLoop: 'Klip Biasa',
-                        platforms: [
-                            { name: 'Dreamstime', score: 95 },
-                            { name: 'Adobe Stock', score: 94 },
-                            { name: 'Vecteezy', score: 85 }
-                        ],
-                        buyerQuery: 'tropical rainforest morning mist solar renewable energy aerial',
-                        velocity: '+215% Search Surge',
-                        dodDelta: '+24% vs kemarin',
-                        supplyGap: 'Supply Gap 79%',
-                        commercialScore: 93,
-                        agentInsight: 'Agent 02 menemukan laporan keberlanjutan (ESG Report) akhir tahun perusahaan Eropa memicu pembelian besar-besaran rekaman drone hutan hujan tropis berkabut pagi dengan pencahayaan golden hour.',
-                        prompt: 'Sweeping high-altitude aerial drone shot gliding over lush emerald tropical rainforest canopy at sunrise with golden morning mist drifting through the trees, pristine nature conservation documentary aesthetic, 16:9 horizontal 4K cinematic color grading.',
-                        seoTitle: 'Aerial Drone View of Lush Emerald Tropical Rainforest Canopy with Morning Mist at Sunrise',
-                        keywords: ['aerial drone', 'tropical rainforest', 'morning mist', 'green forest', 'sustainability', 'nature conservation', 'sunrise landscape', 'eco friendly', 'esg report', 'untouched nature', 'emerald canopy', 'cinematic landscape', 'environment', 'climate action', '4k aerial']
-                    },
-                    {
-                        id: 'v-14-4',
-                        category: 'Video',
-                        format: 'Food & Drink B-roll',
-                        visualStyle: 'Slow Motion Makro',
-                        techSpec: '9:16 Vertikal • Diam / Static • Klip Biasa',
-                        videoRatio: '9:16 Vertikal',
-                        videoCamera: 'Diam / Static',
-                        videoLoop: 'Klip Biasa',
-                        platforms: [
-                            { name: 'Adobe Stock', score: 94 },
-                            { name: 'Vecteezy', score: 90 },
-                            { name: 'Dreamstime', score: 86 }
-                        ],
-                        buyerQuery: 'artisanal matcha latte pour slow motion macro aesthetic',
-                        velocity: '+198% Search Surge',
-                        dodDelta: '+29% vs kemarin',
-                        supplyGap: 'Supply Gap 77%',
-                        commercialScore: 91,
-                        agentInsight: 'Agent 01 mencatat lonjakan pencarian B-roll minuman kafe estetik format 9:16 untuk kampanye F&B musim liburan & menu sehat awal tahun.',
-                        prompt: 'Ultra slow motion macro close-up shot of velvety ceremonial matcha green tea being poured into iced oat milk inside a clear ribbed glass, swirling emerald and cream clouds, natural sunlit cafe window light, 9:16 vertical 120fps commercial food b-roll.',
-                        seoTitle: 'Slow Motion Macro Pour of Matcha Green Tea into Iced Milk in Clear Glass Vertical B-Roll',
-                        keywords: ['matcha latte', 'slow motion', 'macro drink', 'coffee shop', 'vertical b-roll', 'iced matcha', 'pouring milk', 'food commercial', 'aesthetic beverage', 'green tea', 'cafe menu', 'refreshing drink', 'swirling liquid', 'morning routine', '4k macro']
-                    },
-
-                    // --- FOTO (4 items) ---
-                    {
-                        id: 'f-14-1',
-                        category: 'Foto',
-                        format: 'Copy Space',
-                        visualStyle: 'High-Key Bright Airy',
-                        techSpec: 'JPEG High-Res • Ruang Teks Kanan 45%',
-                        platforms: [
-                            { name: 'Adobe Stock', score: 98 },
-                            { name: 'Dreamstime', score: 94 },
-                            { name: 'Vecteezy', score: 88 }
-                        ],
-                        buyerQuery: 'indonesian muslim family warm sahur preparation bright kitchen copy space',
-                        velocity: '+276% Search Surge',
-                        dodDelta: '+35% vs kemarin',
-                        supplyGap: 'Sangat Tinggi (88%)',
-                        commercialScore: 96,
-                        agentInsight: 'Agensi periklanan FMCG & perbankan syariah di Asia Tenggara sudah mulai menyiapkan materi kampanye Ramadan 2027. Mereka sangat membutuhkan foto autentik keluarga Indonesia dengan area copy space luas dan pencahayaan cerah.',
-                        prompt: 'High-key bright and airy editorial lifestyle photograph of a warm Indonesian family preparing healthy pre-dawn sahur meal together in a clean modern sunlit kitchen, dates, warm tea, and fresh fruits on wooden table, generous clean bright wall copy space on the right side for typography, natural candid smiles, shot on 35mm lens f/2.8.',
-                        seoTitle: 'Warm Indonesian Family Preparing Healthy Meal Together in Bright Modern Kitchen with Copy Space',
-                        keywords: ['indonesian family', 'ramadan preparation', 'copy space', 'bright kitchen', 'healthy breakfast', 'muslim family', 'warm togetherness', 'southeast asia', 'lifestyle photography', 'clean background', 'banner space', 'family meal', 'authentic candid', 'commercial ad', 'morning light']
-                    },
-                    {
-                        id: 'f-14-2',
-                        category: 'Foto',
-                        format: 'Subjek Isolasi (BG polos)',
-                        visualStyle: 'Studio Putih Minimalis',
-                        techSpec: 'JPEG • Pure #FFFFFF Seamless Isolation',
-                        platforms: [
-                            { name: 'Vecteezy', score: 96 },
-                            { name: 'Adobe Stock', score: 95 },
-                            { name: 'Dreamstime', score: 91 }
-                        ],
-                        buyerQuery: 'eco friendly bamboo packaging box isolated white background',
-                        velocity: '+242% Search Surge',
-                        dodDelta: '+31% vs kemarin',
-                        supplyGap: 'Supply Gap 83%',
-                        commercialScore: 94,
-                        agentInsight: 'Desainer kemasan & kreator Adobe Express terus mencari objek mockup kemasan ramah lingkungan dengan latar putih murni (#FFFFFF) agar mudah di-masking dalam satu klik.',
-                        prompt: 'Minimalist white studio product photograph of a sleek sustainable molded bamboo and recycled kraft cosmetic packaging box set, isolated cleanly on pure solid #FFFFFF white background, soft natural contact shadow underneath, crisp commercial e-commerce mockup lighting, tack sharp focus.',
-                        seoTitle: 'Eco Friendly Recycled Kraft and Bamboo Packaging Box Set Isolated on Pure White Background',
-                        keywords: ['isolated white', 'packaging mockup', 'eco friendly', 'sustainable box', 'minimalist studio', 'product photography', 'kraft paper', 'bamboo packaging', 'clean cutout', 'cosmetic box', 'e-commerce asset', 'zero waste', 'blank box', 'commercial mockup', 'white background']
-                    },
-                    {
-                        id: 'f-14-3',
-                        category: 'Foto',
-                        format: 'Scene Penuh',
-                        visualStyle: 'Cinematic',
-                        techSpec: 'JPEG • Anamorphic Teal & Emerald Grade',
-                        platforms: [
-                            { name: 'Adobe Stock', score: 95 },
-                            { name: 'Dreamstime', score: 93 },
-                            { name: 'Vecteezy', score: 84 }
-                        ],
-                        buyerQuery: 'engineer inspecting green hydrogen solar plant twilight cinematic',
-                        velocity: '+228% Search Surge',
-                        dodDelta: '+27% vs kemarin',
-                        supplyGap: 'Supply Gap 82%',
-                        commercialScore: 93,
-                        agentInsight: 'Agent 02 mencatat keyword transisi energi bersih dan teknologi industri hijau mendominasi pembelian lisensi Extended di Adobe Stock dan Dreamstime minggu ini.',
-                        prompt: 'Cinematic wide-angle photograph of a female renewable energy engineer holding a rugged tablet while inspecting modern solar panels and clean hydrogen storage tanks at blue hour twilight, glowing emerald status LEDs, dramatic sky, shallow depth of field, editorial commercial quality.',
-                        seoTitle: 'Renewable Energy Engineer Inspecting Solar Power Facility at Twilight with Digital Tablet',
-                        keywords: ['renewable energy', 'solar engineer', 'green technology', 'cinematic portrait', 'clean energy', 'sustainability', 'industrial inspection', 'smart grid', 'twilight lighting', 'female engineer', 'future energy', 'corporate editorial', 'climate tech', 'modern infrastructure', 'power plant']
-                    },
-                    {
-                        id: 'f-14-4',
-                        category: 'Foto',
-                        format: 'Scene Penuh',
-                        visualStyle: 'Flat Lay Top-Down',
-                        techSpec: 'JPEG • 90° Overhead Flat Lay',
-                        platforms: [
-                            { name: 'Adobe Stock', score: 92 },
-                            { name: 'Vecteezy', score: 91 },
-                            { name: 'Dreamstime', score: 89 }
-                        ],
-                        buyerQuery: '2027 goal planner notebook matcha desk flat lay top down',
-                        velocity: '+209% Search Surge',
-                        dodDelta: '+22% vs kemarin',
-                        supplyGap: 'Supply Gap 76%',
-                        commercialScore: 91,
-                        agentInsight: 'Konten resolusi tahun baru 2027 dan produktivitas kerja hybrid mulai naik tajam di pencarian blog bisnis serta media sosial.',
-                        prompt: 'Crisp 90-degree top-down flat lay photograph of an open minimalist linen planner notebook with blank pages, brass fountain pen, ceramic cup of green tea, and eucalyptus leaves arranged neatly on a warm light oak desk, soft diffused morning window light.',
-                        seoTitle: 'Minimalist Planner Notebook and Green Tea Cup on Wooden Desk Top Down Flat Lay',
-                        keywords: ['flat lay', 'top down', 'goal planner', 'workspace desk', 'new year 2027', 'productivity', 'minimalist aesthetic', 'notebook mockup', 'morning coffee', 'home office', 'organization', 'stationary', 'clean desk', 'lifestyle flatlay', 'editorial photo']
-                    },
-
-                    // --- ILUSTRASI (4 items) ---
-                    {
-                        id: 'i-14-1',
-                        category: 'Ilustrasi',
-                        format: 'Isolated Background',
-                        visualStyle: '3D Glassmorphism',
-                        techSpec: 'PNG / High-Res • Frosted Emerald & Mint',
-                        platforms: [
-                            { name: 'Adobe Stock', score: 97 },
-                            { name: 'Vecteezy', score: 95 },
-                            { name: 'Dreamstime', score: 88 }
-                        ],
-                        buyerQuery: '3d glassmorphism ai cloud security shield icon isolated',
-                        velocity: '+305% Search Surge',
-                        dodDelta: '+44% vs kemarin',
-                        supplyGap: 'Sangat Tinggi (90%)',
-                        commercialScore: 97,
-                        agentInsight: 'Gaya 3D Glassmorphism dengan palet hijau emerald dan mint menjadi standar visual utama landing page AI & fintech akhir 2026. Buyer mencari objek terisolasi agar mudah dipasang di UI website.',
-                        prompt: '3D glassmorphism illustration of a sleek frosted emerald green and crystal translucent security shield hovering in front of a glowing mint cloud node, soft studio rim lighting, smooth rounded bevels, isolated on clean pure white background, ultra-clean UI hero asset.',
-                        seoTitle: '3D Glassmorphism Emerald Security Shield and Cloud Data Node Isolated on White Background',
-                        keywords: ['3d glassmorphism', 'cyber security', 'ai shield', 'cloud computing', 'frosted glass', '3d icon', 'isolated object', 'fintech ui', 'emerald green', 'data protection', 'modern 3d', 'web design', 'digital safety', 'translucent icon', 'tech illustration']
-                    },
-                    {
-                        id: 'i-14-2',
-                        category: 'Ilustrasi',
-                        format: 'Ilustrasi Full Layar',
-                        visualStyle: 'Modern Flat 2.0 (Soft Gradient)',
-                        techSpec: 'Full Bleed • Editorial Web Banner',
-                        platforms: [
-                            { name: 'Adobe Stock', score: 94 },
-                            { name: 'Vecteezy', score: 93 },
-                            { name: 'Dreamstime', score: 90 }
-                        ],
-                        buyerQuery: 'diverse team collaborating with ai analytics dashboard modern flat',
-                        velocity: '+234% Search Surge',
-                        dodDelta: '+26% vs kemarin',
-                        supplyGap: 'Supply Gap 80%',
-                        commercialScore: 93,
-                        agentInsight: 'Perusahaan SaaS dan konsultan HR memburu ilustrasi full-screen bergaya Modern Flat 2.0 dengan gradasi lembut untuk artikel tren kerja masa depan 2027.',
-                        prompt: 'Full-bleed Modern Flat 2.0 editorial illustration with soft grain gradients showing a diverse creative team collaborating around floating holographic productivity charts and indoor plants, harmonious emerald green, mint, and warm coral palette, clean contemporary SaaS artwork.',
-                        seoTitle: 'Modern Flat 2.0 Illustration of Diverse Team Collaborating with Digital Analytics Charts',
-                        keywords: ['modern flat', 'team collaboration', 'ai analytics', 'saas illustration', 'soft gradient', 'digital workspace', 'business growth', 'diverse team', 'editorial art', 'web banner', 'future of work', 'startup culture', 'data visualization', 'contemporary vector', 'hero graphic']
-                    },
-                    {
-                        id: 'i-14-3',
-                        category: 'Ilustrasi',
-                        format: 'Ilustrasi Full Layar',
-                        visualStyle: 'Batik Motif Nusantara',
-                        techSpec: 'Full Bleed • Seamless Cultural Luxury',
-                        platforms: [
-                            { name: 'Vecteezy', score: 93 },
-                            { name: 'Adobe Stock', score: 91 },
-                            { name: 'Dreamstime', score: 89 }
-                        ],
-                        buyerQuery: 'modern indonesian batik kawung gold emerald background',
-                        velocity: '+219% Search Surge',
-                        dodDelta: '+33% vs kemarin',
-                        supplyGap: 'Supply Gap 87%',
-                        commercialScore: 92,
-                        agentInsight: 'Agent 02 mencatat permintaan tinggi dari desainer kemasan, undangan digital, dan brand lokal Indonesia untuk motif Batik Nusantara modern berpadu aksen emas elegan.',
-                        prompt: 'Full-screen luxury contemporary illustration of Indonesian Batik Motif Nusantara combining classic Kawung and Parang geometric flora patterns in deep emerald forest green, soft mint, and metallic gold line accents, refined cultural heritage background design.',
-                        seoTitle: 'Contemporary Indonesian Batik Nusantara Pattern in Deep Emerald Green and Gold Accents',
-                        keywords: ['batik nusantara', 'indonesian batik', 'kawung pattern', 'cultural heritage', 'emerald and gold', 'traditional motif', 'luxury background', 'southeast asia', 'ornamental art', 'festive backdrop', 'greeting card', 'textile design', 'javanese pattern', 'seamless art', 'javanese batik']
-                    },
-                    {
-                        id: 'i-14-4',
-                        category: 'Ilustrasi',
-                        format: 'Isolated Background',
-                        visualStyle: 'Isometrik Data & Cloud',
-                        techSpec: 'Isolated • Tech Architecture Isometric',
-                        platforms: [
-                            { name: 'Dreamstime', score: 92 },
-                            { name: 'Adobe Stock', score: 91 },
-                            { name: 'Vecteezy', score: 90 }
-                        ],
-                        buyerQuery: 'isometric automated ai workflow pipeline nodes isolated',
-                        velocity: '+204% Search Surge',
-                        dodDelta: '+19% vs kemarin',
-                        supplyGap: 'Supply Gap 78%',
-                        commercialScore: 90,
-                        agentInsight: 'Presentasi pitch deck startup AI dan cloud automation sangat mengandalkan diagram isometrik yang bersih di atas background putih terisolasi.',
-                        prompt: 'Clean isometric data and cloud illustration depicting an automated multi-agent AI workflow pipeline connecting server cubes, analytics screens, and glowing emerald data streams, isolated on pure white background, crisp vector-like shading, high precision.',
-                        seoTitle: 'Isometric Multi-Agent AI Workflow Pipeline and Cloud Server Nodes Isolated on White',
-                        keywords: ['isometric data', 'cloud workflow', 'ai automation', 'server architecture', 'tech diagram', 'isolated illustration', 'data pipeline', 'network nodes', 'enterprise software', 'pitch deck', 'digital transformation', 'cloud computing', 'smart system', '3d isometric', 'clean infographic']
-                    },
-
-                    // --- VECTOR (4 items) ---
-                    {
-                        id: 'vec-14-1',
-                        category: 'Vector',
-                        format: 'Sticker Pack',
-                        visualStyle: 'Hand-drawn Doodle',
-                        techSpec: 'EPS 10 + SVG • Die-Cut White Border',
-                        platforms: [
-                            { name: 'Vecteezy', score: 98 },
-                            { name: 'Adobe Stock', score: 95 },
-                            { name: 'Dreamstime', score: 89 }
-                        ],
-                        buyerQuery: 'cute ramadan & eid sticker pack hand drawn doodle vector',
-                        velocity: '+318% Search Surge',
-                        dodDelta: '+47% vs kemarin',
-                        supplyGap: 'Sangat Tinggi (91%)',
-                        commercialScore: 98,
-                        agentInsight: 'Agent 01 & Agent 04 mendeteksi lonjakan awal pembelian paket stiker digital (GoodNotes, Canva, Instagram Stories, kemasan hampers) bertema Ramadan & Lebaran dengan gaya Hand-drawn Doodle.',
-                        prompt: 'Vector sticker pack collection of 12 cute hand-drawn doodle illustrations for Ramadan and Eid celebration including crescent moon, mosque lantern, dates bowl, ketupat, tea pot, and prayer beads, thick clean white die-cut sticker borders, warm emerald green, gold, and pastel mint colors, flat vector EPS.',
-                        seoTitle: 'Cute Ramadan and Eid Hand-Drawn Doodle Vector Sticker Pack with White Die-Cut Borders',
-                        keywords: ['sticker pack', 'hand drawn doodle', 'ramadan stickers', 'eid mubarak', 'vector set', 'cute lantern', 'ketupat', 'islamic holiday', 'planner stickers', 'die cut', 'kawaii doodle', 'festive icons', 'social media', 'greeting elements', 'svg bundle']
-                    },
-                    {
-                        id: 'vec-14-2',
-                        category: 'Vector',
-                        format: 'Icon Set',
-                        visualStyle: 'Monoline Icon',
-                        techSpec: 'SVG + EPS • 2px Consistent Stroke Grid',
-                        platforms: [
-                            { name: 'Vecteezy', score: 96 },
-                            { name: 'Adobe Stock', score: 94 },
-                            { name: 'Dreamstime', score: 91 }
-                        ],
-                        buyerQuery: 'ai agent automation workflow monoline icon set vector',
-                        velocity: '+262% Search Surge',
-                        dodDelta: '+34% vs kemarin',
-                        supplyGap: 'Supply Gap 85%',
-                        commercialScore: 95,
-                        agentInsight: 'Developer aplikasi & UI designer di Vecteezy dan Adobe Stock aktif mencari set ikon monoline konsisten bertema Multi-Agent AI, LLM prompt, dan otomasi kerja.',
-                        prompt: 'Clean vector monoline icon set of 16 AI agent and workflow automation symbols including neural brain, prompt terminal, smart radar, automated bot, data sync, and analytics spark, uniform 2px rounded stroke weight, emerald green and dark slate colors on pure white background, pixel-perfect grid.',
-                        seoTitle: 'AI Agent and Workflow Automation Vector Monoline Icon Set with Uniform Stroke Grid',
-                        keywords: ['monoline icon', 'icon set', 'ai agent', 'automation icons', 'vector ui', 'line icons', 'workflow symbols', 'tech icons', 'minimalist stroke', 'app interface', 'web icons', 'smart bot', 'svg icons', 'clean vector', 'software ui']
-                    },
-                    {
-                        id: 'vec-14-3',
-                        category: 'Vector',
-                        format: 'Flat Vector',
-                        visualStyle: 'Layout Kartu Ucapan',
-                        techSpec: 'EPS + AI • Print & Social Ready',
-                        platforms: [
-                            { name: 'Vecteezy', score: 95 },
-                            { name: 'Adobe Stock', score: 93 },
-                            { name: 'Dreamstime', score: 90 }
-                        ],
-                        buyerQuery: '2027 new year & christmas minimalist greeting card layout vector',
-                        velocity: '+249% Search Surge',
-                        dodDelta: '+29% vs kemarin',
-                        supplyGap: 'Supply Gap 83%',
-                        commercialScore: 94,
-                        agentInsight: 'Puncak pemesanan kartu ucapan korporat akhir tahun 2026/2027 terjadi di pertengahan November. Template kartu ucapan bergaya Swiss Minimal & Botanical banyak diunduh.',
-                        prompt: 'Flat vector greeting card layout template for Season Greetings and New Year 2027, featuring botanical pine and gold geometric border frame, generous clean central typography space, deep emerald green and cream ivory palette, print-ready vector composition.',
-                        seoTitle: 'Minimalist Emerald and Gold Botanical Greeting Card Layout Template Vector for 2027',
-                        keywords: ['greeting card', 'layout template', 'new year 2027', 'flat vector', 'christmas card', 'botanical frame', 'corporate card', 'emerald green', 'gold ornament', 'invitation layout', 'minimalist design', 'print template', 'holiday banner', 'festive vector', 'card frame']
-                    },
-                    {
-                        id: 'vec-14-4',
-                        category: 'Vector',
-                        format: 'Flat Vector',
-                        visualStyle: 'Swiss Minimal',
-                        techSpec: 'EPS 10 + SVG • Grid Poster & Infografis',
-                        platforms: [
-                            { name: 'Adobe Stock', score: 93 },
-                            { name: 'Vecteezy', score: 92 },
-                            { name: 'Dreamstime', score: 88 }
-                        ],
-                        buyerQuery: 'swiss minimal geometric poster annual report cover vector',
-                        velocity: '+212% Search Surge',
-                        dodDelta: '+21% vs kemarin',
-                        supplyGap: 'Supply Gap 79%',
-                        commercialScore: 91,
-                        agentInsight: 'Agensi desain korporat menyusun Annual Report 2026 dan mencari sampul geometris Swiss Minimal yang bersih, tegas, dan mudah dikustomisasi warnanya.',
-                        prompt: 'Swiss minimal flat vector geometric cover composition built on a strict modular grid, bold emerald green, forest dark, and off-white bauhaus circles and diagonal bars, clean minimalist corporate annual report aesthetic, crisp scalable vector.',
-                        seoTitle: 'Swiss Minimal Geometric Modular Grid Cover Composition in Emerald Green Flat Vector',
-                        keywords: ['swiss minimal', 'geometric poster', 'annual report', 'flat vector', 'bauhaus shapes', 'modular grid', 'corporate cover', 'minimalist art', 'emerald green', 'abstract geometry', 'modern layout', 'editorial cover', 'clean design', 'vector template', 'graphic design']
-                    }
-                ]
-            },
-
-            '13 November 2026': {
-                dateKey: '13 November 2026',
-                fullDateLabel: 'Jumat, 13 November 2026',
-                lastSynced: '13 November 2026, 22:15 WIB',
-                dayOverDayGrowth: '+21.6%',
-                peakWindow: '21:30 WIB (US/EU Agency Rush)',
-                totalQueriesAnalyzed: '44,180',
-                confidence: '95.9%',
-                platformInsights: {
-                    adobe: {
-                        name: 'Adobe Stock',
-                        topSearch: '"black friday cyber monday neon countdown loop"',
-                        demandScore: 95,
-                        supplyGap: 'Tinggi (80%)',
-                        insight: 'Permintaan menit terakhir untuk aset promo Black Friday & Cyber Monday masih mendominasi unduhan video pendek dan banner diskon.'
-                    },
-                    vecteezy: {
-                        name: 'Vecteezy',
-                        topSearch: '"mega sale badge & sale 3d glossy vector"',
-                        demandScore: 94,
-                        supplyGap: 'Tinggi (82%)',
-                        insight: 'Seller e-commerce memborong elemen Badge & Sale serta Frame Template untuk kampanye akhir bulan.'
-                    },
-                    dreamstime: {
-                        name: 'Dreamstime',
-                        topSearch: '"sustainable electric logistics van delivery city"',
-                        demandScore: 89,
-                        supplyGap: 'Sedang (75%)',
-                        insight: 'Media bisnis & logistik mencari foto armada pengiriman listrik ramah lingkungan menjelang puncak belanja akhir tahun.'
-                    }
-                },
-                agentLogs: [
-                    '[Agent 01 • Peak Search Radar] Lonjakan search promo e-commerce akhir tahun & kemasan hadiah ramah lingkungan.',
-                    '[Agent 02 • Insight Auditor] Badge diskon 3D & B-roll logistik hijau mencatat rasio unduhan tertinggi.',
-                    '[Agent 03 • Format Classifier] Dominasi format Vector Badge & Sale, Foto Product Clean Mockup, dan Video Hyperlapse Kota.',
-                    '[Agent 04 • Lead-Time Predictor] Transisi dari kampanye Black Friday menuju aset Natal, Tahun Baru 2027, & Imlek.',
-                    '[Agent 05 • Fable 5.2 Synthesizer] Laporan harian 13 November 2026 tersimpan ke arsip.'
-                ],
-                items: [
-                    {
-                        id: 'v-13-1',
-                        category: 'Video',
-                        format: 'Hyperlapse Kota',
-                        visualStyle: 'Teknologi Futuristik',
-                        techSpec: '16:9 Horizontal • Pan • Klip Biasa',
-                        videoRatio: '16:9 Horizontal',
-                        videoCamera: 'Pan',
-                        videoLoop: 'Klip Biasa',
-                        platforms: [
-                            { name: 'Adobe Stock', score: 95 },
-                            { name: 'Dreamstime', score: 91 },
-                            { name: 'Vecteezy', score: 86 }
-                        ],
-                        buyerQuery: 'smart city night traffic light trails hyperlapse 4k',
-                        velocity: '+224% Search Surge',
-                        dodDelta: '+18% vs kemarin',
-                        supplyGap: 'Supply Gap 78%',
-                        commercialScore: 93,
-                        agentInsight: 'Agensi telekomunikasi dan fintech membutuhkan hyperlapse lalu lintas malam kota modern untuk video rekap akhir tahun.',
-                        prompt: 'Dynamic night city hyperlapse pan showing glowing emerald and amber traffic light trails flowing through sleek glass skyscrapers, smart city connectivity concept, 16:9 horizontal 4K.',
-                        seoTitle: 'Night Smart City Traffic Light Trails Hyperlapse Amid Modern Glass Skyscrapers',
-                        keywords: ['hyperlapse city', 'night traffic', 'smart city', 'light trails', 'urban skyline', 'connectivity', 'time lapse', 'modern architecture', 'fintech video', 'fast motion', 'downtown night', 'global business', 'corporate video', 'neon city', '4k footage']
-                    },
-                    {
-                        id: 'vec-13-1',
-                        category: 'Vector',
-                        format: 'Flat Vector',
-                        visualStyle: 'Badge & Sale',
-                        techSpec: 'EPS + SVG • Promo Tag Collection',
-                        platforms: [
-                            { name: 'Vecteezy', score: 97 },
-                            { name: 'Adobe Stock', score: 93 },
-                            { name: 'Dreamstime', score: 88 }
-                        ],
-                        buyerQuery: 'year end clearance badge & sale minimalist vector',
-                        velocity: '+251% Search Surge',
-                        dodDelta: '+25% vs kemarin',
-                        supplyGap: 'Supply Gap 81%',
-                        commercialScore: 94,
-                        agentInsight: 'Desainer marketplace membutuhkan lencana promo diskon bersih tanpa font terkunci agar mudah diedit.',
-                        prompt: 'Clean flat vector collection of 9 modern year-end sale badges and price tags in emerald green, crisp white, and gold accents, isolated on white background, scalable EPS.',
-                        seoTitle: 'Modern Emerald and Gold Year End Sale Badges and Promo Labels Flat Vector Set',
-                        keywords: ['badge and sale', 'promo label', 'discount tag', 'flat vector', 'year end sale', 'e-commerce badge', 'price tag', 'marketing asset', 'special offer', 'retail sticker', 'modern badge', 'web banner', 'svg set', 'clean promo', 'shopping tag']
-                    }
-                ]
-            },
-
-            '12 November 2026': {
-                dateKey: '12 November 2026',
-                fullDateLabel: 'Kamis, 12 November 2026',
-                lastSynced: '12 November 2026, 22:04 WIB',
-                dayOverDayGrowth: '+19.2%',
-                peakWindow: '22:00 WIB (US/EU Agency Rush)',
-                totalQueriesAnalyzed: '41,650',
-                confidence: '95.2%',
-                platformInsights: {
-                    adobe: {
-                        name: 'Adobe Stock',
-                        topSearch: '"wellness mindfulness spa botanical macro"',
-                        demandScore: 93,
-                        supplyGap: 'Tinggi (79%)',
-                        insight: 'Brand kesehatan & skincare menyiapkan kampanye self-care tahun baru dengan visual makro alami.'
-                    },
-                    vecteezy: {
-                        name: 'Vecteezy',
-                        topSearch: '"floral botanical flat wedding & organic label"',
-                        demandScore: 92,
-                        supplyGap: 'Tinggi (80%)',
-                        insight: 'Elemen botani garis halus sangat laris untuk kemasan produk organik dan undangan.'
-                    },
-                    dreamstime: {
-                        name: 'Dreamstime',
-                        topSearch: '"remote work digital nomad cafe bali golden hour"',
-                        demandScore: 90,
-                        supplyGap: 'Tinggi (82%)',
-                        insight: 'Artikel tren gaya hidup kerja jarak jauh 2027 mendongkrak pencarian foto golden hour di Asia Tenggara.'
-                    }
-                },
-                agentLogs: [
-                    '[Agent 01 • Peak Search Radar] Pencarian tinggi pada tema kesehatan mental, skincare organik, dan digital nomad.',
-                    '[Agent 02 • Insight Auditor] Foto Golden Hour & Ilustrasi Floral Botanical Flat mencatat konversi stabil.',
-                    '[Agent 03 • Format Classifier] Memetakan peluang pada Foto Lifestyle Candid & Vector Floral Botanical Flat.',
-                    '[Agent 04 • Lead-Time Predictor] Permintaan awal tema resolusi hidup sehat Januari 2027 mulai masuk.',
-                    '[Agent 05 • Fable 5.2 Synthesizer] Laporan harian 12 November 2026 tersimpan.'
-                ],
-                items: [
-                    {
-                        id: 'f-12-1',
-                        category: 'Foto',
-                        format: 'Scene Penuh',
-                        visualStyle: 'Golden Hour',
-                        techSpec: 'JPEG • Warm Sunflare Lifestyle',
-                        platforms: [
-                            { name: 'Dreamstime', score: 94 },
-                            { name: 'Adobe Stock', score: 93 },
-                            { name: 'Vecteezy', score: 87 }
-                        ],
-                        buyerQuery: 'creative entrepreneur working laptop tropical terrace golden hour',
-                        velocity: '+214% Search Surge',
-                        dodDelta: '+19% vs kemarin',
-                        supplyGap: 'Supply Gap 82%',
-                        commercialScore: 92,
-                        agentInsight: 'Media bisnis dan aplikasi produktivitas mencari visual pekerja kreatif dengan suasana hangat matahari terbenam.',
-                        prompt: 'Golden hour lifestyle candid photograph of a young Southeast Asian creative entrepreneur working on a sleek laptop at a lush tropical wooden terrace overlooking rice terraces, warm backlit sunflare, shallow depth of field, authentic editorial feel.',
-                        seoTitle: 'Southeast Asian Entrepreneur Working on Laptop at Tropical Terrace During Golden Hour',
-                        keywords: ['golden hour', 'digital nomad', 'remote work', 'lifestyle candid', 'tropical office', 'entrepreneur', 'laptop work', 'sunset light', 'southeast asia', 'work life balance', 'creative freelancer', 'modern career', 'warm sunlight', 'outdoor workspace', 'editorial photo']
-                    },
-                    {
-                        id: 'i-12-1',
-                        category: 'Ilustrasi',
-                        format: 'Isolated Background',
-                        visualStyle: 'Floral Botanical Flat',
-                        techSpec: 'PNG / Vector • Organic Apothecary Style',
-                        platforms: [
-                            { name: 'Vecteezy', score: 95 },
-                            { name: 'Adobe Stock', score: 92 },
-                            { name: 'Dreamstime', score: 88 }
-                        ],
-                        buyerQuery: 'herbal botanical leaves apothecary isolated flat illustration',
-                        velocity: '+208% Search Surge',
-                        dodDelta: '+21% vs kemarin',
-                        supplyGap: 'Supply Gap 80%',
-                        commercialScore: 91,
-                        agentInsight: 'Produk teh herbal, kosmetik alami, dan kemasan ramah lingkungan membutuhkan ilustrasi botani terisolasi.',
-                        prompt: 'Floral botanical flat illustration of organic eucalyptus, green tea leaves, and chamomile flowers arranged symmetrically, soft sage and emerald green palette, isolated on pure white background, clean modern packaging art.',
-                        seoTitle: 'Organic Eucalyptus and Green Tea Floral Botanical Flat Illustration Isolated on White',
-                        keywords: ['floral botanical', 'botanical flat', 'herbal leaves', 'organic skincare', 'eucalyptus', 'green tea', 'isolated plant', 'packaging art', 'natural beauty', 'sage green', 'minimalist flora', 'eco label', 'apothecary', 'clean illustration', 'wellness art']
-                    }
-                ]
-            },
-
-            '11 November 2026': {
-                dateKey: '11 November 2026',
-                fullDateLabel: 'Rabu, 11 November 2026',
-                lastSynced: '11 November 2026, 22:11 WIB',
-                dayOverDayGrowth: '+31.0%',
-                peakWindow: '20:30 WIB (11.11 Global Shopping Festival Peak)',
-                totalQueriesAnalyzed: '52,410',
-                confidence: '97.1%',
-                platformInsights: {
-                    adobe: {
-                        name: 'Adobe Stock',
-                        topSearch: '"mobile payment contactless qr code cafe lifestyle"',
-                        demandScore: 96,
-                        supplyGap: 'Tinggi (81%)',
-                        insight: 'Hari belanja 11.11 memicu lonjakan pencarian foto & video pembayaran digital QRIS/NFC di UMKM modern.'
-                    },
-                    vecteezy: {
-                        name: 'Vecteezy',
-                        topSearch: '"cyber-ui dark neon fintech dashboard frame"',
-                        demandScore: 94,
-                        supplyGap: 'Tinggi (84%)',
-                        insight: 'Desainer UI/UX mengunduh elemen HUD & Frame Template bergaya Cyber-UI Dark Neon.'
-                    },
-                    dreamstime: {
-                        name: 'Dreamstime',
-                        topSearch: '"small business owner packing online order eco box"',
-                        demandScore: 92,
-                        supplyGap: 'Tinggi (83%)',
-                        insight: 'Publikasi ekonomi digital mengoleksi foto pelaku UMKM mengemas pesanan e-commerce.'
-                    }
-                },
-                agentLogs: [
-                    '[Agent 01 • Peak Search Radar] Puncak pencarian 11.11 Global Shopping & transaksi pembayaran nirsentuh.',
-                    '[Agent 02 • Insight Auditor] Fintech QR payment & UMKM e-commerce mencatat kecepatan unduhan tertinggi.',
-                    '[Agent 03 • Format Classifier] Dipetakan ke Foto Lifestyle Candid, Vector Cyber-UI Dark Neon, dan Video Unboxing.',
-                    '[Agent 04 • Lead-Time Predictor] Menyiapkan transisi dari 11.11 menuju 12.12 Harbolnas & akhir tahun.',
-                    '[Agent 05 • Fable 5.2 Synthesizer] Laporan harian 11 November 2026 tersimpan.'
-                ],
-                items: [
-                    {
-                        id: 'v-11-1',
-                        category: 'Video',
-                        format: 'Unboxing & Hands-on',
-                        visualStyle: 'Workspace & Produktivitas',
-                        techSpec: '9:16 Vertikal • Diam / Static • Klip Biasa',
-                        videoRatio: '9:16 Vertikal',
-                        videoCamera: 'Diam / Static',
-                        videoLoop: 'Klip Biasa',
-                        platforms: [
-                            { name: 'Adobe Stock', score: 95 },
-                            { name: 'Vecteezy', score: 91 },
-                            { name: 'Dreamstime', score: 87 }
-                        ],
-                        buyerQuery: 'hands unboxing minimalist gadget eco packaging desk 9:16',
-                        velocity: '+245% Search Surge',
-                        dodDelta: '+31% vs kemarin',
-                        supplyGap: 'Supply Gap 80%',
-                        commercialScore: 93,
-                        agentInsight: 'Konten iklan produk & review singkat di media sosial membutuhkan POV tangan membuka kotak kemasan rapi tanpa wajah.',
-                        prompt: 'Top-down hands-on unboxing shot of hands carefully opening a minimalist matte white and kraft eco-friendly tech accessory box on a clean wooden desk, natural soft daylight, 9:16 vertical 4K commercial footage, no brand logos.',
-                        seoTitle: 'Hands Opening Minimalist Eco Friendly Product Box on Clean Desk Vertical Unboxing B-Roll',
-                        keywords: ['unboxing hands', 'product reveal', 'eco packaging', 'vertical video', 'e-commerce ad', 'hands on', 'minimalist box', 'desk setup', 'online shopping', 'parcel delivery', 'clean studio', 'social media ad', 'customer experience', 'modern packaging', '4k vertical']
-                    }
-                ]
-            },
-
-            '10 November 2026': {
-                dateKey: '10 November 2026',
-                fullDateLabel: 'Selasa, 10 November 2026',
-                lastSynced: '10 November 2026, 22:02 WIB',
-                dayOverDayGrowth: '+17.8%',
-                peakWindow: '22:00 WIB (US/EU Agency Rush)',
-                totalQueriesAnalyzed: '39,840',
-                confidence: '94.8%',
-                platformInsights: {
-                    adobe: {
-                        name: 'Adobe Stock',
-                        topSearch: '"winter cozy home interior fireplace bokeh"',
-                        demandScore: 93,
-                        supplyGap: 'Sedang (76%)',
-                        insight: 'Agensi dekorasi rumah & ritel musim dingin di Amerika Utara & Eropa mulai mengunduh suasana interior hangat.'
-                    },
-                    vecteezy: {
-                        name: 'Vecteezy',
-                        topSearch: '"retro vintage badge coffee roastery vector"',
-                        demandScore: 91,
-                        supplyGap: 'Tinggi (79%)',
-                        insight: 'Desainer kemasan kopi & merchandise lokal mencari lencana Retro Vintage Badge siap edit.'
-                    },
-                    dreamstime: {
-                        name: 'Dreamstime',
-                        topSearch: '"indonesian specialty coffee farmer harvest editorial"',
-                        demandScore: 90,
-                        supplyGap: 'Sangat Tinggi (86%)',
-                        insight: 'Majalah kuliner global mencari foto dokumenter panen biji kopi Nusantara berkualitas editorial.'
-                    }
-                },
-                agentLogs: [
-                    '[Agent 01 • Peak Search Radar] Pencarian kuliner kopi spesialti Nusantara & interior musim dingin.',
-                    '[Agent 02 • Insight Auditor] Dreamstime menunjukkan gap suplai tinggi pada foto dokumenter pertanian kopi.',
-                    '[Agent 03 • Format Classifier] Dipetakan ke Foto Food Editorial & Vector Retro Vintage Badge.',
-                    '[Agent 04 • Lead-Time Predictor] Permintaan merchandise akhir tahun & kemasan hadiah kopi meningkat.',
-                    '[Agent 05 • Fable 5.2 Synthesizer] Laporan harian 10 November 2026 tersimpan.'
-                ],
-                items: [
-                    {
-                        id: 'f-10-1',
-                        category: 'Foto',
-                        format: 'Scene Penuh',
-                        visualStyle: 'Food Editorial',
-                        techSpec: 'JPEG • Moody Warm Roastery Light',
-                        platforms: [
-                            { name: 'Dreamstime', score: 94 },
-                            { name: 'Adobe Stock', score: 92 },
-                            { name: 'Vecteezy', score: 86 }
-                        ],
-                        buyerQuery: 'specialty pour over coffee V60 steam moody editorial',
-                        velocity: '+202% Search Surge',
-                        dodDelta: '+18% vs kemarin',
-                        supplyGap: 'Supply Gap 81%',
-                        commercialScore: 91,
-                        agentInsight: 'Roastery kopi dan majalah gaya hidup membutuhkan foto editorial penyeduhan manual V60 dengan uap hangat alami.',
-                        prompt: 'Moody food editorial photograph of hot water pouring from a gooseneck kettle into a ceramic V60 pour-over coffee dripper with rising aromatic steam, roasted coffee beans on dark slate table, warm directional side lighting, shallow DOF.',
-                        seoTitle: 'Artisanal V60 Pour Over Specialty Coffee Brewing with Rising Steam Food Editorial',
-                        keywords: ['pour over coffee', 'food editorial', 'v60 brewing', 'specialty coffee', 'barista craft', 'rising steam', 'moody lighting', 'coffee beans', 'cafe culture', 'morning ritual', 'roastery', 'artisanal drink', 'warm tones', 'shallow dof', 'commercial food']
-                    }
-                ]
-            }
-        };
-
-        // Active runtime store loaded from localStorage + merged with INITIAL_SNAPSHOTS
-        let DAILY_HISTORY = {};
-
-        /**
-         * =========================================================================
-         * 4. STORAGE & DAILY AUTO-UPDATE ENGINE
-         * =========================================================================
-         */
-        /**
-         * =========================================================================
-         * 4. DATA SOURCE — public/data/history.json + normalizeDay()
-         *    Data utama dimuat dari history.json (hasil riset GitHub Actions).
-         *    Bila fetch gagal (mis. dibuka via file://), pakai INITIAL_SNAPSHOTS.
-         * =========================================================================
-         */
-        function normalizeDay(day) {
-            const ideas = Array.isArray(day.ideas) ? day.ideas : [];
-            const items = ideas.map(idea => {
-                const p = idea.platforms || {};
-                const platformArr = [
-                    { name: 'Adobe Stock', score: (p.adobeStock && p.adobeStock.score) || 0 },
-                    { name: 'Vecteezy', score: (p.vecteezy && p.vecteezy.score) || 0 },
-                    { name: 'Dreamstime', score: (p.dreamstime && p.dreamstime.score) || 0 }
-                ].sort((a, b) => b.score - a.score);
-                const kw = Array.isArray(idea.keywords) ? idea.keywords : [];
-                const growth = idea.growthPercent || '+0%';
-                const comp = idea.competitionLevel || 'Medium';
-                const supplyGap = comp === 'Low' ? 'Sangat Rendah Saingan' : comp === 'High' ? 'Saingan Ketat' : 'Supply Gap 62%';
-                const vm = idea.videoMeta || null;
-                return {
-                    id: idea.id,
-                    category: idea.category,
-                    format: idea.formatType || '',
-                    visualStyle: idea.visualStyle || '',
-                    techSpec: vm ? `${vm.ratio} • ${vm.camera} • ${vm.loop}` : (idea.formatType || ''),
-                    videoRatio: vm ? vm.ratio : '',
-                    videoCamera: vm ? vm.camera : '',
-                    videoLoop: vm ? vm.loop : '',
-                    platforms: platformArr,
-                    buyerQuery: kw.slice(0, 4).join(' '),
-                    velocity: `${growth} Search Surge`,
-                    dodDelta: `${growth} vs kemarin`,
-                    supplyGap,
-                    commercialScore: idea.demandScore || 0,
-                    agentInsight: idea.agentLogs || '',
-                    prompt: idea.productionPrompt || '',
-                    seoTitle: idea.seoTitle || '',
-                    keywords: kw
-                };
-            });
-            const pi = day.platformInsights || {};
-            return {
-                dateKey: day.dateLabel,
-                fullDateLabel: day.fullLabel,
-                lastSynced: day.lastUpdated,
-                dayOverDayGrowth: day.dayOverDayGrowth || '+0%',
-                peakWindow: day.peakWindow || '21:00–01:00 WIB',
-                totalQueriesAnalyzed: day.totalQueriesAnalyzed || '0',
-                confidence: day.confidence || '—',
-                platformInsights: {
-                    adobe: pi.adobeStock || { name: 'Adobe Stock', topSearch: '—', demandScore: 0, supplyGap: '—', insight: '—' },
-                    vecteezy: pi.vecteezy || { name: 'Vecteezy', topSearch: '—', demandScore: 0, supplyGap: '—', insight: '—' },
-                    dreamstime: pi.dreamstime || { name: 'Dreamstime', topSearch: '—', demandScore: 0, supplyGap: '—', insight: '—' }
-                },
-                agentLogs: Array.isArray(day.agentLogs) ? day.agentLogs : [],
-                items
-            };
-        }
-
-        async function loadHistoryFromServer() {
-            try {
-                const res = await fetch('data/history.json?t=' + Date.now());
-                if (!res.ok) throw new Error('HTTP ' + res.status);
-                const data = await res.json();
-                const days = Array.isArray(data.days) ? data.days : [];
-                if (!days.length) throw new Error('history.json kosong');
-                const built = {};
-                days.forEach(d => { if (d.dateLabel) built[d.dateLabel] = normalizeDay(d); });
-                if (!Object.keys(built).length) throw new Error('tidak ada hari valid di history.json');
-                DAILY_HISTORY = built;
-                TODAY_KEY = days[0].dateLabel;
-                TODAY_FULL_LABEL = days[0].fullLabel || TODAY_KEY;
-                UI_STATE.selectedDate = TODAY_KEY;
-                return true;
-            } catch (e) {
-                console.warn('Gagal memuat data/history.json, memakai data bawaan:', e);
-                DAILY_HISTORY = JSON.parse(JSON.stringify(INITIAL_SNAPSHOTS));
-                TODAY_KEY = '14 November 2026';
-                TODAY_FULL_LABEL = 'Sabtu, 14 November 2026';
-                UI_STATE.selectedDate = TODAY_KEY;
-                return false;
-            }
-        }
-
-        async function initDailyHistoryEngine() {
-            await loadHistoryFromServer();
-        }
-
-        /**
-         * =========================================================================
-         * 5. 5-AGENT AI ORCHESTRATION — GITHUB ACTIONS DISPATCH & LIVE MONITORING
-         * =========================================================================
-         */
-        const AGENT_DEFINITIONS = [
-            { id: '01', name: 'Agent 01', role: 'Peak-Hour Search Radar', status: 'SELESAI', score: '98%' },
-            { id: '02', name: 'Agent 02', role: 'Insight Auditor (3-Site)', status: 'SELESAI', score: '96%' },
-            { id: '03', name: 'Agent 03', role: 'Format & Style Classifier', status: 'SELESAI', score: '97%' },
-            { id: '04', name: 'Agent 04', role: 'Seasonal Lead-Time AI', status: 'SELESAI', score: '95%' },
-            { id: '05', name: 'Agent 05', role: 'Fable 5.2 Synthesizer', status: 'SELESAI', score: '98%' }
-        ];
-
-        function renderAgentsGrid(activeIndex = -1) {
-            const grid = document.getElementById('agents-grid');
-            grid.innerHTML = AGENT_DEFINITIONS.map((ag, idx) => {
-                const isRunning = idx === activeIndex;
-                const isDone = activeIndex === -1 || idx < activeIndex;
-                return `
-                    <div class="rounded-xl p-2.5 border transition-all ${isRunning ? 'bg-emerald-50 border-[#15803D] shadow-sm' : 'bg-[#F4FBF7] border-emerald-200'}">
-                        <div class="flex items-center justify-between gap-1 mb-1">
-                            <span class="text-[11px] font-extrabold text-[#15803D]">${ag.name}</span>
-                            <span class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${isRunning ? 'bg-[#15803D] text-white' : (isDone ? 'bg-emerald-100 text-[#15803D]' : 'bg-slate-200 text-slate-600')}">
-                                ${isRunning ? 'SCAN...' : (isDone ? ag.score : 'WAIT')}
-                            </span>
-                        </div>
-                        <div class="text-[11px] font-bold text-slate-800 leading-snug">${ag.role}</div>
-                        <div class="mt-1.5 h-1.5 w-full rounded-full overflow-hidden bg-emerald-100">
-                            <div class="h-full ${isRunning ? 'agent-scanning-bar w-full' : (isDone ? 'bg-[#15803D] w-full' : 'w-0')}"></div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function appendConsoleLog(line) {
-            const consoleEl = document.getElementById('agent-console-log');
-            const p = document.createElement('div');
-            p.className = 'py-0.5 border-b border-emerald-200/50 last:border-none';
-            p.textContent = line;
-            consoleEl.appendChild(p);
-            consoleEl.scrollTop = consoleEl.scrollHeight;
-        }
-
-        /**
-         * =========================================================================
-         * UPDATE FLOW — REFRESH data/history.json + TRIGGER GITHUB ACTIONS
-         * Tidak ada lagi pemanggilan Gemini langsung dari browser.
-         * Riset 5 Agen dijalankan oleh GitHub Actions (daily-trend-radar.yml).
-         * =========================================================================
-         */
-        async function triggerDailyUpdate(isContextual = false) {
-            if (UI_STATE.isScanning) return;
-            UI_STATE.isScanning = true;
-
-            const icon = document.getElementById('btn-update-icon');
-            const btnText = document.getElementById('btn-update-text');
-            icon.classList.add('animate-spin');
-            btnText.textContent = 'Menyinkronkan data terbaru...';
-
-            // (a) Refetch data/history.json terbaru & re-render semua bagian
-            const ok = await loadHistoryFromServer();
-            renderAllDashboardSections();
-
-            icon.classList.remove('animate-spin');
-            btnText.textContent = `Update Asset Hari Ini (${TODAY_KEY})`;
-            UI_STATE.isScanning = false;
-
-            if (ok) showToast('Data terbaru berhasil disinkronkan dari history.json.');
-            else showToast('Tidak bisa memuat data/history.json — menampilkan data bawaan.');
-
-            // (b) Buka modal pengaturan GitHub (prefill tema bila dari tombol riset tema)
-            if (isContextual) {
-                const theme = document.getElementById('theme-search-input').value.trim();
-                if (theme) document.getElementById('gh-theme').value = theme;
-            }
-            openGithubModal();
-        }
-
-        // --- GitHub Actions dispatch & live monitoring ---
-        const GH_PAT_KEY = 'stockpulse_gh_pat';
-        const GH_REPO_KEY = 'stockpulse_gh_repo';
-        const GH_WORKFLOW_FILE = 'daily-trend-radar.yml';
-        const GH_AGENT_STEPS = [
-            { name: 'Agent 01', role: 'Peak-Hour Search Radar' },
-            { name: 'Agent 02', role: 'Insight Auditor (3-Site)' },
-            { name: 'Agent 03', role: 'Format & Style Classifier' },
-            { name: 'Agent 04', role: 'Seasonal Lead-Time AI' },
-            { name: 'Agent 05', role: 'Fable 5.2 Synthesizer' }
-        ];
-        let ghPollTimer = null;
-        let ghCurrentRunId = null;
-        let ghRunStartedAt = null;
-        let ghPollStartAt = null;
-
-        function openGithubModal() {
-            loadGhSettings();
-            renderGhAgentSteps('idle');
-            const modal = document.getElementById('github-modal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closeGithubModal() {
-            const modal = document.getElementById('github-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        function loadGhSettings() {
-            const savedPat = localStorage.getItem(GH_PAT_KEY) || '';
-            const savedRepo = localStorage.getItem(GH_REPO_KEY) || 'simoneambatukam-glitch/stockpulse-ai';
-            const parts = savedRepo.split('/');
-            document.getElementById('gh-owner').value = parts[0] || 'simoneambatukam-glitch';
-            document.getElementById('gh-repo').value = parts[1] || 'stockpulse-ai';
-            document.getElementById('gh-pat').value = '';
-            document.getElementById('gh-pat-status').textContent = savedPat ? '✓ PAT tersimpan di browser ini' : 'Belum ada PAT tersimpan';
-        }
-
-        function getGhCredentials() {
-            const patInput = document.getElementById('gh-pat').value.trim();
-            const savedPat = localStorage.getItem(GH_PAT_KEY) || '';
-            const pat = patInput || savedPat;
-            const owner = document.getElementById('gh-owner').value.trim();
-            const repo = document.getElementById('gh-repo').value.trim();
-            if (patInput) {
-                localStorage.setItem(GH_PAT_KEY, patInput);
-                document.getElementById('gh-pat-status').textContent = '✓ PAT tersimpan di browser ini';
-            }
-            if (owner && repo) localStorage.setItem(GH_REPO_KEY, owner + '/' + repo);
-            return { pat, owner, repo };
-        }
-
-        async function triggerGithubWorkflow() {
-            const { pat, owner, repo } = getGhCredentials();
-            const theme = document.getElementById('gh-theme').value.trim();
-            const statusEl = document.getElementById('gh-status');
-            const triggerBtn = document.getElementById('gh-trigger-btn');
-            if (!pat) {
-                statusEl.textContent = 'Masukkan GitHub Personal Access Token (PAT) dulu. PAT butuh scope repo + workflow.';
-                document.getElementById('gh-pat').focus();
-                return;
-            }
-            if (!owner || !repo) {
-                statusEl.textContent = 'Isi owner dan nama repository dulu.';
-                return;
-            }
-            triggerBtn.disabled = true;
-            triggerBtn.textContent = 'Mengirim perintah ke GitHub...';
-            statusEl.textContent = 'Mengirim workflow_dispatch ke GitHub Actions...';
-            try {
-                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/${GH_WORKFLOW_FILE}/dispatches`, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${pat}`,
-                        'Accept': 'application/vnd.github+json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ ref: 'main', inputs: { theme } })
-                });
-                if (res.status === 204) {
-                    statusEl.textContent = '✓ Workflow berhasil dipicu! Memantau progres 5 Agen...';
-                    startGhPolling(owner, repo, pat);
-                } else {
-                    const errText = await res.text();
-                    statusEl.textContent = `Gagal memicu workflow (HTTP ${res.status}). Periksa PAT (scope repo + workflow), owner/repo, dan pastikan workflow ${GH_WORKFLOW_FILE} ada di branch main. ${errText.slice(0, 120)}`;
-                }
-            } catch (e) {
-                statusEl.textContent = 'Gagal terhubung ke GitHub API: ' + e.message;
-            } finally {
-                triggerBtn.disabled = false;
-                triggerBtn.textContent = 'Trigger Workflow & Pantau 5 Agen';
-            }
-        }
-
-        function renderGhAgentSteps(state, activeIdx = -1) {
-            const container = document.getElementById('gh-agent-steps');
-            container.innerHTML = GH_AGENT_STEPS.map((ag, idx) => {
-                const isRunning = state === 'running' && idx === activeIdx;
-                const isDone = state === 'done' || (state === 'running' && idx < activeIdx);
-                const isFailed = state === 'failed';
-                const badge = isRunning ? 'SCAN...' : (isDone ? '✓ SELESAI' : (isFailed ? 'GAGAL' : 'WAIT'));
-                const badgeCls = isRunning ? 'bg-[#15803D] text-white' : (isDone ? 'bg-emerald-100 text-[#15803D]' : (isFailed ? 'bg-red-100 text-red-700' : 'bg-slate-200 text-slate-600'));
-                return `
-                    <div class="rounded-xl p-2.5 border transition-all ${isRunning ? 'bg-emerald-50 border-[#15803D] shadow-sm' : 'bg-[#F4FBF7] border-emerald-200'}">
-                        <div class="flex items-center justify-between gap-1 mb-1">
-                            <span class="text-[11px] font-extrabold text-[#15803D]">${ag.name}</span>
-                            <span class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${badgeCls}">${badge}</span>
-                        </div>
-                        <div class="text-[11px] font-bold text-slate-800 leading-snug">${ag.role}</div>
-                        <div class="mt-1.5 h-1.5 w-full rounded-full overflow-hidden bg-emerald-100">
-                            <div class="h-full ${isRunning ? 'agent-scanning-bar w-full' : (isDone ? 'bg-[#15803D] w-full' : 'w-0')}"></div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function startGhPolling(owner, repo, pat) {
-            stopGhPolling();
-            ghPollStartAt = Date.now();
-            ghCurrentRunId = null;
-            ghRunStartedAt = null;
-            document.getElementById('gh-cancel-btn').classList.remove('hidden');
-            document.getElementById('gh-actions-link').classList.add('hidden');
-            renderGhAgentSteps('waiting');
-            pollGhRun(owner, repo, pat);
-            ghPollTimer = setInterval(() => pollGhRun(owner, repo, pat), 10000);
-        }
-
-        function stopGhPolling() {
-            if (ghPollTimer) {
-                clearInterval(ghPollTimer);
-                ghPollTimer = null;
-            }
-            const cancelBtn = document.getElementById('gh-cancel-btn');
-            if (cancelBtn) cancelBtn.classList.add('hidden');
-        }
-
-        function cancelGhPolling() {
-            stopGhPolling();
-            document.getElementById('gh-status').textContent = 'Pantauan dibatalkan. Workflow tetap berjalan di GitHub — cek tab Actions untuk hasilnya.';
-        }
-
-        async function pollGhRun(owner, repo, pat) {
-            const statusEl = document.getElementById('gh-status');
-            try {
-                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/${GH_WORKFLOW_FILE}/runs?per_page=1`, {
-                    headers: { 'Authorization': `Bearer ${pat}`, 'Accept': 'application/vnd.github+json' }
-                });
-                if (!res.ok) throw new Error('HTTP ' + res.status);
-                const data = await res.json();
-                const run = data.workflow_runs && data.workflow_runs[0];
-                if (!run) {
-                    renderGhAgentSteps('waiting');
-                    statusEl.textContent = 'Menunggu run workflow muncul di GitHub Actions...';
-                    return;
-                }
-                if (!ghCurrentRunId) {
-                    const createdAt = new Date(run.created_at).getTime();
-                    if (createdAt < ghPollStartAt - 120000) {
-                        renderGhAgentSteps('waiting');
-                        statusEl.textContent = 'Menunggu run terbaru muncul di GitHub Actions...';
-                        return;
-                    }
-                    ghCurrentRunId = run.id;
-                    ghRunStartedAt = createdAt;
-                } else if (run.id !== ghCurrentRunId) {
-                    ghCurrentRunId = run.id;
-                    ghRunStartedAt = new Date(run.created_at).getTime();
-                }
-                const actionsUrl = `https://github.com/${owner}/${repo}/actions/runs/${run.id}`;
-                const link = document.getElementById('gh-actions-link');
-                link.href = actionsUrl;
-                link.classList.remove('hidden');
-
-                if (run.status === 'completed') {
-                    stopGhPolling();
-                    if (run.conclusion === 'success') {
-                        renderGhAgentSteps('done');
-                        statusEl.textContent = '✓ Riset selesai! Mengambil data terbaru...';
-                        await loadHistoryFromServer();
-                        renderAllDashboardSections();
-                        document.getElementById('btn-update-text').textContent = `Update Asset Hari Ini (${TODAY_KEY})`;
-                        showToast('Riset hari ini selesai — data terbaru sudah tampil');
-                        statusEl.textContent = '✓ Riset hari ini selesai — data terbaru sudah tampil.';
-                    } else {
-                        renderGhAgentSteps('failed');
-                        statusEl.innerHTML = `Run gagal (conclusion: ${run.conclusion}). <a href="${actionsUrl}" target="_blank" class="underline font-bold text-[#15803D]">Lihat log di GitHub Actions →</a>`;
-                    }
-                } else {
-                    const elapsedSec = Math.max(0, Math.floor((Date.now() - ghRunStartedAt) / 1000));
-                    const stepIdx = Math.min(4, Math.floor(elapsedSec / 90));
-                    renderGhAgentSteps('running', stepIdx);
-                    const estMin = Math.max(0, Math.ceil((450 - elapsedSec) / 60));
-                    statusEl.textContent = `Run ${run.status === 'queued' ? 'mengantre' : 'berjalan'} • Agent 0${stepIdx + 1}/05 aktif • Estimasi selesai ±${estMin} menit lagi (tiap agen ~1–2 menit)`;
-                }
-            } catch (e) {
-                statusEl.textContent = 'Gagal memantau run: ' + e.message + ' — pantauan tetap berjalan dan akan mencoba lagi otomatis.';
-            }
-        }
-
-        /**
-         * =========================================================================
-         * 6. RENDERING: HISTORY PILLS, PEAK RADAR, PLATFORM INSIGHTS & TAXONOMY
-         * =========================================================================
-         */
-        function renderHistoryPills() {
-            const container = document.getElementById('history-date-pills');
-            const dateKeys = Object.keys(DAILY_HISTORY);
-
-            container.innerHTML = dateKeys.map(dk => {
-                const isToday = dk === TODAY_KEY;
-                const isSelected = dk === UI_STATE.selectedDate;
-                const snap = DAILY_HISTORY[dk];
-                return `
-                    <button onclick="selectHistoryDate('${dk}')" class="pill-btn ${isSelected ? 'active' : ''} shrink-0 px-3.5 py-2 rounded-xl text-left cursor-pointer">
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-xs font-extrabold">${dk}${isToday ? ' (Hari Ini)' : ''}</span>
-                            <span class="text-[10px] font-mono font-bold px-1.5 py-0.2 rounded ${isSelected ? 'bg-white/20 text-white' : 'bg-emerald-100 text-[#15803D]'}">
-                                ${snap.dayOverDayGrowth}
-                            </span>
-                        </div>
-                        <div class="text-[10px] mt-0.5 ${isSelected ? 'text-emerald-100' : 'text-slate-500'}">
-                            ${snap.items.length} Aset Terdeteksi
-                        </div>
-                    </button>
-                `;
-            }).join('');
-        }
-
-        function selectHistoryDate(dateKey) {
-            UI_STATE.selectedDate = dateKey;
-            renderAllDashboardSections();
-        }
-
-        function renderDateSummaryStrip() {
-            const snap = DAILY_HISTORY[UI_STATE.selectedDate] || DAILY_HISTORY[TODAY_KEY];
-            const strip = document.getElementById('date-summary-strip');
-            document.getElementById('header-full-date').textContent = snap.fullDateLabel;
-            document.getElementById('last-synced-label').textContent = `Terakhir disinkronkan: ${snap.lastSynced}`;
-
-            strip.innerHTML = `
-                <div class="bg-[#F0FDF4] border border-emerald-200 rounded-xl p-2.5">
-                    <div class="text-[11px] font-semibold text-slate-500">Tanggal Laporan</div>
-                    <div class="text-xs sm:text-sm font-extrabold text-slate-900 mt-0.5">${snap.fullDateLabel}</div>
-                </div>
-                <div class="bg-[#F0FDF4] border border-emerald-200 rounded-xl p-2.5">
-                    <div class="text-[11px] font-semibold text-slate-500">Pertumbuhan vs Kemarin</div>
-                    <div class="text-xs sm:text-sm font-extrabold text-[#15803D] mt-0.5">${snap.dayOverDayGrowth} Lonjakan Search</div>
-                </div>
-                <div class="bg-[#F0FDF4] border border-emerald-200 rounded-xl p-2.5">
-                    <div class="text-[11px] font-semibold text-slate-500">Total Query Dianalisis</div>
-                    <div class="text-xs sm:text-sm font-extrabold text-slate-900 mt-0.5">${snap.totalQueriesAnalyzed} Search</div>
-                </div>
-                <div class="bg-[#F0FDF4] border border-emerald-200 rounded-xl p-2.5">
-                    <div class="text-[11px] font-semibold text-slate-500">Jendela Peak Buyer</div>
-                    <div class="text-xs sm:text-sm font-extrabold text-slate-900 mt-0.5 truncate" title="${snap.peakWindow}">${snap.peakWindow}</div>
-                </div>
-            `;
-
-            // Also sync console logs for selected historical date
-            const consoleEl = document.getElementById('agent-console-log');
-            consoleEl.innerHTML = snap.agentLogs.map(line =>
-                `<div class="py-0.5 border-b border-emerald-200/50 last:border-none">${line}</div>`
-            ).join('');
-            document.getElementById('agent-overall-confidence').textContent = `Confidence: ${snap.confidence}`;
-            document.getElementById('active-report-date-title').textContent = snap.dateKey;
-        }
-
-        function renderPeakHourRadar() {
-            // 24-hour buyer search velocity curve (WIB):
-            // Peak 1: 09:00 - 14:00 WIB (APAC Commercial Rush)
-            // Peak 2: 20:00 - 01:00 WIB (US East Coast & Europe Evening Agency Rush, peaking at 22:00 WIB)
-            const hourlyValues = [
-                74, 62, 45, 34, 28, 30, 42, 58, 76, 86, 89, 85,
-                82, 79, 68, 64, 66, 72, 81, 88, 93, 95, 98, 86
-            ];
-            const currentHour = 22; // 22:00 WIB peak rush context
-
-            const barsContainer = document.getElementById('hourly-radar-bars');
-            barsContainer.innerHTML = hourlyValues.map((val, hr) => {
-                const isPeakNow = hr === currentHour;
-                const isHighRush = val >= 85;
-                const barColor = isPeakNow
-                    ? 'bg-[#15803D] ring-2 ring-emerald-400'
-                    : (isHighRush ? 'bg-emerald-500' : 'bg-emerald-300/80');
-                return `
-                    <div class="flex-1 flex flex-col items-center justify-end h-full group relative" title="Jam ${String(hr).padStart(2, '0')}:00 WIB — Skor Trafik Buyer: ${val}/100">
-                        <div class="w-full rounded-t-sm transition-all ${barColor}" style="height: ${val}%;"></div>
-                    </div>
-                `;
-            }).join('');
-
-            const snap = DAILY_HISTORY[UI_STATE.selectedDate] || DAILY_HISTORY[TODAY_KEY];
-            const miniMatrix = document.getElementById('platform-mini-matrix');
-            const pList = [snap.platformInsights.adobe, snap.platformInsights.vecteezy, snap.platformInsights.dreamstime];
-
-            miniMatrix.innerHTML = pList.map(p => `
-                <div class="bg-[#F4FBF7] border border-emerald-200 rounded-xl p-2.5 text-center">
-                    <div class="text-[11px] font-extrabold text-slate-800">${p.name}</div>
-                    <div class="text-base font-extrabold text-[#15803D] mt-0.5">${p.demandScore}<span class="text-[10px] font-semibold text-slate-400">/100</span></div>
-                    <div class="text-[10px] font-semibold text-slate-500 mt-0.5">${p.supplyGap}</div>
-                </div>
-            `).join('');
-        }
-
-        function renderPlatformInsightCards() {
-            const snap = DAILY_HISTORY[UI_STATE.selectedDate] || DAILY_HISTORY[TODAY_KEY];
-            const container = document.getElementById('platform-insight-cards');
-            const platforms = [
-                { key: 'Adobe Stock', badge: 'COMMERCIAL & FIREFLY VELOCITY', data: snap.platformInsights.adobe },
-                { key: 'Vecteezy', badge: 'PRO SVG & TEMPLATE SPIKE', data: snap.platformInsights.vecteezy },
-                { key: 'Dreamstime', badge: 'EDITORIAL & LOW-SUPPLY NICHE', data: snap.platformInsights.dreamstime }
-            ];
-
-            container.innerHTML = platforms.map(pl => `
-                <div class="creator-card rounded-2xl p-4 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between gap-2 mb-2">
-                            <span class="text-sm font-extrabold text-slate-900">${pl.data.name}</span>
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-[#F0FDF4] text-[#15803D] border border-emerald-200">
-                                ${pl.badge}
-                            </span>
-                        </div>
-                        <div class="bg-[#F0FDF4] border border-emerald-200 rounded-xl p-2.5 mb-2.5">
-                            <div class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Top Buyer Search (Agent 01)</div>
-                            <div class="text-xs font-mono font-bold text-[#15803D] mt-0.5 break-words">${pl.data.topSearch}</div>
-                        </div>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            <span class="font-bold text-slate-800">Insight Agent 02:</span> ${pl.data.insight}
-                        </p>
-                    </div>
-                    <div class="mt-3 pt-2.5 border-t border-emerald-100 flex items-center justify-between text-xs">
-                        <span class="font-semibold text-slate-500">Supply Gap: <strong class="text-slate-800">${pl.data.supplyGap}</strong></span>
-                        <button onclick="quickFilterPlatform('${pl.key}')" class="font-bold text-[#15803D] hover:underline cursor-pointer">
-                            Filter ${pl.key} →
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function quickFilterPlatform(platformName) {
-            UI_STATE.selectedPlatform = platformName;
-            renderTaxonomyFilters();
-            renderTrendCards();
-            document.getElementById('trend-cards-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        /**
-         * =========================================================================
-         * 7. TAXONOMY FILTER UI RENDERING (EXACT 4 SCREENSHOTS STRUCTURE)
-         * =========================================================================
-         */
-        function renderTaxonomyFilters() {
-            // 0. Platform Pills
-            const platContainer = document.getElementById('filter-platforms');
-            platContainer.innerHTML = PLATFORMS.map(p => `
-                <button onclick="setPlatformFilter('${p}')" class="pill-btn ${UI_STATE.selectedPlatform === p ? 'active' : ''} py-2.5 px-3 rounded-xl text-xs font-bold text-center cursor-pointer">
-                    ${p}
-                </button>
-            `).join('');
-
-            // 3. Kategori Utama Pills ("Semua Kategori" + Foto, Ilustrasi, Vector, Video)
-            const catContainer = document.getElementById('filter-categories');
-            const allCats = ['Semua Kategori', ...CATEGORIES];
-            catContainer.innerHTML = allCats.map(c => `
-                <button onclick="setCategoryFilter('${c}')" class="pill-btn ${UI_STATE.selectedCategory === c ? 'active' : ''} py-3 px-3 rounded-xl text-xs sm:text-sm font-bold text-center cursor-pointer">
-                    ${c}
-                </button>
-            `).join('');
-
-            // Determine active category taxonomy (default to 'Foto' preview list if 'Semua Kategori' is active, or show merged)
-            const activeCatKey = UI_STATE.selectedCategory === 'Semua Kategori' ? null : UI_STATE.selectedCategory;
-
-            // 4. Gaya / Tipe Format
-            const formatContainer = document.getElementById('filter-formats');
-            const formatBadge = document.getElementById('format-count-badge');
-            const clearFormatBtn = document.getElementById('btn-clear-format');
-            clearFormatBtn.classList.toggle('hidden', !UI_STATE.selectedFormat);
-
-            let formatsToShow = [];
-            if (activeCatKey) {
-                formatsToShow = TAXONOMY[activeCatKey].formats;
-                formatBadge.textContent = `(${formatsToShow.length} Tipe Format ${activeCatKey})`;
-            } else {
-                // Show popular formats across all 4 categories when "Semua Kategori" is active
-                formatsToShow = [
-                    ...TAXONOMY.Foto.formats,
-                    ...TAXONOMY.Ilustrasi.formats,
-                    ...TAXONOMY.Vector.formats,
-                    ...TAXONOMY.Video.formats.slice(0, 6)
-                ];
-                formatBadge.textContent = '(Pilih Kategori Utama di atas untuk daftar lengkap per format)';
-            }
-
-            formatContainer.innerHTML = formatsToShow.map(fmt => `
-                <button onclick="toggleFormatFilter('${fmt.replace(/'/g, "\\'")}')" class="pill-btn ${UI_STATE.selectedFormat === fmt ? 'active' : ''} py-2.5 px-3 rounded-xl text-xs font-semibold text-center leading-snug cursor-pointer">
-                    ${fmt}
-                </button>
-            `).join('');
-
-            // Video Technical Filters (Rasio Video, Gerak Kamera, Tipe Looping)
-            const videoTechSection = document.getElementById('video-tech-filters');
-            if (activeCatKey === 'Video') {
-                videoTechSection.classList.remove('hidden');
-                document.getElementById('filter-video-ratio').innerHTML = TAXONOMY.Video.ratios.map(r => `
-                    <button onclick="toggleVideoMeta('selectedVideoRatio', '${r}')" class="pill-btn ${UI_STATE.selectedVideoRatio === r ? 'active' : ''} py-2 px-2.5 rounded-xl text-xs font-semibold text-center cursor-pointer">
-                        ${r}
-                    </button>
-                `).join('');
-
-                document.getElementById('filter-video-camera').innerHTML = TAXONOMY.Video.cameras.map(cam => `
-                    <button onclick="toggleVideoMeta('selectedVideoCamera', '${cam}')" class="pill-btn ${UI_STATE.selectedVideoCamera === cam ? 'active' : ''} py-2 px-2.5 rounded-xl text-xs font-semibold text-center cursor-pointer">
-                        ${cam}
-                    </button>
-                `).join('');
-
-                document.getElementById('filter-video-loop').innerHTML = TAXONOMY.Video.loops.map(lp => `
-                    <button onclick="toggleVideoMeta('selectedVideoLoop', '${lp}')" class="pill-btn ${UI_STATE.selectedVideoLoop === lp ? 'active' : ''} py-2 px-2.5 rounded-xl text-xs font-semibold text-center cursor-pointer">
-                        ${lp}
-                    </button>
-                `).join('');
-            } else {
-                videoTechSection.classList.add('hidden');
-            }
-
-            // Visual Style Grid (Foto JPEG / Ilustrasi / Vector)
-            renderVisualStyleGrid();
-        }
-
-        function renderVisualStyleGrid() {
-            const activeCatKey = UI_STATE.selectedCategory === 'Semua Kategori' ? null : UI_STATE.selectedCategory;
-            const styleSection = document.getElementById('visual-style-section');
-            const heading = document.getElementById('visual-style-heading');
-            const container = document.getElementById('filter-visual-styles');
-            const searchQ = (document.getElementById('style-search-input')?.value || '').toLowerCase().trim();
-            const clearStyleBtn = document.getElementById('btn-clear-style');
-            clearStyleBtn.classList.toggle('hidden', !UI_STATE.selectedStyle);
-
-            if (activeCatKey === 'Video') {
-                // Video uses the 17 Gaya/Tipe Format + Ratio + Camera + Loop directly as in Screenshot 1
-                styleSection.classList.add('hidden');
-                return;
-            }
-
-            styleSection.classList.remove('hidden');
-            let stylesList = [];
-            if (activeCatKey && TAXONOMY[activeCatKey]) {
-                heading.textContent = `${TAXONOMY[activeCatKey].styleLabel} (${TAXONOMY[activeCatKey].styles.length} Gaya)`;
-                stylesList = TAXONOMY[activeCatKey].styles;
-            } else {
-                heading.textContent = 'Gaya Visual Populer Lintas Kategori (Pilih Kategori untuk Semua Gaya)';
-                stylesList = Array.from(new Set([
-                    ...TAXONOMY.Foto.styles,
-                    ...TAXONOMY.Ilustrasi.styles,
-                    ...TAXONOMY.Vector.styles
-                ]));
-            }
-
-            if (searchQ) {
-                stylesList = stylesList.filter(s => s.toLowerCase().includes(searchQ));
-            }
-
-            container.innerHTML = stylesList.map(st => `
-                <button onclick="toggleStyleFilter('${st.replace(/'/g, "\\'")}')" class="pill-btn ${UI_STATE.selectedStyle === st ? 'active' : ''} py-2.5 px-3 rounded-xl text-xs font-semibold text-center leading-snug cursor-pointer">
-                    ${st}
-                </button>
-            `).join('');
-        }
-
-        function setPlatformFilter(plat) {
-            UI_STATE.selectedPlatform = plat;
-            renderTaxonomyFilters();
-            renderTrendCards();
-        }
-
-        function setCategoryFilter(cat) {
-            UI_STATE.selectedCategory = cat;
-            UI_STATE.selectedFormat = '';
-            UI_STATE.selectedStyle = '';
-            UI_STATE.selectedVideoRatio = '';
-            UI_STATE.selectedVideoCamera = '';
-            UI_STATE.selectedVideoLoop = '';
-            renderTaxonomyFilters();
-            renderTrendCards();
-        }
-
-        function toggleFormatFilter(fmt) {
-            UI_STATE.selectedFormat = (UI_STATE.selectedFormat === fmt) ? '' : fmt;
-            renderTaxonomyFilters();
-            renderTrendCards();
-        }
-
-        function clearFormatFilter() {
-            UI_STATE.selectedFormat = '';
-            renderTaxonomyFilters();
-            renderTrendCards();
-        }
-
-        function toggleStyleFilter(st) {
-            UI_STATE.selectedStyle = (UI_STATE.selectedStyle === st) ? '' : st;
-            renderVisualStyleGrid();
-            renderTrendCards();
-        }
-
-        function clearStyleFilter() {
-            UI_STATE.selectedStyle = '';
-            renderVisualStyleGrid();
-            renderTrendCards();
-        }
-
-        function toggleVideoMeta(key, val) {
-            UI_STATE[key] = (UI_STATE[key] === val) ? '' : val;
-            renderTaxonomyFilters();
-            renderTrendCards();
-        }
-
-        function resetTaxonomyFilters() {
-            UI_STATE.selectedPlatform = 'Semua Platform';
-            UI_STATE.selectedCategory = 'Semua Kategori';
-            UI_STATE.selectedFormat = '';
-            UI_STATE.selectedStyle = '';
-            UI_STATE.selectedVideoRatio = '';
-            UI_STATE.selectedVideoCamera = '';
-            UI_STATE.selectedVideoLoop = '';
-            document.getElementById('style-search-input').value = '';
-            document.getElementById('theme-search-input').value = '';
-            renderTaxonomyFilters();
-            renderTrendCards();
-            showToast('Semua filter taksonomi telah direset.');
-        }
-
-        /**
-         * =========================================================================
-         * 8. RENDERING ACTIONABLE TREND ASSET CARDS
-         * =========================================================================
-         */
-        function getFilteredTrendItems() {
-            const snap = DAILY_HISTORY[UI_STATE.selectedDate] || DAILY_HISTORY[TODAY_KEY];
-            let list = [...snap.items];
-
-            // Platform filter
-            if (UI_STATE.selectedPlatform !== 'Semua Platform') {
-                list = list.filter(it => it.platforms.some(p => p.name === UI_STATE.selectedPlatform && p.score >= 88));
-            }
-
-            // Category filter
-            if (UI_STATE.selectedCategory !== 'Semua Kategori') {
-                list = list.filter(it => it.category === UI_STATE.selectedCategory);
-            }
-
-            // Format filter
-            if (UI_STATE.selectedFormat) {
-                list = list.filter(it => it.format === UI_STATE.selectedFormat);
-            }
-
-            // Visual style filter
-            if (UI_STATE.selectedStyle) {
-                list = list.filter(it => it.visualStyle === UI_STATE.selectedStyle);
-            }
-
-            // Video sub-filters
-            if (UI_STATE.selectedCategory === 'Video') {
-                if (UI_STATE.selectedVideoRatio) {
-                    list = list.filter(it => (it.videoRatio || it.techSpec).includes(UI_STATE.selectedVideoRatio));
-                }
-                if (UI_STATE.selectedVideoCamera) {
-                    list = list.filter(it => (it.videoCamera || it.techSpec).includes(UI_STATE.selectedVideoCamera));
-                }
-                if (UI_STATE.selectedVideoLoop) {
-                    list = list.filter(it => (it.videoLoop || it.techSpec).includes(UI_STATE.selectedVideoLoop));
-                }
-            }
-
-            // Theme / Keyword search bar
-            const themeQuery = (document.getElementById('theme-search-input')?.value || '').toLowerCase().trim();
-            if (themeQuery) {
-                list = list.filter(it =>
-                    it.buyerQuery.toLowerCase().includes(themeQuery) ||
-                    it.seoTitle.toLowerCase().includes(themeQuery) ||
-                    it.format.toLowerCase().includes(themeQuery) ||
-                    it.visualStyle.toLowerCase().includes(themeQuery) ||
-                    it.keywords.some(k => k.toLowerCase().includes(themeQuery))
-                );
-            }
-
-            // Sort
-            const sortBy = document.getElementById('sort-select')?.value || 'velocity';
-            if (sortBy === 'velocity') {
-                list.sort((a, b) => parseInt(b.velocity.replace(/\D/g, '') || '0', 10) - parseInt(a.velocity.replace(/\D/g, '') || '0', 10));
-            } else if (sortBy === 'score') {
-                list.sort((a, b) => b.commercialScore - a.commercialScore);
-            } else if (sortBy === 'gap') {
-                list.sort((a, b) => parseInt(b.supplyGap.replace(/\D/g, '') || '80', 10) - parseInt(a.supplyGap.replace(/\D/g, '') || '80', 10));
-            }
-
-            return list;
-        }
-
-        function renderTrendCards() {
-            const items = getFilteredTrendItems();
-            const grid = document.getElementById('trend-cards-grid');
-            const subtitle = document.getElementById('results-count-subtitle');
-
-            subtitle.textContent = `Menampilkan ${items.length} peluang aset hasil tangkapan search buyer & audit insight 3 platform.`;
-
-            if (items.length === 0) {
-                grid.innerHTML = `
-                    <div class="md:col-span-2 creator-card rounded-2xl p-8 text-center space-y-3">
-                        <div class="w-12 h-12 rounded-2xl bg-[#F0FDF4] text-[#15803D] border border-emerald-200 flex items-center justify-center mx-auto">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-base font-extrabold text-slate-900">Belum ada aset lokal yang cocok dengan kombinasi filter ini</h3>
-                        <p class="text-xs text-slate-500 max-w-md mx-auto">
-                            Gunakan 5 Agen AI untuk memindai peluang buyer khusus untuk kombinasi kategori/gaya yang sedang Anda pilih, atau reset filter.
-                        </p>
-                        <div class="flex flex-wrap items-center justify-center gap-2 pt-1">
-                            <button onclick="triggerDailyUpdate(true)" class="px-4 py-2 rounded-xl bg-[#15803D] text-white text-xs font-bold shadow-sm cursor-pointer">
-                                Jalankan Deep Scan 5 Agen AI Sekarang
-                            </button>
-                            <button onclick="resetTaxonomyFilters()" class="px-4 py-2 rounded-xl bg-[#F0FDF4] text-[#15803D] border border-emerald-200 text-xs font-bold cursor-pointer">
-                                Reset Filter
-                            </button>
-                        </div>
-                    </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = items.map((item, idx) => {
-                const catColors = {
-                    Video: 'bg-emerald-700 text-white',
-                    Foto: 'bg-teal-700 text-white',
-                    Ilustrasi: 'bg-green-700 text-white',
-                    Vector: 'bg-slate-900 text-emerald-300'
-                };
-                const badgeClass = catColors[item.category] || 'bg-[#15803D] text-white';
-
-                return `
-                    <article class="creator-card rounded-2xl p-4 sm:p-5 flex flex-col justify-between hover:border-emerald-400 transition">
-                        <div>
-                            <!-- Top Rank & Velocity Badges -->
-                            <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-                                <div class="flex items-center gap-1.5">
-                                    <span class="w-6 h-6 rounded-lg bg-[#F0FDF4] border border-emerald-200 text-[#15803D] font-mono text-xs font-extrabold flex items-center justify-center">
-                                        #${idx + 1}
-                                    </span>
-                                    <span class="px-2.5 py-0.5 rounded-lg text-[11px] font-extrabold uppercase ${badgeClass}">
-                                        ${item.category}
-                                    </span>
-                                    <span class="px-2 py-0.5 rounded-lg text-[11px] font-bold bg-[#F0FDF4] text-[#15803D] border border-emerald-200">
-                                        ${item.velocity}
-                                    </span>
-                                </div>
-                                <span class="text-[11px] font-mono font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md">
-                                    ${item.dodDelta}
-                                </span>
-                            </div>
-
-                            <!-- Captured Buyer Search Query -->
-                            <div class="bg-[#F0FDF4] border border-emerald-200 rounded-xl p-3 mb-3">
-                                <div class="flex items-center justify-between text-[10px] font-extrabold uppercase tracking-wider text-slate-500 mb-0.5">
-                                    <span>Buyer Search Query (Agent 01)</span>
-                                    <span class="text-[#15803D]">${item.supplyGap}</span>
-                                </div>
-                                <div class="text-xs sm:text-sm font-mono font-bold text-slate-900 break-words">
-                                    "${item.buyerQuery}"
-                                </div>
-                            </div>
-
-                            <!-- Mapped Taxonomy & Technical Specs -->
-                            <div class="grid grid-cols-2 gap-2 mb-3 text-xs">
-                                <div class="bg-slate-50 rounded-xl p-2.5 border border-slate-200/70">
-                                    <span class="text-[10px] font-bold uppercase text-slate-400 block">Gaya / Tipe Format</span>
-                                    <span class="font-extrabold text-slate-800">${item.format}</span>
-                                </div>
-                                <div class="bg-slate-50 rounded-xl p-2.5 border border-slate-200/70">
-                                    <span class="text-[10px] font-bold uppercase text-slate-400 block">Gaya Visual</span>
-                                    <span class="font-extrabold text-[#15803D]">${item.visualStyle}</span>
-                                </div>
-                            </div>
-
-                            <div class="text-[11px] font-semibold text-slate-500 mb-3 flex items-center gap-1.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#15803D]"></span>
-                                <span>Spesifikasi Teknis: <strong class="text-slate-700">${item.techSpec}</strong></span>
-                            </div>
-
-                            <!-- Platform Demand Scores -->
-                            <div class="flex flex-wrap items-center gap-1.5 mb-3">
-                                ${item.platforms.map(pl => `
-                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white border border-emerald-200 text-slate-700">
-                                        <span>${pl.name}</span>
-                                        <span class="text-[#15803D] font-mono">${pl.score}%</span>
-                                    </span>
-                                `).join('')}
-                            </div>
-
-                            <!-- Agent 02 Insight Snippet -->
-                            <p class="text-xs text-slate-600 leading-relaxed line-clamp-2 mb-4">
-                                ${item.agentInsight}
-                            </p>
-                        </div>
-
-                        <!-- Bottom Action Bar -->
-                        <div class="pt-3 border-t border-emerald-100 flex items-center justify-between gap-2">
-                            <button onclick="openPromptModal('${item.id}')" class="flex-1 py-2.5 px-3 rounded-xl bg-[#15803D] hover:bg-[#166534] text-white text-xs font-extrabold shadow-sm transition cursor-pointer">
-                                Lihat Prompt & Keyword Siap Produksi
-                            </button>
-                            <button onclick="quickCopyPromptById('${item.id}')" title="Salin Prompt Langsung" class="p-2.5 rounded-xl bg-[#F0FDF4] hover:bg-emerald-100 text-[#15803D] border border-emerald-200 transition cursor-pointer">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </article>
-                `;
-            }).join('');
-        }
-
-        /**
-         * =========================================================================
-         * 9. PRODUCTION MODAL, CLIPBOARD (execCommand) & EXPORT REPORT
-         * =========================================================================
-         */
-        function findItemById(id) {
-            const snap = DAILY_HISTORY[UI_STATE.selectedDate] || DAILY_HISTORY[TODAY_KEY];
-            return snap.items.find(it => it.id === id);
-        }
-
-        function openPromptModal(id) {
-            const item = findItemById(id);
-            if (!item) return;
-            UI_STATE.activeModalItem = item;
-
-            document.getElementById('modal-category-badge').textContent = item.category.toUpperCase();
-            document.getElementById('modal-velocity-badge').textContent = `${item.velocity} • ${item.supplyGap}`;
-            document.getElementById('modal-query-title').textContent = `"${item.buyerQuery}"`;
-            document.getElementById('modal-format-spec').textContent = item.format;
-            document.getElementById('modal-style-spec').textContent = `${item.visualStyle} (${item.techSpec})`;
-            document.getElementById('modal-agent-insight').textContent = item.agentInsight;
-            document.getElementById('modal-prompt-text').textContent = item.prompt;
-            document.getElementById('modal-seo-title').textContent = item.seoTitle;
-
-            const kwContainer = document.getElementById('modal-keywords-list');
-            kwContainer.innerHTML = item.keywords.map((kw, i) => `
-                <button onclick="copyTextToClipboard('${kw.replace(/'/g, "\\'")}', 'Keyword: ${kw.replace(/'/g, "\\'")}')" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-[#F0FDF4] hover:bg-[#15803D] text-slate-800 hover:text-white border border-emerald-200 transition cursor-pointer">
-                    <span class="font-mono text-[10px] opacity-60 mr-1">${i + 1}.</span>${kw}
-                </button>
-            `).join('');
-
-            const modal = document.getElementById('prompt-modal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closePromptModal() {
-            const modal = document.getElementById('prompt-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        function copyTextToClipboard(text, label = 'Teks') {
-            try {
-                const ta = document.createElement('textarea');
-                ta.value = text;
-                ta.style.position = 'fixed';
-                ta.style.opacity = '0';
-                document.body.appendChild(ta);
-                ta.focus();
-                ta.select();
-                document.execCommand('copy');
-                document.body.removeChild(ta);
-                showToast(`${label} berhasil disalin ke clipboard!`);
-            } catch (err) {
-                showToast('Gagal menyalin otomatis. Silakan seleksi teks secara manual.');
-            }
-        }
-
-        function copyModalField(elementId, label) {
-            const text = document.getElementById(elementId)?.textContent || '';
-            copyTextToClipboard(text, label);
-        }
-
-        function copyAllKeywords() {
-            if (!UI_STATE.activeModalItem) return;
-            const joined = UI_STATE.activeModalItem.keywords.join(', ');
-            copyTextToClipboard(joined, 'Semua 15 Keyword SEO');
-        }
-
-        function quickCopyPromptById(id) {
-            const item = findItemById(id);
-            if (!item) return;
-            copyTextToClipboard(item.prompt, `Prompt ${item.category}`);
-        }
-
-        function exportReport(format) {
-            const snap = DAILY_HISTORY[UI_STATE.selectedDate] || DAILY_HISTORY[TODAY_KEY];
-            const safeDate = snap.dateKey.replace(/\s+/g, '_');
-
-            if (format === 'json') {
-                const blob = new Blob([JSON.stringify(snap, null, 2)], { type: 'application/json' });
-                triggerDownload(blob, `StockPulse_AI_${safeDate}.json`);
-                showToast(`Laporan JSON (${snap.dateKey}) berhasil diunduh.`);
-            } else {
-                const headers = ['Tanggal', 'Kategori', 'Gaya_Format', 'Gaya_Visual', 'Spesifikasi_Teknis', 'Buyer_Search_Query', 'Velocity', 'Supply_Gap', 'Skor_Komersial', 'Judul_SEO', 'Prompt_AI', 'Keywords'];
-                const rows = snap.items.map(it => [
-                    snap.dateKey,
-                    it.category,
-                    it.format,
-                    it.visualStyle,
-                    it.techSpec,
-                    it.buyerQuery,
-                    it.velocity,
-                    it.supplyGap,
-                    it.commercialScore,
-                    it.seoTitle,
-                    it.prompt,
-                    it.keywords.join('; ')
-                ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(','));
-
-                const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\n');
-                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-                triggerDownload(blob, `StockPulse_AI_${safeDate}.csv`);
-                showToast(`Laporan CSV (${snap.dateKey}) berhasil diunduh.`);
-            }
-        }
-
-        function triggerDownload(blob, filename) {
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-
-        let toastTimeout = null;
-        function showToast(msg) {
-            const toast = document.getElementById('toast-notification');
-            document.getElementById('toast-message').textContent = msg;
-            toast.classList.remove('hidden');
-            toast.classList.add('flex');
-            if (toastTimeout) clearTimeout(toastTimeout);
-            toastTimeout = setTimeout(() => {
-                toast.classList.add('hidden');
-                toast.classList.remove('flex');
-            }, 3000);
-        }
-
-        // Close modal when clicking backdrop
-        document.getElementById('prompt-modal').addEventListener('click', (e) => {
-            if (e.target.id === 'prompt-modal') closePromptModal();
+    <p class="sub" style="margin:8px 0 0">PAT hanya tersimpan di browser kamu (localStorage), tidak pernah dikirim ke mana pun selain GitHub. Butuh scope <b>repo</b> + <b>workflow</b>. Tanpa PAT, tombol Update di atas tetap bisa me-refresh data terbaru.</p>
+  </div>
+
+  <div class="card">
+    <h2>5 Agen Prediktif</h2>
+    <p class="sub">Log analisis dari kelima agen untuk hari yang dipilih.</p>
+    <div class="agent-log" id="agentLogs">Memuat…</div>
+    <div class="stats" id="dayStats"></div>
+    <div class="filter-label">Timeline Horizon 2–3 Bulan</div>
+    <div class="horizon" id="horizon"></div>
+  </div>
+
+  <div class="card">
+    <h2>Filter Peluang Aset</h2>
+    <div class="filter-label">Platform</div>
+    <div class="chip-row" id="platformChips"></div>
+    <div class="filter-label">Kategori Utama</div>
+    <div class="chip-row" id="categoryChips"></div>
+    <div id="subFilters"></div>
+  </div>
+
+  <p class="count-line" id="countLine"></p>
+  <div class="grid" id="grid"></div>
+  <div class="card empty" id="emptyState" style="display:none">
+    <h2>Tidak ada ide yang cocok</h2>
+    <p class="sub">Coba longgarkan filter di atas.</p>
+    <button class="btn btn-primary" id="resetBtn">Reset Filter</button>
+  </div>
+
+  <footer>StockPulse AI v2.0 — mesin prediktif 100% algoritmik, tanpa API key, tanpa biaya. Data dihitung dari kurva lead-time buyer &amp; kalender komersial 12 bulan.</footer>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <button class="close" id="modalClose" aria-label="Tutup">×</button>
+    <h2 id="modalTitle"></h2>
+    <div class="meta" id="modalMeta"></div>
+    <div class="field-label">Production Prompt <button class="copy-btn" data-copy="prompt">Salin</button></div>
+    <div class="field-box" id="modalPrompt"></div>
+    <div class="field-label">Commercial SEO Title <button class="copy-btn" data-copy="title">Salin</button></div>
+    <div class="field-box" id="modalSeoTitle"></div>
+    <div class="field-label">15 Priority Keywords <button class="copy-btn" data-copy="keywords">Salin</button></div>
+    <div class="kw-list" id="modalKeywords"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var REPO = 'simoneambatukam-glitch/StockPulse-Ai';
+  var WORKFLOW = 'daily-trend-radar.yml';
+  var AGENT_NAMES = [
+    'Agen 01 — Kurva Lead-Time',
+    'Agen 02 — Perilaku Buyer 3 Platform',
+    'Agen 03 — Pemetaan Format',
+    'Agen 04 — Kompetisi & Jendela Produksi',
+    'Agen 05 — Sintesis Prompt & SEO',
+  ];
+
+  var history = null;
+  var dayIndex = 0;
+  var currentIdea = null;
+  var filters = {
+    platform: 'Semua',
+    category: 'Semua',
+    formatType: 'Semua',
+    visualStyle: 'Semua',
+    aspectRatio: 'Semua',
+    cameraMovement: 'Semua',
+    loopType: 'Semua',
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function showToast(msg) {
+    var t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(function () { t.classList.remove('show'); }, 2600);
+  }
+
+  function copyText(text, btn) {
+    function done() {
+      var old = btn.textContent;
+      btn.textContent = 'Tersalin ✓';
+      btn.classList.add('copied');
+      setTimeout(function () { btn.textContent = old; btn.classList.remove('copied'); }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+    } else {
+      fallbackCopy(text);
+      done();
+    }
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  function selectedDay() {
+    return history && history.days && history.days[dayIndex] ? history.days[dayIndex] : null;
+  }
+
+  function platformName(key) {
+    return { adobeStock: 'Adobe Stock', vecteezy: 'Vecteezy', dreamstime: 'Dreamstime' }[key] || key;
+  }
+
+  function strongestPlatform(idea) {
+    var best = 'adobeStock';
+    var bestScore = -1;
+    ['adobeStock', 'vecteezy', 'dreamstime'].forEach(function (p) {
+      if (idea.platforms[p] && idea.platforms[p].score > bestScore) {
+        bestScore = idea.platforms[p].score;
+        best = p;
+      }
+    });
+    return { key: best, name: platformName(best), score: bestScore };
+  }
+
+  function platformMatches(idea) {
+    if (filters.platform === 'Semua') return true;
+    var key = { 'Adobe Stock': 'adobeStock', 'Vecteezy': 'vecteezy', 'Dreamstime': 'dreamstime' }[filters.platform];
+    return idea.platforms[key] && idea.platforms[key].score >= 70;
+  }
+
+  function filteredIdeas() {
+    var day = selectedDay();
+    if (!day) return [];
+    return day.ideas.filter(function (idea) {
+      if (!platformMatches(idea)) return false;
+      if (filters.category !== 'Semua' && idea.category !== filters.category) return false;
+      if (filters.formatType !== 'Semua' && idea.formatType !== filters.formatType) return false;
+      if (filters.visualStyle !== 'Semua' && idea.visualStyle !== filters.visualStyle) return false;
+      if (idea.category === 'Video' && idea.videoMeta) {
+        if (filters.aspectRatio !== 'Semua' && idea.videoMeta.aspectRatio !== filters.aspectRatio) return false;
+        if (filters.cameraMovement !== 'Semua' && idea.videoMeta.cameraMovement !== filters.cameraMovement) return false;
+        if (filters.loopType !== 'Semua' && idea.videoMeta.loopType !== filters.loopType) return false;
+      } else if (filters.aspectRatio !== 'Semua' || filters.cameraMovement !== 'Semua' || filters.loopType !== 'Semua') {
+        return false;
+      }
+      return true;
+    });
+  }
+
+  function chip(label, active, onClick) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip' + (active ? ' active' : '');
+    b.textContent = label;
+    b.addEventListener('click', onClick);
+    return b;
+  }
+
+  function renderDayChips() {
+    var wrap = $('dayChips');
+    wrap.innerHTML = '';
+    history.days.forEach(function (day, i) {
+      wrap.appendChild(chip(day.dateLabel, i === dayIndex, function () {
+        dayIndex = i;
+        renderAll();
+      }));
+    });
+  }
+
+  function renderHeader() {
+    var day = selectedDay();
+    if (!day) return;
+    $('todayBadge').textContent = day.fullLabel;
+    $('countBadge').textContent = history.days.length + ' hari riwayat · ' + day.ideas.length + ' ide/hari';
+  }
+
+  function renderAgents() {
+    var day = selectedDay();
+    if (!day) return;
+    $('agentLogs').textContent = day.agentLogs.join('\n');
+    var stats = $('dayStats');
+    stats.innerHTML = '';
+    [
+      { b: day.dayOverDayGrowth + '%', s: 'Pertumbuhan vs kemarin' },
+      { b: day.totalQueriesAnalyzed.toLocaleString('id-ID'), s: 'Kueri buyer dianalisis' },
+      { b: day.confidence + '%', s: 'Tingkat kepercayaan' },
+      { b: day.peakWindow, s: 'Jendela puncak buyer' },
+    ].forEach(function (st) {
+      var div = document.createElement('div');
+      div.className = 'stat';
+      div.innerHTML = '<b></b><span></span>';
+      div.querySelector('b').textContent = st.b;
+      div.querySelector('span').textContent = st.s;
+      stats.appendChild(div);
+    });
+
+    // Timeline horizon: kelompokkan ide per hari menuju puncak
+    var horizon = $('horizon');
+    horizon.innerHTML = '';
+    var groups = {};
+    day.ideas.forEach(function (idea) {
+      var key = idea.daysUntilPeak;
+      if (!groups[key]) groups[key] = { days: key, count: 0, events: {} };
+      groups[key].count++;
+      var ev = idea.title.split(' — ')[0];
+      groups[key].events[ev] = (groups[key].events[ev] || 0) + 1;
+    });
+    Object.keys(groups).map(Number).sort(function (a, b) { return a - b; }).forEach(function (d) {
+      var g = groups[d];
+      var topEv = Object.keys(g.events).sort(function (a, b) { return g.events[b] - g.events[a]; })[0];
+      var div = document.createElement('div');
+      div.className = 'horizon-item';
+      div.innerHTML = '<b></b><span></span>';
+      div.querySelector('b').textContent = 'H+' + d + ' hari';
+      div.querySelector('span').textContent = topEv + ' · ' + g.count + ' ide';
+      horizon.appendChild(div);
+    });
+  }
+
+  function renderFilterChips() {
+    // Platform
+    var pw = $('platformChips');
+    pw.innerHTML = '';
+    ['Semua', 'Adobe Stock', 'Vecteezy', 'Dreamstime'].forEach(function (p) {
+      pw.appendChild(chip(p, filters.platform === p, function () {
+        filters.platform = p;
+        renderAll();
+      }));
+    });
+    // Kategori
+    var cw = $('categoryChips');
+    cw.innerHTML = '';
+    ['Semua', 'Video', 'Foto', 'Ilustrasi', 'Vector'].forEach(function (c) {
+      cw.appendChild(chip(c, filters.category === c, function () {
+        filters.category = c;
+        filters.formatType = 'Semua';
+        filters.visualStyle = 'Semua';
+        filters.aspectRatio = 'Semua';
+        filters.cameraMovement = 'Semua';
+        filters.loopType = 'Semua';
+        renderAll();
+      }));
+    });
+
+    // Sub-filter dinamis
+    var sub = $('subFilters');
+    sub.innerHTML = '';
+    var day = selectedDay();
+    if (!day) return;
+    var pool = day.ideas.filter(function (i) {
+      return filters.category === 'Semua' || i.category === filters.category;
+    });
+
+    function addSubFilter(label, values, current, set) {
+      if (!values.length) return;
+      var lab = document.createElement('div');
+      lab.className = 'filter-label';
+      lab.textContent = label;
+      sub.appendChild(lab);
+      var row = document.createElement('div');
+      row.className = 'chip-row';
+      row.appendChild(chip('Semua', current === 'Semua', function () { set('Semua'); renderAll(); }));
+      values.forEach(function (v) {
+        row.appendChild(chip(v, current === v, function () { set(v); renderAll(); }));
+      });
+      sub.appendChild(row);
+    }
+
+    var formats = [...new Set(pool.map(function (i) { return i.formatType; }))].sort();
+    addSubFilter('Gaya / Tipe Format', formats, filters.formatType, function (v) { filters.formatType = v; });
+
+    var styles = [...new Set(pool.map(function (i) { return i.visualStyle; }))].sort();
+    addSubFilter('Gaya Visual', styles, filters.visualStyle, function (v) { filters.visualStyle = v; });
+
+    // Atribut video: hanya saat kategori Video, atau saat ada ide Video di hasil saat ini
+    var showVideoAttrs = filters.category === 'Video' ||
+      filteredIdeas().some(function (i) { return i.category === 'Video'; });
+    if (showVideoAttrs) {
+      var videos = pool.filter(function (i) { return i.category === 'Video' && i.videoMeta; });
+      var aspects = [...new Set(videos.map(function (i) { return i.videoMeta.aspectRatio; }))];
+      addSubFilter('Rasio Video', aspects, filters.aspectRatio, function (v) { filters.aspectRatio = v; });
+      var cams = [...new Set(videos.map(function (i) { return i.videoMeta.cameraMovement; }))];
+      addSubFilter('Gerak Kamera', cams, filters.cameraMovement, function (v) { filters.cameraMovement = v; });
+      var loops = [...new Set(videos.map(function (i) { return i.videoMeta.loopType; }))];
+      addSubFilter('Tipe Looping', loops, filters.loopType, function (v) { filters.loopType = v; });
+    }
+  }
+
+  function renderGrid() {
+    var ideas = filteredIdeas();
+    var grid = $('grid');
+    grid.innerHTML = '';
+    var day = selectedDay();
+    $('countLine').textContent = day
+      ? 'Menampilkan ' + ideas.length + ' dari ' + day.ideas.length + ' ide — ' + day.dateLabel
+      : '';
+    $('emptyState').style.display = ideas.length ? 'none' : 'block';
+
+    ideas.forEach(function (idea) {
+      var sp = strongestPlatform(idea);
+      var card = document.createElement('div');
+      card.className = 'idea';
+
+      var h3 = document.createElement('h3');
+      h3.textContent = idea.title;
+      card.appendChild(h3);
+
+      var cd = document.createElement('span');
+      cd.className = 'countdown';
+      cd.textContent = 'Target Buyer: ' + idea.daysUntilPeak + ' Hari Lagi';
+      card.appendChild(cd);
+
+      var meta = document.createElement('div');
+      meta.className = 'meta';
+      [[idea.category, ''], [idea.formatType, 'neutral'], [idea.visualStyle, 'neutral'], [idea.seasonalWindow, 'neutral']].forEach(function (t) {
+        var s = document.createElement('span');
+        s.className = 'tag' + (t[1] ? ' ' + t[1] : '');
+        s.textContent = t[0];
+        meta.appendChild(s);
+      });
+      card.appendChild(meta);
+
+      var scores = document.createElement('div');
+      scores.className = 'scores';
+      var growthCls = idea.growthPercent >= 0 ? 'up' : 'down';
+      var growthSign = idea.growthPercent >= 0 ? '+' : '';
+      scores.innerHTML = '<span>Skor <b></b>/100</span><span>Tren <b class="' + growthCls + '"></b></span><span>Terkuat: <b></b></span>';
+      scores.querySelectorAll('b')[0].textContent = idea.demandScore;
+      scores.querySelectorAll('b')[1].textContent = growthSign + idea.growthPercent + '%';
+      scores.querySelectorAll('b')[2].textContent = sp.name + ' ' + sp.score;
+      card.appendChild(scores);
+
+      var comp = document.createElement('div');
+      comp.className = 'meta';
+      var ctag = document.createElement('span');
+      ctag.className = 'tag neutral';
+      ctag.textContent = 'Kompetisi: ' + idea.competitionLevel;
+      comp.appendChild(ctag);
+      card.appendChild(comp);
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn btn-primary';
+      btn.textContent = 'Lihat Prompt & Keyword';
+      btn.addEventListener('click', function () { openModal(idea); });
+      card.appendChild(btn);
+
+      grid.appendChild(card);
+    });
+  }
+
+  function renderAll() {
+    renderHeader();
+    renderDayChips();
+    renderAgents();
+    renderFilterChips();
+    renderGrid();
+  }
+
+  function openModal(idea) {
+    currentIdea = idea;
+    $('modalTitle').textContent = idea.title;
+    var meta = $('modalMeta');
+    meta.innerHTML = '';
+    [idea.category, idea.formatType, idea.visualStyle, idea.seasonalWindow].forEach(function (t) {
+      var s = document.createElement('span');
+      s.className = 'tag';
+      s.textContent = t;
+      meta.appendChild(s);
+    });
+    if (idea.videoMeta) {
+      [idea.videoMeta.aspectRatio, idea.videoMeta.cameraMovement, idea.videoMeta.loopType].forEach(function (t) {
+        var s = document.createElement('span');
+        s.className = 'tag neutral';
+        s.textContent = t;
+        meta.appendChild(s);
+      });
+    }
+    $('modalPrompt').textContent = idea.productionPrompt;
+    $('modalSeoTitle').textContent = idea.seoTitle;
+    var kw = $('modalKeywords');
+    kw.innerHTML = '';
+    idea.keywords.forEach(function (k) {
+      var s = document.createElement('span');
+      s.textContent = k;
+      kw.appendChild(s);
+    });
+    $('modalBackdrop').classList.add('show');
+  }
+
+  function closeModal() {
+    $('modalBackdrop').classList.remove('show');
+    currentIdea = null;
+  }
+
+  function csvEscape(v) {
+    v = String(v == null ? '' : v);
+    return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+  }
+
+  function download(filename, content, mime) {
+    var blob = new Blob([content], { type: mime });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () {
+      URL.revokeObjectURL(a.href);
+      a.remove();
+    }, 500);
+  }
+
+  function exportCSV() {
+    var ideas = filteredIdeas();
+    if (!ideas.length) { showToast('Tidak ada ide untuk di-export.'); return; }
+    var header = ['id', 'title', 'category', 'formatType', 'visualStyle', 'demandScore', 'growthPercent', 'competitionLevel', 'daysUntilPeak', 'seoTitle', 'keywords', 'productionPrompt'];
+    var lines = [header.join(',')];
+    ideas.forEach(function (i) {
+      lines.push([
+        i.id, i.title, i.category, i.formatType, i.visualStyle,
+        i.demandScore, i.growthPercent, i.competitionLevel, i.daysUntilPeak,
+        i.seoTitle, i.keywords.join('; '), i.productionPrompt,
+      ].map(csvEscape).join(','));
+    });
+    download('stockpulse-ide-' + (selectedDay() ? selectedDay().date : 'hari-ini') + '.csv', lines.join('\n'), 'text/csv');
+    showToast('CSV ter-export (' + ideas.length + ' ide).');
+  }
+
+  function exportJSON() {
+    var ideas = filteredIdeas();
+    if (!ideas.length) { showToast('Tidak ada ide untuk di-export.'); return; }
+    download('stockpulse-ide-' + (selectedDay() ? selectedDay().date : 'hari-ini') + '.json', JSON.stringify(ideas, null, 2), 'application/json');
+    showToast('JSON ter-export (' + ideas.length + ' ide).');
+  }
+
+  function loadData(cacheBust) {
+    var url = 'data/history.json' + (cacheBust ? '?t=' + Date.now() : '');
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function (data) {
+      if (!data || !Array.isArray(data.days) || !data.days.length) {
+        throw new Error('Format history.json tidak valid.');
+      }
+      history = data;
+      if (dayIndex >= history.days.length) dayIndex = 0;
+      renderAll();
+    });
+  }
+
+  function runUpdateAnimation() {
+    var btn = $('updateBtn');
+    var prog = $('progress');
+    var status = $('updateStatus');
+    btn.disabled = true;
+    status.textContent = '';
+    status.className = 'status-msg';
+    prog.innerHTML = '';
+    prog.classList.add('show');
+    var steps = AGENT_NAMES.map(function (name) {
+      var div = document.createElement('div');
+      div.className = 'progress-step';
+      div.innerHTML = '<span class="dot">•</span><span></span>';
+      div.querySelector('span:last-child').textContent = name + ' — berjalan…';
+      prog.appendChild(div);
+      return div;
+    });
+    var i = 0;
+    function next() {
+      if (i > 0) {
+        steps[i - 1].classList.remove('run');
+        steps[i - 1].classList.add('done');
+        steps[i - 1].querySelector('.dot').textContent = '✓';
+        steps[i - 1].querySelector('span:last-child').textContent = AGENT_NAMES[i - 1] + ' — selesai';
+      }
+      if (i >= steps.length) {
+        loadData(true).then(function () {
+          status.textContent = 'Data terbaru berhasil dimuat.';
+          status.className = 'status-msg ok';
+          btn.disabled = false;
+          setTimeout(function () { prog.classList.remove('show'); }, 1200);
+        }).catch(function (err) {
+          status.textContent = 'Gagal memuat data terbaru: ' + err.message;
+          status.className = 'status-msg err';
+          btn.disabled = false;
         });
+        return;
+      }
+      steps[i].classList.add('run');
+      i++;
+      setTimeout(next, 450);
+    }
+    next();
+  }
 
-        // Close GitHub modal when clicking backdrop (polling tetap berjalan)
-        document.getElementById('github-modal').addEventListener('click', (e) => {
-            if (e.target.id === 'github-modal') closeGithubModal();
-        });
+  function triggerWorkflow() {
+    var pat = $('patInput').value.trim();
+    var status = $('updateStatus');
+    if (!pat) {
+      status.textContent = 'Masukkan GitHub PAT dulu (scope repo + workflow).';
+      status.className = 'status-msg err';
+      return;
+    }
+    try { localStorage.setItem('stockpulse_pat', pat); } catch (e) {}
+    status.textContent = 'Memanggil GitHub Actions…';
+    status.className = 'status-msg';
+    fetch('https://api.github.com/repos/' + REPO + '/actions/workflows/' + WORKFLOW + '/dispatches', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': 'Bearer ' + pat,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ref: 'main' }),
+    }).then(function (r) {
+      if (r.status === 204) {
+        status.textContent = 'Workflow berhasil dipicu. Cek tab Actions di GitHub — data baru muncul beberapa menit lagi, lalu tekan “Update Asset Hari Ini”.';
+        status.className = 'status-msg ok';
+      } else if (r.status === 401) {
+        status.textContent = 'PAT tidak valid atau kedaluwarsa (401).';
+        status.className = 'status-msg err';
+      } else if (r.status === 403) {
+        status.textContent = 'PAT ditolak (403) — pastikan scope repo + workflow aktif.';
+        status.className = 'status-msg err';
+      } else {
+        status.textContent = 'GitHub menolak permintaan (HTTP ' + r.status + ').';
+        status.className = 'status-msg err';
+      }
+    }).catch(function (err) {
+      status.textContent = 'Gagal menghubungi GitHub: ' + err.message;
+      status.className = 'status-msg err';
+    });
+  }
 
-        /**
-         * =========================================================================
-         * 10. INITIALIZE FULL DASHBOARD ON LOAD
-         * =========================================================================
-         */
-        function renderAllDashboardSections() {
-            renderHistoryPills();
-            renderDateSummaryStrip();
-            renderAgentsGrid(-1);
-            renderPeakHourRadar();
-            renderPlatformInsightCards();
-            renderTaxonomyFilters();
-            renderTrendCards();
-        }
+  // ---- wiring ----
+  $('updateBtn').addEventListener('click', runUpdateAnimation);
+  $('exportCsvBtn').addEventListener('click', exportCSV);
+  $('exportJsonBtn').addEventListener('click', exportJSON);
+  $('triggerBtn').addEventListener('click', triggerWorkflow);
+  $('resetBtn').addEventListener('click', function () {
+    filters = { platform: 'Semua', category: 'Semua', formatType: 'Semua', visualStyle: 'Semua', aspectRatio: 'Semua', cameraMovement: 'Semua', loopType: 'Semua' };
+    renderAll();
+  });
+  $('modalClose').addEventListener('click', closeModal);
+  $('modalBackdrop').addEventListener('click', function (e) {
+    if (e.target === $('modalBackdrop')) closeModal();
+  });
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (!currentIdea) return;
+      var kind = btn.getAttribute('data-copy');
+      var text = kind === 'prompt' ? currentIdea.productionPrompt
+        : kind === 'title' ? currentIdea.seoTitle
+        : currentIdea.keywords.join(', ');
+      copyText(text, btn);
+    });
+  });
+  try {
+    var savedPat = localStorage.getItem('stockpulse_pat');
+    if (savedPat) $('patInput').value = savedPat;
+  } catch (e) {}
 
-        window.addEventListener('DOMContentLoaded', async () => {
-            await initDailyHistoryEngine();
-            const todaySnap = DAILY_HISTORY[TODAY_KEY];
-            document.getElementById('header-full-date').textContent = todaySnap ? todaySnap.fullDateLabel : TODAY_FULL_LABEL;
-            if (todaySnap && todaySnap.lastSynced) {
-                document.getElementById('last-synced-label').textContent = `Terakhir disinkronkan: ${todaySnap.lastSynced}`;
-            }
-            document.getElementById('btn-update-text').textContent = `Update Asset Hari Ini (${TODAY_KEY})`;
-            renderAllDashboardSections();
-        });
-    </script>
+  loadData(false).catch(function (err) {
+    $('todayBadge').textContent = 'Gagal memuat data';
+    $('agentLogs').textContent = 'Gagal memuat data/history.json: ' + err.message + '\n\nPastikan file public/data/history.json ada di repo dan situs di-deploy dari folder public/.';
+    $('grid').innerHTML = '';
+    $('emptyState').style.display = 'block';
+    $('emptyState').querySelector('h2').textContent = 'Data belum tersedia';
+    $('emptyState').querySelector('.sub').textContent = 'history.json tidak bisa dimuat. Coba muat ulang halaman.';
+  });
+})();
+</script>
 </body>
 </html>
