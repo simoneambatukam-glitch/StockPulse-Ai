@@ -1,6 +1,1468 @@
 {
-  "lastUpdated": "2026-11-24T01:56:55.647Z",
+  "lastUpdated": "2026-11-24T23:41:38.287Z",
   "days": [
+    {
+      "date": "2026-11-25",
+      "dateLabel": "25 November 2026",
+      "fullLabel": "Rabu, 25 November 2026",
+      "lastUpdated": "2026-11-24T23:41:38.287Z",
+      "dayOverDayGrowth": 4.9,
+      "peakWindow": "21:00–01:00 WIB",
+      "totalQueriesAnalyzed": 44334,
+      "confidence": 91,
+      "platformInsights": {
+        "adobeStock": {
+          "name": "Adobe Stock",
+          "topSearch": "data privacy & cybersecurity slow motion makro",
+          "demandScore": 88,
+          "supplyGap": "Medium",
+          "insight": "Agensi iklan memborong aset Privasi Data & Keamanan Siber — kebutuhan copy space dan video 4K looping memuncak 64 hari lagi."
+        },
+        "vecteezy": {
+          "name": "Vecteezy",
+          "topSearch": "data privacy & cybersecurity flat vector",
+          "demandScore": 87,
+          "supplyGap": "Medium",
+          "insight": "Desainer grafis memburu Privasi Data & Keamanan Siber dalam format flat vector, sticker pack, dan icon set siap pakai."
+        },
+        "dreamstime": {
+          "name": "Dreamstime",
+          "topSearch": "data privacy & cybersecurity editorial",
+          "demandScore": 87,
+          "supplyGap": "Medium",
+          "insight": "Media dan blog musiman mencari visual Privasi Data & Keamanan Siber dengan latar bersih untuk artikel dan kampanye."
+        }
+      },
+      "agentLogs": [
+        "Agen 01 — Kurva Lead-Time: 36 event dievaluasi; 5 event masuk jendela H+45–H+95. Skor Gaussian puncak 65 hari — Privasi Data & Keamanan Siber memimpin (99/100), 64 hari lagi.",
+        "Agen 02 — Perilaku Buyer 3 Platform: Adobe 88/100 (agensi komersial), Vecteezy 87/100 (desainer grafis), Dreamstime 87/100 (editorial & blog musiman).",
+        "Agen 03 — Pemetaan Format: 30 ide dipetakan ketat — 8 Video, 8 Foto, 7 Ilustrasi, 7 Vector — tanpa format di luar taksonomi.",
+        "Agen 04 — Kompetisi & Jendela Produksi: 13 Low / 11 Medium / 6 High. Deadline upload ideal 9 Desember 2026 (sebelum puncak buyer).",
+        "Agen 05 — Sintesis Prompt & SEO: 30 prompt produksi + judul komersial + 15 keyword per ide selesai, diurutkan dari volume buyer tertinggi."
+      ],
+      "ideas": [
+        {
+          "id": "v-20261125-07",
+          "title": "Privasi Data & Keamanan Siber — Video Slow Motion Makro",
+          "category": "Video",
+          "formatType": "Slow Motion Makro",
+          "visualStyle": "Vibrant",
+          "videoMeta": {
+            "aspectRatio": "16:9 Horizontal",
+            "cameraMovement": "Zoom in",
+            "loopType": "Klip Biasa"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 99,
+              "reason": "Agensi iklan memborong video 4K looping untuk kampanye Privasi Data & Keamanan Siber — butuh copy space dan motion sinematik."
+            },
+            "vecteezy": {
+              "score": 98,
+              "reason": "Kreator konten memakai footage Privasi Data & Keamanan Siber untuk template video dan proyek motion cepat."
+            },
+            "dreamstime": {
+              "score": 99,
+              "reason": "Media editorial memakai footage Privasi Data & Keamanan Siber untuk liputan dan konten musiman."
+            }
+          },
+          "demandScore": 99,
+          "growthPercent": 16.4,
+          "competitionLevel": "High",
+          "seasonalWindow": "64 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 64,
+          "productionPrompt": "Slow Motion Makro stock video for Data Privacy & Cybersecurity: digital padlock, shield and encrypted data streams over a laptop, cyber security concept with blue glow. slow zoom in camera movement, 16:9 Horizontal aspect ratio, standard clip, 4K ultra HD, smooth professional motion, vibrant commercial colours, high production value, no text, no watermark",
+          "seoTitle": "Slow Motion Makro Video for Data Privacy & Cybersecurity",
+          "keywords": [
+            "data privacy",
+            "cybersecurity",
+            "digital security",
+            "encryption",
+            "online safety",
+            "password protection",
+            "4k video",
+            "looping video",
+            "cinematic footage",
+            "stock video",
+            "motion background",
+            "slow motion makro",
+            "vibrant",
+            "marketing campaign",
+            "print design"
+          ],
+          "agentLogs": "Agen 01–05: Privasi Data & Keamanan Siber · skor 99 · High · 64 hari menuju puncak buyer."
+        },
+        {
+          "id": "f-20261125-01",
+          "title": "Privasi Data & Keamanan Siber — Foto Cinematic",
+          "category": "Foto",
+          "formatType": "Scene Penuh",
+          "visualStyle": "Cinematic",
+          "platforms": {
+            "adobeStock": {
+              "score": 99,
+              "reason": "Agensi dan brand mencari foto autentik Privasi Data & Keamanan Siber untuk materi iklan dan kampanye."
+            },
+            "vecteezy": {
+              "score": 97,
+              "reason": "Desainer grafis memakai foto Privasi Data & Keamanan Siber sebagai elemen pendukung layout dan mockup."
+            },
+            "dreamstime": {
+              "score": 99,
+              "reason": "Media dan blog musiman mencari foto Privasi Data & Keamanan Siber dengan latar bersih dan subjek jelas."
+            }
+          },
+          "demandScore": 99,
+          "growthPercent": -4.4,
+          "competitionLevel": "High",
+          "seasonalWindow": "64 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 64,
+          "productionPrompt": "Professional stock photo for Data Privacy & Cybersecurity: digital padlock, shield and encrypted data streams over a laptop, cyber security concept with blue glow. Scene Penuh composition, Cinematic style, shot on 50mm lens, natural lighting, sharp focus, high resolution, commercial photography, no text, no watermark",
+          "seoTitle": "Cinematic Photo for Data Privacy & Cybersecurity",
+          "keywords": [
+            "data privacy",
+            "cybersecurity",
+            "digital security",
+            "encryption",
+            "online safety",
+            "password protection",
+            "stock photo",
+            "high resolution photo",
+            "authentic photography",
+            "lifestyle",
+            "copy space",
+            "scene penuh",
+            "cinematic",
+            "social media",
+            "banner"
+          ],
+          "agentLogs": "Agen 01–05: Privasi Data & Keamanan Siber · skor 99 · High · 64 hari menuju puncak buyer."
+        },
+        {
+          "id": "f-20261125-08",
+          "title": "Privasi Data & Keamanan Siber — Foto Flat Lay Top-Down",
+          "category": "Foto",
+          "formatType": "Scene Penuh",
+          "visualStyle": "Flat Lay Top-Down",
+          "platforms": {
+            "adobeStock": {
+              "score": 99,
+              "reason": "Agensi dan brand mencari foto autentik Privasi Data & Keamanan Siber untuk materi iklan dan kampanye."
+            },
+            "vecteezy": {
+              "score": 97,
+              "reason": "Desainer grafis memakai foto Privasi Data & Keamanan Siber sebagai elemen pendukung layout dan mockup."
+            },
+            "dreamstime": {
+              "score": 97,
+              "reason": "Media dan blog musiman mencari foto Privasi Data & Keamanan Siber dengan latar bersih dan subjek jelas."
+            }
+          },
+          "demandScore": 99,
+          "growthPercent": -2.8,
+          "competitionLevel": "High",
+          "seasonalWindow": "64 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 64,
+          "productionPrompt": "Professional stock photo for Data Privacy & Cybersecurity: digital padlock, shield and encrypted data streams over a laptop, cyber security concept with blue glow. Scene Penuh composition, Flat Lay Top-Down style, shot on 50mm lens, natural lighting, sharp focus, high resolution, commercial photography, no text, no watermark",
+          "seoTitle": "Flat Lay Top-Down Photo for Data Privacy & Cybersecurity",
+          "keywords": [
+            "data privacy",
+            "cybersecurity",
+            "digital security",
+            "encryption",
+            "online safety",
+            "password protection",
+            "stock photo",
+            "high resolution photo",
+            "authentic photography",
+            "lifestyle",
+            "copy space",
+            "scene penuh",
+            "flat lay top-down",
+            "presentation",
+            "advertising"
+          ],
+          "agentLogs": "Agen 01–05: Privasi Data & Keamanan Siber · skor 99 · High · 64 hari menuju puncak buyer."
+        },
+        {
+          "id": "x-20261125-03",
+          "title": "Privasi Data & Keamanan Siber — Vektor Icon Set",
+          "category": "Vector",
+          "formatType": "Icon Set",
+          "visualStyle": "Duotone",
+          "platforms": {
+            "adobeStock": {
+              "score": 98,
+              "reason": "Desainer agensi butuh vektor Privasi Data & Keamanan Siber yang mudah diedit untuk materi komersial."
+            },
+            "vecteezy": {
+              "score": 99,
+              "reason": "Desainer grafis memborong Icon Set Privasi Data & Keamanan Siber — format siap pakai untuk layout, branding, dan template."
+            },
+            "dreamstime": {
+              "score": 98,
+              "reason": "Media dan blog memakai vektor Privasi Data & Keamanan Siber untuk ilustrasi artikel dan infografis."
+            }
+          },
+          "demandScore": 99,
+          "growthPercent": 17.3,
+          "competitionLevel": "High",
+          "seasonalWindow": "64 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 64,
+          "productionPrompt": "Clean vector graphic for Data Privacy & Cybersecurity: digital padlock, shield and encrypted data streams over a laptop, cyber security concept with blue glow. Icon Set, Duotone style, smooth bezier curves, editable vector paths, isolated on transparent background, print-ready, no text",
+          "seoTitle": "Icon Set Vector for Data Privacy & Cybersecurity",
+          "keywords": [
+            "data privacy",
+            "cybersecurity",
+            "digital security",
+            "encryption",
+            "online safety",
+            "password protection",
+            "vector graphic",
+            "flat vector",
+            "scalable vector",
+            "printable",
+            "icon set",
+            "duotone",
+            "editorial",
+            "print design",
+            "blog"
+          ],
+          "agentLogs": "Agen 01–05: Privasi Data & Keamanan Siber · skor 99 · High · 64 hari menuju puncak buyer."
+        },
+        {
+          "id": "i-20261125-05",
+          "title": "Hari Valentine & Hadiah Romantis — Ilustrasi Mandala Ornament",
+          "category": "Ilustrasi",
+          "formatType": "Ilustrasi Full Layar",
+          "visualStyle": "Mandala Ornament",
+          "platforms": {
+            "adobeStock": {
+              "score": 95,
+              "reason": "Brand mencari ilustrasi Hari Valentine & Hadiah Romantis yang fleksibel untuk materi kampanye dan media sosial."
+            },
+            "vecteezy": {
+              "score": 99,
+              "reason": "Desainer grafis memborong ilustrasi Hari Valentine & Hadiah Romantis untuk layout, poster, dan media sosial."
+            },
+            "dreamstime": {
+              "score": 98,
+              "reason": "Blog dan media editorial memakai ilustrasi Hari Valentine & Hadiah Romantis untuk artikel musiman."
+            }
+          },
+          "demandScore": 98,
+          "growthPercent": -0.9,
+          "competitionLevel": "High",
+          "seasonalWindow": "81 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 81,
+          "productionPrompt": "Flat vector illustration for Valentine's Day & Romantic Gifting: romantic couple exchanging gifts, red roses, heart-shaped balloons and chocolates in soft warm light. Ilustrasi Full Layar, Mandala Ornament style, clean vector paths, bold outlines, limited matte palette, isolated on transparent background, scalable, no text",
+          "seoTitle": "Mandala Ornament Illustration for Valentine's Day & Romantic Gifting",
+          "keywords": [
+            "valentines day",
+            "romantic gift",
+            "red roses",
+            "couple in love",
+            "heart",
+            "romantic dinner",
+            "illustration",
+            "vector illustration",
+            "isolated illustration",
+            "flat design",
+            "graphic design",
+            "ilustrasi full layar",
+            "mandala ornament",
+            "banner",
+            "poster"
+          ],
+          "agentLogs": "Agen 01–05: Hari Valentine & Hadiah Romantis · skor 98 · High · 81 hari menuju puncak buyer."
+        },
+        {
+          "id": "f-20261125-02",
+          "title": "Perayaan Imlek — Foto Long Exposure",
+          "category": "Foto",
+          "formatType": "Scene Penuh",
+          "visualStyle": "Long Exposure",
+          "platforms": {
+            "adobeStock": {
+              "score": 96,
+              "reason": "Agensi dan brand mencari foto autentik Perayaan Imlek untuk materi iklan dan kampanye."
+            },
+            "vecteezy": {
+              "score": 99,
+              "reason": "Desainer grafis memakai foto Perayaan Imlek sebagai elemen pendukung layout dan mockup."
+            },
+            "dreamstime": {
+              "score": 99,
+              "reason": "Media dan blog musiman mencari foto Perayaan Imlek dengan latar bersih dan subjek jelas."
+            }
+          },
+          "demandScore": 97,
+          "growthPercent": 3.3,
+          "competitionLevel": "High",
+          "seasonalWindow": "73 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 73,
+          "productionPrompt": "Professional stock photo for Chinese New Year / Imlek Celebration: red lanterns, golden fire goat mascot, hongbao envelopes, plum blossoms and festive Chinese New Year street decorations. Scene Penuh composition, Long Exposure style, shot on 50mm lens, natural lighting, sharp focus, high resolution, commercial photography, no text, no watermark",
+          "seoTitle": "Long Exposure Photo for Chinese New Year / Imlek Celebration",
+          "keywords": [
+            "chinese new year",
+            "lunar new year",
+            "imlek",
+            "fire goat",
+            "red lantern",
+            "hongbao",
+            "stock photo",
+            "high resolution photo",
+            "authentic photography",
+            "lifestyle",
+            "copy space",
+            "scene penuh",
+            "long exposure",
+            "advertising",
+            "trending"
+          ],
+          "agentLogs": "Agen 01–05: Perayaan Imlek · skor 97 · High · 73 hari menuju puncak buyer."
+        },
+        {
+          "id": "v-20261125-08",
+          "title": "Hari Valentine & Hadiah Romantis — Video Musiman (Natal, Lebaran, Imlek)",
+          "category": "Video",
+          "formatType": "Musiman (Natal, Lebaran, Imlek)",
+          "visualStyle": "Musiman (Natal, Lebaran, Imlek)",
+          "videoMeta": {
+            "aspectRatio": "16:9 Horizontal",
+            "cameraMovement": "Diam / Static",
+            "loopType": "Looping Mulus"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 99,
+              "reason": "Agensi iklan memborong video 4K looping untuk kampanye Hari Valentine & Hadiah Romantis — butuh copy space dan motion sinematik."
+            },
+            "vecteezy": {
+              "score": 90,
+              "reason": "Kreator konten memakai footage Hari Valentine & Hadiah Romantis untuk template video dan proyek motion cepat."
+            },
+            "dreamstime": {
+              "score": 91,
+              "reason": "Media editorial memakai footage Hari Valentine & Hadiah Romantis untuk liputan dan konten musiman."
+            }
+          },
+          "demandScore": 93,
+          "growthPercent": 12.4,
+          "competitionLevel": "Medium",
+          "seasonalWindow": "81 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 81,
+          "productionPrompt": "Musiman (Natal, Lebaran, Imlek) stock video for Valentine's Day & Romantic Gifting: romantic couple exchanging gifts, red roses, heart-shaped balloons and chocolates in soft warm light. static tripod shot camera movement, 16:9 Horizontal aspect ratio, seamless loop, 4K ultra HD, smooth professional motion, vibrant commercial colours, high production value, no text, no watermark",
+          "seoTitle": "Musiman (Natal, Lebaran, Imlek) Video for Valentine's Day & Romantic Gifting",
+          "keywords": [
+            "valentines day",
+            "romantic gift",
+            "red roses",
+            "couple in love",
+            "heart",
+            "romantic dinner",
+            "4k video",
+            "looping video",
+            "cinematic footage",
+            "stock video",
+            "motion background",
+            "musiman",
+            "natal",
+            "lebaran",
+            "imlek"
+          ],
+          "agentLogs": "Agen 01–05: Hari Valentine & Hadiah Romantis · skor 93 · Medium · 81 hari menuju puncak buyer."
+        },
+        {
+          "id": "i-20261125-01",
+          "title": "Hari Valentine & Hadiah Romantis — Ilustrasi Floral Botanical Flat",
+          "category": "Ilustrasi",
+          "formatType": "Ilustrasi Full Layar",
+          "visualStyle": "Floral Botanical Flat",
+          "platforms": {
+            "adobeStock": {
+              "score": 91,
+              "reason": "Brand mencari ilustrasi Hari Valentine & Hadiah Romantis yang fleksibel untuk materi kampanye dan media sosial."
+            },
+            "vecteezy": {
+              "score": 93,
+              "reason": "Desainer grafis memborong ilustrasi Hari Valentine & Hadiah Romantis untuk layout, poster, dan media sosial."
+            },
+            "dreamstime": {
+              "score": 91,
+              "reason": "Blog dan media editorial memakai ilustrasi Hari Valentine & Hadiah Romantis untuk artikel musiman."
+            }
+          },
+          "demandScore": 93,
+          "growthPercent": 2.8,
+          "competitionLevel": "Medium",
+          "seasonalWindow": "81 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 81,
+          "productionPrompt": "Flat vector illustration for Valentine's Day & Romantic Gifting: romantic couple exchanging gifts, red roses, heart-shaped balloons and chocolates in soft warm light. Ilustrasi Full Layar, Floral Botanical Flat style, clean vector paths, bold outlines, limited matte palette, isolated on transparent background, scalable, no text",
+          "seoTitle": "Floral Botanical Flat Illustration for Valentine's Day & Romantic Gifting",
+          "keywords": [
+            "valentines day",
+            "romantic gift",
+            "red roses",
+            "couple in love",
+            "heart",
+            "romantic dinner",
+            "illustration",
+            "vector illustration",
+            "isolated illustration",
+            "flat design",
+            "graphic design",
+            "ilustrasi full layar",
+            "floral botanical flat",
+            "template",
+            "marketing campaign"
+          ],
+          "agentLogs": "Agen 01–05: Hari Valentine & Hadiah Romantis · skor 93 · Medium · 81 hari menuju puncak buyer."
+        },
+        {
+          "id": "v-20261125-06",
+          "title": "Kickoff Korporat & Laporan Tahunan — Video Slow Motion Makro",
+          "category": "Video",
+          "formatType": "Slow Motion Makro",
+          "visualStyle": "Vibrant",
+          "videoMeta": {
+            "aspectRatio": "16:9 Horizontal",
+            "cameraMovement": "Zoom in",
+            "loopType": "Looping Mulus"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 95,
+              "reason": "Agensi iklan memborong video 4K looping untuk kampanye Kickoff Korporat & Laporan Tahunan — butuh copy space dan motion sinematik."
+            },
+            "vecteezy": {
+              "score": 91,
+              "reason": "Kreator konten memakai footage Kickoff Korporat & Laporan Tahunan untuk template video dan proyek motion cepat."
+            },
+            "dreamstime": {
+              "score": 91,
+              "reason": "Media editorial memakai footage Kickoff Korporat & Laporan Tahunan untuk liputan dan konten musiman."
+            }
+          },
+          "demandScore": 92,
+          "growthPercent": 6.5,
+          "competitionLevel": "Medium",
+          "seasonalWindow": "41 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 41,
+          "productionPrompt": "Slow Motion Makro stock video for New Year Corporate Kickoff & Annual Report: modern corporate team celebrating new year goals, annual report documents, charts and confetti in a bright office. slow zoom in camera movement, 16:9 Horizontal aspect ratio, seamless loop, 4K ultra HD, smooth professional motion, vibrant commercial colours, high production value, no text, no watermark",
+          "seoTitle": "Slow Motion Makro Video for New Year Corporate Kickoff & Annual Report",
+          "keywords": [
+            "corporate kickoff",
+            "annual report",
+            "new year business",
+            "office team",
+            "business goals",
+            "yearly planning",
+            "4k video",
+            "looping video",
+            "cinematic footage",
+            "stock video",
+            "motion background",
+            "slow motion makro",
+            "vibrant",
+            "festive",
+            "template"
+          ],
+          "agentLogs": "Agen 01–05: Kickoff Korporat & Laporan Tahunan · skor 92 · Medium · 41 hari menuju puncak buyer."
+        },
+        {
+          "id": "f-20261125-03",
+          "title": "FinTech & Perbankan Digital Q1 — Foto Macro Close-up",
+          "category": "Foto",
+          "formatType": "Copy Space",
+          "visualStyle": "Macro Close-up",
+          "platforms": {
+            "adobeStock": {
+              "score": 96,
+              "reason": "Agensi dan brand mencari foto autentik FinTech & Perbankan Digital Q1 untuk materi iklan dan kampanye."
+            },
+            "vecteezy": {
+              "score": 87,
+              "reason": "Desainer grafis memakai foto FinTech & Perbankan Digital Q1 sebagai elemen pendukung layout dan mockup."
+            },
+            "dreamstime": {
+              "score": 92,
+              "reason": "Media dan blog musiman mencari foto FinTech & Perbankan Digital Q1 dengan latar bersih dan subjek jelas."
+            }
+          },
+          "demandScore": 92,
+          "growthPercent": 15.3,
+          "competitionLevel": "Medium",
+          "seasonalWindow": "87 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 87,
+          "productionPrompt": "Professional stock photo for Q1 FinTech & Digital Banking: person paying with smartphone, digital wallet and contactless payment terminal, modern fintech app interface. Copy Space composition, Macro Close-up style, shot on 50mm lens, natural lighting, sharp focus, high resolution, commercial photography, no text, no watermark",
+          "seoTitle": "Macro Close-up Photo for Q1 FinTech & Digital Banking",
+          "keywords": [
+            "fintech",
+            "digital banking",
+            "mobile payment",
+            "digital wallet",
+            "contactless",
+            "online finance",
+            "stock photo",
+            "high resolution photo",
+            "authentic photography",
+            "lifestyle",
+            "copy space",
+            "macro close-up",
+            "website",
+            "advertising",
+            "template"
+          ],
+          "agentLogs": "Agen 01–05: FinTech & Perbankan Digital Q1 · skor 92 · Medium · 87 hari menuju puncak buyer."
+        },
+        {
+          "id": "i-20261125-02",
+          "title": "FinTech & Perbankan Digital Q1 — Ilustrasi Memphis Pattern",
+          "category": "Ilustrasi",
+          "formatType": "Isolated Background",
+          "visualStyle": "Memphis Pattern",
+          "platforms": {
+            "adobeStock": {
+              "score": 92,
+              "reason": "Brand mencari ilustrasi FinTech & Perbankan Digital Q1 yang fleksibel untuk materi kampanye dan media sosial."
+            },
+            "vecteezy": {
+              "score": 94,
+              "reason": "Desainer grafis memborong ilustrasi FinTech & Perbankan Digital Q1 untuk layout, poster, dan media sosial."
+            },
+            "dreamstime": {
+              "score": 94,
+              "reason": "Blog dan media editorial memakai ilustrasi FinTech & Perbankan Digital Q1 untuk artikel musiman."
+            }
+          },
+          "demandScore": 92,
+          "growthPercent": -0.2,
+          "competitionLevel": "Medium",
+          "seasonalWindow": "87 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 87,
+          "productionPrompt": "Flat vector illustration for Q1 FinTech & Digital Banking: person paying with smartphone, digital wallet and contactless payment terminal, modern fintech app interface. Isolated Background, Memphis Pattern style, clean vector paths, bold outlines, limited matte palette, isolated on transparent background, scalable, no text",
+          "seoTitle": "Memphis Pattern Illustration for Q1 FinTech & Digital Banking",
+          "keywords": [
+            "fintech",
+            "digital banking",
+            "mobile payment",
+            "digital wallet",
+            "contactless",
+            "online finance",
+            "illustration",
+            "vector illustration",
+            "isolated illustration",
+            "flat design",
+            "graphic design",
+            "isolated background",
+            "memphis pattern",
+            "seasonal",
+            "trending"
+          ],
+          "agentLogs": "Agen 01–05: FinTech & Perbankan Digital Q1 · skor 92 · Medium · 87 hari menuju puncak buyer."
+        },
+        {
+          "id": "i-20261125-07",
+          "title": "Resolusi Fitness & Wellness Musim Dingin — Ilustrasi Memphis Pattern",
+          "category": "Ilustrasi",
+          "formatType": "Isolated Background",
+          "visualStyle": "Memphis Pattern",
+          "platforms": {
+            "adobeStock": {
+              "score": 89,
+              "reason": "Brand mencari ilustrasi Resolusi Fitness & Wellness Musim Dingin yang fleksibel untuk materi kampanye dan media sosial."
+            },
+            "vecteezy": {
+              "score": 97,
+              "reason": "Desainer grafis memborong ilustrasi Resolusi Fitness & Wellness Musim Dingin untuk layout, poster, dan media sosial."
+            },
+            "dreamstime": {
+              "score": 96,
+              "reason": "Blog dan media editorial memakai ilustrasi Resolusi Fitness & Wellness Musim Dingin untuk artikel musiman."
+            }
+          },
+          "demandScore": 92,
+          "growthPercent": -1.9,
+          "competitionLevel": "Medium",
+          "seasonalWindow": "46 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 46,
+          "productionPrompt": "Flat vector illustration for Winter Wellness & Fitness Resolution: person doing morning yoga and winter workout, healthy breakfast and fitness tracker, cozy bright home. Isolated Background, Memphis Pattern style, clean vector paths, bold outlines, limited matte palette, isolated on transparent background, scalable, no text",
+          "seoTitle": "Memphis Pattern Illustration for Winter Wellness & Fitness Resolution",
+          "keywords": [
+            "fitness resolution",
+            "winter wellness",
+            "morning yoga",
+            "healthy lifestyle",
+            "workout",
+            "new year fitness",
+            "illustration",
+            "vector illustration",
+            "isolated illustration",
+            "flat design",
+            "graphic design",
+            "isolated background",
+            "memphis pattern",
+            "commercial use",
+            "design element"
+          ],
+          "agentLogs": "Agen 01–05: Resolusi Fitness & Wellness Musim Dingin · skor 92 · Medium · 46 hari menuju puncak buyer."
+        },
+        {
+          "id": "v-20261125-02",
+          "title": "Kickoff Korporat & Laporan Tahunan — Video Stop Motion",
+          "category": "Video",
+          "formatType": "Stop Motion",
+          "visualStyle": "Stop Motion",
+          "videoMeta": {
+            "aspectRatio": "9:16 Vertikal",
+            "cameraMovement": "Diam / Static",
+            "loopType": "Klip Biasa"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 90,
+              "reason": "Agensi iklan memborong video 4K looping untuk kampanye Kickoff Korporat & Laporan Tahunan — butuh copy space dan motion sinematik."
+            },
+            "vecteezy": {
+              "score": 90,
+              "reason": "Kreator konten memakai footage Kickoff Korporat & Laporan Tahunan untuk template video dan proyek motion cepat."
+            },
+            "dreamstime": {
+              "score": 86,
+              "reason": "Media editorial memakai footage Kickoff Korporat & Laporan Tahunan untuk liputan dan konten musiman."
+            }
+          },
+          "demandScore": 90,
+          "growthPercent": 9.7,
+          "competitionLevel": "Medium",
+          "seasonalWindow": "41 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 41,
+          "productionPrompt": "Stop Motion stock video for New Year Corporate Kickoff & Annual Report: modern corporate team celebrating new year goals, annual report documents, charts and confetti in a bright office. static tripod shot camera movement, 9:16 Vertikal aspect ratio, standard clip, 4K ultra HD, smooth professional motion, vibrant commercial colours, high production value, no text, no watermark",
+          "seoTitle": "Stop Motion Video for New Year Corporate Kickoff & Annual Report",
+          "keywords": [
+            "corporate kickoff",
+            "annual report",
+            "new year business",
+            "office team",
+            "business goals",
+            "yearly planning",
+            "4k video",
+            "looping video",
+            "cinematic footage",
+            "stock video",
+            "motion background",
+            "stop motion",
+            "trending",
+            "background",
+            "presentation"
+          ],
+          "agentLogs": "Agen 01–05: Kickoff Korporat & Laporan Tahunan · skor 90 · Medium · 41 hari menuju puncak buyer."
+        },
+        {
+          "id": "f-20261125-04",
+          "title": "Kickoff Korporat & Laporan Tahunan — Foto Flat Lay Top-Down",
+          "category": "Foto",
+          "formatType": "Copy Space",
+          "visualStyle": "Flat Lay Top-Down",
+          "platforms": {
+            "adobeStock": {
+              "score": 92,
+              "reason": "Agensi dan brand mencari foto autentik Kickoff Korporat & Laporan Tahunan untuk materi iklan dan kampanye."
+            },
+            "vecteezy": {
+              "score": 86,
+              "reason": "Desainer grafis memakai foto Kickoff Korporat & Laporan Tahunan sebagai elemen pendukung layout dan mockup."
+            },
+            "dreamstime": {
+              "score": 95,
+              "reason": "Media dan blog musiman mencari foto Kickoff Korporat & Laporan Tahunan dengan latar bersih dan subjek jelas."
+            }
+          },
+          "demandScore": 90,
+          "growthPercent": 14.1,
+          "competitionLevel": "Medium",
+          "seasonalWindow": "41 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 41,
+          "productionPrompt": "Professional stock photo for New Year Corporate Kickoff & Annual Report: modern corporate team celebrating new year goals, annual report documents, charts and confetti in a bright office. Copy Space composition, Flat Lay Top-Down style, shot on 50mm lens, natural lighting, sharp focus, high resolution, commercial photography, no text, no watermark",
+          "seoTitle": "Flat Lay Top-Down Photo for New Year Corporate Kickoff & Annual Report",
+          "keywords": [
+            "corporate kickoff",
+            "annual report",
+            "new year business",
+            "office team",
+            "business goals",
+            "yearly planning",
+            "stock photo",
+            "high resolution photo",
+            "authentic photography",
+            "lifestyle",
+            "copy space",
+            "flat lay top-down",
+            "template",
+            "advertising",
+            "seasonal"
+          ],
+          "agentLogs": "Agen 01–05: Kickoff Korporat & Laporan Tahunan · skor 90 · Medium · 41 hari menuju puncak buyer."
+        },
+        {
+          "id": "f-20261125-06",
+          "title": "Ramadan Kareem & Gaya Hidup Sahur/Buka Puasa — Foto Cinematic",
+          "category": "Foto",
+          "formatType": "Subjek Isolasi (BG polos)",
+          "visualStyle": "Cinematic",
+          "platforms": {
+            "adobeStock": {
+              "score": 92,
+              "reason": "Agensi dan brand mencari foto autentik Ramadan Kareem & Gaya Hidup Sahur/Buka Puasa untuk materi iklan dan kampanye."
+            },
+            "vecteezy": {
+              "score": 85,
+              "reason": "Desainer grafis memakai foto Ramadan Kareem & Gaya Hidup Sahur/Buka Puasa sebagai elemen pendukung layout dan mockup."
+            },
+            "dreamstime": {
+              "score": 94,
+              "reason": "Media dan blog musiman mencari foto Ramadan Kareem & Gaya Hidup Sahur/Buka Puasa dengan latar bersih dan subjek jelas."
+            }
+          },
+          "demandScore": 89,
+          "growthPercent": 6.9,
+          "competitionLevel": "Medium",
+          "seasonalWindow": "100 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 100,
+          "productionPrompt": "Professional stock photo for Ramadan Kareem & Sahur/Iftar Lifestyle: family breaking fast together at iftar, dates, lanterns and mosque silhouette at dusk, warm Ramadan atmosphere. Subjek Isolasi (BG polos) composition, Cinematic style, shot on 50mm lens, natural lighting, sharp focus, high resolution, commercial photography, no text, no watermark",
+          "seoTitle": "Cinematic Photo for Ramadan Kareem & Sahur/Iftar Lifestyle",
+          "keywords": [
+            "ramadan",
+            "iftar",
+            "sahur",
+            "ramadan lantern",
+            "muslim family",
+            "islamic",
+            "stock photo",
+            "high resolution photo",
+            "authentic photography",
+            "lifestyle",
+            "copy space",
+            "subjek isolasi",
+            "bg polos",
+            "cinematic",
+            "festive"
+          ],
+          "agentLogs": "Agen 01–05: Ramadan Kareem & Gaya Hidup Sahur/Buka Puasa · skor 89 · Medium · 100 hari menuju puncak buyer."
+        },
+        {
+          "id": "x-20261125-06",
+          "title": "Hitung Mundur Tahun Baru & Kembang Api — Vektor Sticker Pack",
+          "category": "Vector",
+          "formatType": "Sticker Pack",
+          "visualStyle": "Retro Vintage Badge",
+          "platforms": {
+            "adobeStock": {
+              "score": 84,
+              "reason": "Desainer agensi butuh vektor Hitung Mundur Tahun Baru & Kembang Api yang mudah diedit untuk materi komersial."
+            },
+            "vecteezy": {
+              "score": 88,
+              "reason": "Desainer grafis memborong Sticker Pack Hitung Mundur Tahun Baru & Kembang Api — format siap pakai untuk layout, branding, dan template."
+            },
+            "dreamstime": {
+              "score": 87,
+              "reason": "Media dan blog memakai vektor Hitung Mundur Tahun Baru & Kembang Api untuk ilustrasi artikel dan infografis."
+            }
+          },
+          "demandScore": 87,
+          "growthPercent": 12.6,
+          "competitionLevel": "Medium",
+          "seasonalWindow": "36 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 36,
+          "productionPrompt": "Clean vector graphic for New Year Countdown & Fireworks Celebration: New Year countdown fireworks over city skyline at midnight, champagne and celebration confetti. Sticker Pack, Retro Vintage Badge style, smooth bezier curves, editable vector paths, isolated on transparent background, print-ready, no text",
+          "seoTitle": "Sticker Pack Vector for New Year Countdown & Fireworks Celebration",
+          "keywords": [
+            "new year countdown",
+            "fireworks",
+            "new years eve",
+            "celebration",
+            "midnight party",
+            "champagne",
+            "vector graphic",
+            "flat vector",
+            "scalable vector",
+            "printable",
+            "icon set",
+            "sticker pack",
+            "retro vintage badge",
+            "presentation",
+            "best seller"
+          ],
+          "agentLogs": "Agen 01–05: Hitung Mundur Tahun Baru & Kembang Api · skor 87 · Medium · 36 hari menuju puncak buyer."
+        },
+        {
+          "id": "f-20261125-05",
+          "title": "Hari Perempuan & Kepemimpinan Wanita — Foto Product Clean Mockup",
+          "category": "Foto",
+          "formatType": "Subjek Isolasi (BG polos)",
+          "visualStyle": "Product Clean Mockup",
+          "platforms": {
+            "adobeStock": {
+              "score": 88,
+              "reason": "Agensi dan brand mencari foto autentik Hari Perempuan & Kepemimpinan Wanita untuk materi iklan dan kampanye."
+            },
+            "vecteezy": {
+              "score": 87,
+              "reason": "Desainer grafis memakai foto Hari Perempuan & Kepemimpinan Wanita sebagai elemen pendukung layout dan mockup."
+            },
+            "dreamstime": {
+              "score": 91,
+              "reason": "Media dan blog musiman mencari foto Hari Perempuan & Kepemimpinan Wanita dengan latar bersih dan subjek jelas."
+            }
+          },
+          "demandScore": 86,
+          "growthPercent": -2.4,
+          "competitionLevel": "Medium",
+          "seasonalWindow": "103 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 103,
+          "productionPrompt": "Professional stock photo for International Women's Day & Female Leadership: confident businesswoman leading a meeting, diverse women professionals collaborating in a modern office. Subjek Isolasi (BG polos) composition, Product Clean Mockup style, shot on 50mm lens, natural lighting, sharp focus, high resolution, commercial photography, no text, no watermark",
+          "seoTitle": "Product Clean Mockup Photo for International Women's Day & Female Leadership",
+          "keywords": [
+            "international womens day",
+            "female leadership",
+            "businesswoman",
+            "women empowerment",
+            "girl power",
+            "diversity",
+            "stock photo",
+            "high resolution photo",
+            "authentic photography",
+            "lifestyle",
+            "copy space",
+            "subjek isolasi",
+            "bg polos",
+            "product clean mockup",
+            "background"
+          ],
+          "agentLogs": "Agen 01–05: Hari Perempuan & Kepemimpinan Wanita · skor 86 · Medium · 103 hari menuju puncak buyer."
+        },
+        {
+          "id": "v-20261125-04",
+          "title": "Hari Perempuan & Kepemimpinan Wanita — Video Timelapse",
+          "category": "Video",
+          "formatType": "Timelapse",
+          "visualStyle": "Timelapse",
+          "videoMeta": {
+            "aspectRatio": "9:16 Vertikal",
+            "cameraMovement": "Diam / Static",
+            "loopType": "Looping Mulus"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 91,
+              "reason": "Agensi iklan memborong video 4K looping untuk kampanye Hari Perempuan & Kepemimpinan Wanita — butuh copy space dan motion sinematik."
+            },
+            "vecteezy": {
+              "score": 87,
+              "reason": "Kreator konten memakai footage Hari Perempuan & Kepemimpinan Wanita untuk template video dan proyek motion cepat."
+            },
+            "dreamstime": {
+              "score": 86,
+              "reason": "Media editorial memakai footage Hari Perempuan & Kepemimpinan Wanita untuk liputan dan konten musiman."
+            }
+          },
+          "demandScore": 85,
+          "growthPercent": -1.4,
+          "competitionLevel": "Low",
+          "seasonalWindow": "103 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 103,
+          "productionPrompt": "Timelapse stock video for International Women's Day & Female Leadership: confident businesswoman leading a meeting, diverse women professionals collaborating in a modern office. static tripod shot camera movement, 9:16 Vertikal aspect ratio, seamless loop, 4K ultra HD, smooth professional motion, vibrant commercial colours, high production value, no text, no watermark",
+          "seoTitle": "Timelapse Video for International Women's Day & Female Leadership",
+          "keywords": [
+            "international womens day",
+            "female leadership",
+            "businesswoman",
+            "women empowerment",
+            "girl power",
+            "diversity",
+            "4k video",
+            "looping video",
+            "cinematic footage",
+            "stock video",
+            "motion background",
+            "timelapse",
+            "social media",
+            "editorial",
+            "poster"
+          ],
+          "agentLogs": "Agen 01–05: Hari Perempuan & Kepemimpinan Wanita · skor 85 · Low · 103 hari menuju puncak buyer."
+        },
+        {
+          "id": "v-20261125-05",
+          "title": "Ramadan Kareem & Gaya Hidup Sahur/Buka Puasa — Video Tutorial Langkah-demi-Langkah",
+          "category": "Video",
+          "formatType": "Tutorial Langkah-demi-Langkah",
+          "visualStyle": "Minimalist",
+          "videoMeta": {
+            "aspectRatio": "9:16 Vertikal",
+            "cameraMovement": "Diam / Static",
+            "loopType": "Klip Biasa"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 85,
+              "reason": "Agensi iklan memborong video 4K looping untuk kampanye Ramadan Kareem & Gaya Hidup Sahur/Buka Puasa — butuh copy space dan motion sinematik."
+            },
+            "vecteezy": {
+              "score": 86,
+              "reason": "Kreator konten memakai footage Ramadan Kareem & Gaya Hidup Sahur/Buka Puasa untuk template video dan proyek motion cepat."
+            },
+            "dreamstime": {
+              "score": 81,
+              "reason": "Media editorial memakai footage Ramadan Kareem & Gaya Hidup Sahur/Buka Puasa untuk liputan dan konten musiman."
+            }
+          },
+          "demandScore": 85,
+          "growthPercent": 4.4,
+          "competitionLevel": "Low",
+          "seasonalWindow": "100 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 100,
+          "productionPrompt": "Tutorial Langkah-demi-Langkah stock video for Ramadan Kareem & Sahur/Iftar Lifestyle: family breaking fast together at iftar, dates, lanterns and mosque silhouette at dusk, warm Ramadan atmosphere. static tripod shot camera movement, 9:16 Vertikal aspect ratio, standard clip, 4K ultra HD, smooth professional motion, vibrant commercial colours, high production value, no text, no watermark",
+          "seoTitle": "Tutorial Langkah-demi-Langkah Video for Ramadan Kareem & Sahur/Iftar Lifestyle",
+          "keywords": [
+            "ramadan",
+            "iftar",
+            "sahur",
+            "ramadan lantern",
+            "muslim family",
+            "islamic",
+            "4k video",
+            "looping video",
+            "cinematic footage",
+            "stock video",
+            "motion background",
+            "tutorial langkah-demi-langkah",
+            "minimalist",
+            "poster",
+            "trending"
+          ],
+          "agentLogs": "Agen 01–05: Ramadan Kareem & Gaya Hidup Sahur/Buka Puasa · skor 85 · Low · 100 hari menuju puncak buyer."
+        },
+        {
+          "id": "i-20261125-03",
+          "title": "Hitung Mundur Tahun Baru & Kembang Api — Ilustrasi Retro Vintage Badge",
+          "category": "Ilustrasi",
+          "formatType": "Ilustrasi Full Layar",
+          "visualStyle": "Retro Vintage Badge",
+          "platforms": {
+            "adobeStock": {
+              "score": 86,
+              "reason": "Brand mencari ilustrasi Hitung Mundur Tahun Baru & Kembang Api yang fleksibel untuk materi kampanye dan media sosial."
+            },
+            "vecteezy": {
+              "score": 87,
+              "reason": "Desainer grafis memborong ilustrasi Hitung Mundur Tahun Baru & Kembang Api untuk layout, poster, dan media sosial."
+            },
+            "dreamstime": {
+              "score": 89,
+              "reason": "Blog dan media editorial memakai ilustrasi Hitung Mundur Tahun Baru & Kembang Api untuk artikel musiman."
+            }
+          },
+          "demandScore": 85,
+          "growthPercent": -5.5,
+          "competitionLevel": "Low",
+          "seasonalWindow": "36 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 36,
+          "productionPrompt": "Flat vector illustration for New Year Countdown & Fireworks Celebration: New Year countdown fireworks over city skyline at midnight, champagne and celebration confetti. Ilustrasi Full Layar, Retro Vintage Badge style, clean vector paths, bold outlines, limited matte palette, isolated on transparent background, scalable, no text",
+          "seoTitle": "Retro Vintage Badge Illustration for New Year Countdown & Fireworks Celebration",
+          "keywords": [
+            "new year countdown",
+            "fireworks",
+            "new years eve",
+            "celebration",
+            "midnight party",
+            "champagne",
+            "illustration",
+            "vector illustration",
+            "isolated illustration",
+            "flat design",
+            "graphic design",
+            "ilustrasi full layar",
+            "retro vintage badge",
+            "design element",
+            "banner"
+          ],
+          "agentLogs": "Agen 01–05: Hitung Mundur Tahun Baru & Kembang Api · skor 85 · Low · 36 hari menuju puncak buyer."
+        },
+        {
+          "id": "i-20261125-04",
+          "title": "Hari Perempuan & Kepemimpinan Wanita — Ilustrasi 3D Glassmorphism",
+          "category": "Ilustrasi",
+          "formatType": "Ilustrasi Full Layar",
+          "visualStyle": "3D Glassmorphism",
+          "platforms": {
+            "adobeStock": {
+              "score": 86,
+              "reason": "Brand mencari ilustrasi Hari Perempuan & Kepemimpinan Wanita yang fleksibel untuk materi kampanye dan media sosial."
+            },
+            "vecteezy": {
+              "score": 87,
+              "reason": "Desainer grafis memborong ilustrasi Hari Perempuan & Kepemimpinan Wanita untuk layout, poster, dan media sosial."
+            },
+            "dreamstime": {
+              "score": 90,
+              "reason": "Blog dan media editorial memakai ilustrasi Hari Perempuan & Kepemimpinan Wanita untuk artikel musiman."
+            }
+          },
+          "demandScore": 85,
+          "growthPercent": -6.6,
+          "competitionLevel": "Low",
+          "seasonalWindow": "103 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 103,
+          "productionPrompt": "Flat vector illustration for International Women's Day & Female Leadership: confident businesswoman leading a meeting, diverse women professionals collaborating in a modern office. Ilustrasi Full Layar, 3D Glassmorphism style, clean vector paths, bold outlines, limited matte palette, isolated on transparent background, scalable, no text",
+          "seoTitle": "3D Glassmorphism Illustration for International Women's Day & Female Leadership",
+          "keywords": [
+            "international womens day",
+            "female leadership",
+            "businesswoman",
+            "women empowerment",
+            "girl power",
+            "diversity",
+            "illustration",
+            "vector illustration",
+            "isolated illustration",
+            "flat design",
+            "graphic design",
+            "ilustrasi full layar",
+            "3d glassmorphism",
+            "website",
+            "premium"
+          ],
+          "agentLogs": "Agen 01–05: Hari Perempuan & Kepemimpinan Wanita · skor 85 · Low · 103 hari menuju puncak buyer."
+        },
+        {
+          "id": "x-20261125-04",
+          "title": "Hitung Mundur Tahun Baru & Kembang Api — Vektor Flat Vector",
+          "category": "Vector",
+          "formatType": "Flat Vector",
+          "visualStyle": "Banner Template",
+          "platforms": {
+            "adobeStock": {
+              "score": 82,
+              "reason": "Desainer agensi butuh vektor Hitung Mundur Tahun Baru & Kembang Api yang mudah diedit untuk materi komersial."
+            },
+            "vecteezy": {
+              "score": 88,
+              "reason": "Desainer grafis memborong Flat Vector Hitung Mundur Tahun Baru & Kembang Api — format siap pakai untuk layout, branding, dan template."
+            },
+            "dreamstime": {
+              "score": 86,
+              "reason": "Media dan blog memakai vektor Hitung Mundur Tahun Baru & Kembang Api untuk ilustrasi artikel dan infografis."
+            }
+          },
+          "demandScore": 85,
+          "growthPercent": 15.3,
+          "competitionLevel": "Low",
+          "seasonalWindow": "36 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 36,
+          "productionPrompt": "Clean vector graphic for New Year Countdown & Fireworks Celebration: New Year countdown fireworks over city skyline at midnight, champagne and celebration confetti. Flat Vector, Banner Template style, smooth bezier curves, editable vector paths, isolated on transparent background, print-ready, no text",
+          "seoTitle": "Flat Vector Vector for New Year Countdown & Fireworks Celebration",
+          "keywords": [
+            "new year countdown",
+            "fireworks",
+            "new years eve",
+            "celebration",
+            "midnight party",
+            "champagne",
+            "vector graphic",
+            "flat vector",
+            "scalable vector",
+            "printable",
+            "icon set",
+            "banner template",
+            "poster",
+            "trending",
+            "best seller"
+          ],
+          "agentLogs": "Agen 01–05: Hitung Mundur Tahun Baru & Kembang Api · skor 85 · Low · 36 hari menuju puncak buyer."
+        },
+        {
+          "id": "x-20261125-05",
+          "title": "Hitung Mundur Tahun Baru & Kembang Api — Vektor Icon Set",
+          "category": "Vector",
+          "formatType": "Icon Set",
+          "visualStyle": "Layout Kartu Ucapan",
+          "platforms": {
+            "adobeStock": {
+              "score": 83,
+              "reason": "Desainer agensi butuh vektor Hitung Mundur Tahun Baru & Kembang Api yang mudah diedit untuk materi komersial."
+            },
+            "vecteezy": {
+              "score": 85,
+              "reason": "Desainer grafis memborong Icon Set Hitung Mundur Tahun Baru & Kembang Api — format siap pakai untuk layout, branding, dan template."
+            },
+            "dreamstime": {
+              "score": 82,
+              "reason": "Media dan blog memakai vektor Hitung Mundur Tahun Baru & Kembang Api untuk ilustrasi artikel dan infografis."
+            }
+          },
+          "demandScore": 84,
+          "growthPercent": 10.4,
+          "competitionLevel": "Low",
+          "seasonalWindow": "36 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 36,
+          "productionPrompt": "Clean vector graphic for New Year Countdown & Fireworks Celebration: New Year countdown fireworks over city skyline at midnight, champagne and celebration confetti. Icon Set, Layout Kartu Ucapan style, smooth bezier curves, editable vector paths, isolated on transparent background, print-ready, no text",
+          "seoTitle": "Icon Set Vector for New Year Countdown & Fireworks Celebration",
+          "keywords": [
+            "new year countdown",
+            "fireworks",
+            "new years eve",
+            "celebration",
+            "midnight party",
+            "champagne",
+            "vector graphic",
+            "flat vector",
+            "scalable vector",
+            "printable",
+            "icon set",
+            "layout kartu ucapan",
+            "banner",
+            "presentation",
+            "editorial"
+          ],
+          "agentLogs": "Agen 01–05: Hitung Mundur Tahun Baru & Kembang Api · skor 84 · Low · 36 hari menuju puncak buyer."
+        },
+        {
+          "id": "x-20261125-01",
+          "title": "Hitung Mundur Tahun Baru & Kembang Api — Vektor Sticker Pack",
+          "category": "Vector",
+          "formatType": "Sticker Pack",
+          "visualStyle": "Monoline Icon",
+          "platforms": {
+            "adobeStock": {
+              "score": 81,
+              "reason": "Desainer agensi butuh vektor Hitung Mundur Tahun Baru & Kembang Api yang mudah diedit untuk materi komersial."
+            },
+            "vecteezy": {
+              "score": 86,
+              "reason": "Desainer grafis memborong Sticker Pack Hitung Mundur Tahun Baru & Kembang Api — format siap pakai untuk layout, branding, dan template."
+            },
+            "dreamstime": {
+              "score": 82,
+              "reason": "Media dan blog memakai vektor Hitung Mundur Tahun Baru & Kembang Api untuk ilustrasi artikel dan infografis."
+            }
+          },
+          "demandScore": 83,
+          "growthPercent": 15.1,
+          "competitionLevel": "Low",
+          "seasonalWindow": "36 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 36,
+          "productionPrompt": "Clean vector graphic for New Year Countdown & Fireworks Celebration: New Year countdown fireworks over city skyline at midnight, champagne and celebration confetti. Sticker Pack, Monoline Icon style, smooth bezier curves, editable vector paths, isolated on transparent background, print-ready, no text",
+          "seoTitle": "Sticker Pack Vector for New Year Countdown & Fireworks Celebration",
+          "keywords": [
+            "new year countdown",
+            "fireworks",
+            "new years eve",
+            "celebration",
+            "midnight party",
+            "champagne",
+            "vector graphic",
+            "flat vector",
+            "scalable vector",
+            "printable",
+            "icon set",
+            "sticker pack",
+            "monoline icon",
+            "website",
+            "advertising"
+          ],
+          "agentLogs": "Agen 01–05: Hitung Mundur Tahun Baru & Kembang Api · skor 83 · Low · 36 hari menuju puncak buyer."
+        },
+        {
+          "id": "v-20261125-03",
+          "title": "Pembaruan Musim Semi & Ramah Lingkungan — Video Animasi 2D Flat / Motion Graphic",
+          "category": "Video",
+          "formatType": "Animasi 2D Flat / Motion Graphic",
+          "visualStyle": "Animasi 2D Flat / Motion Graphic",
+          "videoMeta": {
+            "aspectRatio": "9:16 Vertikal",
+            "cameraMovement": "Pan",
+            "loopType": "Looping Mulus"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 80,
+              "reason": "Agensi iklan memborong video 4K looping untuk kampanye Pembaruan Musim Semi & Ramah Lingkungan — butuh copy space dan motion sinematik."
+            },
+            "vecteezy": {
+              "score": 73,
+              "reason": "Kreator konten memakai footage Pembaruan Musim Semi & Ramah Lingkungan untuk template video dan proyek motion cepat."
+            },
+            "dreamstime": {
+              "score": 73,
+              "reason": "Media editorial memakai footage Pembaruan Musim Semi & Ramah Lingkungan untuk liputan dan konten musiman."
+            }
+          },
+          "demandScore": 76,
+          "growthPercent": -5.2,
+          "competitionLevel": "Low",
+          "seasonalWindow": "115 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 115,
+          "productionPrompt": "Animasi 2D Flat / Motion Graphic stock video for Spring Renewal & Eco-Friendly: fresh green sprouts, hands planting a seedling, eco-friendly reusable products and spring blossoms. slow panning camera movement, 9:16 Vertikal aspect ratio, seamless loop, 4K ultra HD, smooth professional motion, vibrant commercial colours, high production value, no text, no watermark",
+          "seoTitle": "Animasi 2D Flat / Motion Graphic Video for Spring Renewal & Eco-Friendly",
+          "keywords": [
+            "spring renewal",
+            "eco friendly",
+            "sustainability",
+            "green living",
+            "planting",
+            "recycling",
+            "4k video",
+            "looping video",
+            "cinematic footage",
+            "stock video",
+            "motion background",
+            "animasi 2d flat / motion graphic",
+            "trending",
+            "social media",
+            "background"
+          ],
+          "agentLogs": "Agen 01–05: Pembaruan Musim Semi & Ramah Lingkungan · skor 76 · Low · 115 hari menuju puncak buyer."
+        },
+        {
+          "id": "f-20261125-07",
+          "title": "Pembaruan Musim Semi & Ramah Lingkungan — Foto Moody Low-Key",
+          "category": "Foto",
+          "formatType": "Copy Space",
+          "visualStyle": "Moody Low-Key",
+          "platforms": {
+            "adobeStock": {
+              "score": 79,
+              "reason": "Agensi dan brand mencari foto autentik Pembaruan Musim Semi & Ramah Lingkungan untuk materi iklan dan kampanye."
+            },
+            "vecteezy": {
+              "score": 72,
+              "reason": "Desainer grafis memakai foto Pembaruan Musim Semi & Ramah Lingkungan sebagai elemen pendukung layout dan mockup."
+            },
+            "dreamstime": {
+              "score": 73,
+              "reason": "Media dan blog musiman mencari foto Pembaruan Musim Semi & Ramah Lingkungan dengan latar bersih dan subjek jelas."
+            }
+          },
+          "demandScore": 75,
+          "growthPercent": -7.2,
+          "competitionLevel": "Low",
+          "seasonalWindow": "115 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 115,
+          "productionPrompt": "Professional stock photo for Spring Renewal & Eco-Friendly: fresh green sprouts, hands planting a seedling, eco-friendly reusable products and spring blossoms. Copy Space composition, Moody Low-Key style, shot on 50mm lens, natural lighting, sharp focus, high resolution, commercial photography, no text, no watermark",
+          "seoTitle": "Moody Low-Key Photo for Spring Renewal & Eco-Friendly",
+          "keywords": [
+            "spring renewal",
+            "eco friendly",
+            "sustainability",
+            "green living",
+            "planting",
+            "recycling",
+            "stock photo",
+            "high resolution photo",
+            "authentic photography",
+            "lifestyle",
+            "copy space",
+            "moody low-key",
+            "print design",
+            "celebration",
+            "advertising"
+          ],
+          "agentLogs": "Agen 01–05: Pembaruan Musim Semi & Ramah Lingkungan · skor 75 · Low · 115 hari menuju puncak buyer."
+        },
+        {
+          "id": "v-20261125-01",
+          "title": "Wisata Musim Dingin & Olahraga Salju — Video Looping Background Abstrak",
+          "category": "Video",
+          "formatType": "Looping Background Abstrak",
+          "visualStyle": "Minimalist",
+          "videoMeta": {
+            "aspectRatio": "9:16 Vertikal",
+            "cameraMovement": "Zoom in",
+            "loopType": "Looping Mulus"
+          },
+          "platforms": {
+            "adobeStock": {
+              "score": 74,
+              "reason": "Agensi iklan memborong video 4K looping untuk kampanye Wisata Musim Dingin & Olahraga Salju — butuh copy space dan motion sinematik."
+            },
+            "vecteezy": {
+              "score": 67,
+              "reason": "Kreator konten memakai footage Wisata Musim Dingin & Olahraga Salju untuk template video dan proyek motion cepat."
+            },
+            "dreamstime": {
+              "score": 72,
+              "reason": "Media editorial memakai footage Wisata Musim Dingin & Olahraga Salju untuk liputan dan konten musiman."
+            }
+          },
+          "demandScore": 73,
+          "growthPercent": -1.3,
+          "competitionLevel": "Low",
+          "seasonalWindow": "25 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 25,
+          "productionPrompt": "Looping Background Abstrak stock video for Winter Travel & Snow Sports: skier on snowy mountain slopes, winter travel with snow-covered village and hot cocoa. slow zoom in camera movement, 9:16 Vertikal aspect ratio, seamless loop, 4K ultra HD, smooth professional motion, vibrant commercial colours, high production value, no text, no watermark",
+          "seoTitle": "Looping Background Abstrak Video for Winter Travel & Snow Sports",
+          "keywords": [
+            "winter travel",
+            "snow sports",
+            "skiing",
+            "snowboarding",
+            "snow mountain",
+            "winter holiday",
+            "4k video",
+            "looping video",
+            "cinematic footage",
+            "stock video",
+            "motion background",
+            "looping background abstrak",
+            "minimalist",
+            "print design",
+            "trending"
+          ],
+          "agentLogs": "Agen 01–05: Wisata Musim Dingin & Olahraga Salju · skor 73 · Low · 25 hari menuju puncak buyer."
+        },
+        {
+          "id": "i-20261125-06",
+          "title": "Kickoff Strategi Q1 & Produktivitas — Ilustrasi 3D Glassmorphism",
+          "category": "Ilustrasi",
+          "formatType": "Ilustrasi Full Layar",
+          "visualStyle": "3D Glassmorphism",
+          "platforms": {
+            "adobeStock": {
+              "score": 74,
+              "reason": "Brand mencari ilustrasi Kickoff Strategi Q1 & Produktivitas yang fleksibel untuk materi kampanye dan media sosial."
+            },
+            "vecteezy": {
+              "score": 77,
+              "reason": "Desainer grafis memborong ilustrasi Kickoff Strategi Q1 & Produktivitas untuk layout, poster, dan media sosial."
+            },
+            "dreamstime": {
+              "score": 76,
+              "reason": "Blog dan media editorial memakai ilustrasi Kickoff Strategi Q1 & Produktivitas untuk artikel musiman."
+            }
+          },
+          "demandScore": 72,
+          "growthPercent": 13.9,
+          "competitionLevel": "Low",
+          "seasonalWindow": "20 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 20,
+          "productionPrompt": "Flat vector illustration for Q1 Strategy Kickoff & Productivity: business team planning Q1 strategy on whiteboard, productivity workspace with planner and laptop. Ilustrasi Full Layar, 3D Glassmorphism style, clean vector paths, bold outlines, limited matte palette, isolated on transparent background, scalable, no text",
+          "seoTitle": "3D Glassmorphism Illustration for Q1 Strategy Kickoff & Productivity",
+          "keywords": [
+            "q1 strategy",
+            "productivity",
+            "business planning",
+            "kickoff meeting",
+            "goals",
+            "workspace",
+            "illustration",
+            "vector illustration",
+            "isolated illustration",
+            "flat design",
+            "graphic design",
+            "ilustrasi full layar",
+            "3d glassmorphism",
+            "commercial use",
+            "website"
+          ],
+          "agentLogs": "Agen 01–05: Kickoff Strategi Q1 & Produktivitas · skor 72 · Low · 20 hari menuju puncak buyer."
+        },
+        {
+          "id": "x-20261125-07",
+          "title": "Pembaruan Musim Semi & Ramah Lingkungan — Vektor Flat Vector",
+          "category": "Vector",
+          "formatType": "Flat Vector",
+          "visualStyle": "Stained Glass Mosaic",
+          "platforms": {
+            "adobeStock": {
+              "score": 67,
+              "reason": "Desainer agensi butuh vektor Pembaruan Musim Semi & Ramah Lingkungan yang mudah diedit untuk materi komersial."
+            },
+            "vecteezy": {
+              "score": 80,
+              "reason": "Desainer grafis memborong Flat Vector Pembaruan Musim Semi & Ramah Lingkungan — format siap pakai untuk layout, branding, dan template."
+            },
+            "dreamstime": {
+              "score": 72,
+              "reason": "Media dan blog memakai vektor Pembaruan Musim Semi & Ramah Lingkungan untuk ilustrasi artikel dan infografis."
+            }
+          },
+          "demandScore": 72,
+          "growthPercent": 11.4,
+          "competitionLevel": "Low",
+          "seasonalWindow": "115 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 115,
+          "productionPrompt": "Clean vector graphic for Spring Renewal & Eco-Friendly: fresh green sprouts, hands planting a seedling, eco-friendly reusable products and spring blossoms. Flat Vector, Stained Glass Mosaic style, smooth bezier curves, editable vector paths, isolated on transparent background, print-ready, no text",
+          "seoTitle": "Flat Vector Vector for Spring Renewal & Eco-Friendly",
+          "keywords": [
+            "spring renewal",
+            "eco friendly",
+            "sustainability",
+            "green living",
+            "planting",
+            "recycling",
+            "vector graphic",
+            "flat vector",
+            "scalable vector",
+            "printable",
+            "icon set",
+            "stained glass mosaic",
+            "background",
+            "print design",
+            "design element"
+          ],
+          "agentLogs": "Agen 01–05: Pembaruan Musim Semi & Ramah Lingkungan · skor 72 · Low · 115 hari menuju puncak buyer."
+        },
+        {
+          "id": "x-20261125-02",
+          "title": "Kickoff Strategi Q1 & Produktivitas — Vektor Sticker Pack",
+          "category": "Vector",
+          "formatType": "Sticker Pack",
+          "visualStyle": "Layout Kartu Ucapan",
+          "platforms": {
+            "adobeStock": {
+              "score": 69,
+              "reason": "Desainer agensi butuh vektor Kickoff Strategi Q1 & Produktivitas yang mudah diedit untuk materi komersial."
+            },
+            "vecteezy": {
+              "score": 70,
+              "reason": "Desainer grafis memborong Sticker Pack Kickoff Strategi Q1 & Produktivitas — format siap pakai untuk layout, branding, dan template."
+            },
+            "dreamstime": {
+              "score": 64,
+              "reason": "Media dan blog memakai vektor Kickoff Strategi Q1 & Produktivitas untuk ilustrasi artikel dan infografis."
+            }
+          },
+          "demandScore": 68,
+          "growthPercent": 0,
+          "competitionLevel": "Low",
+          "seasonalWindow": "20 Hari Menuju Puncak Buyer",
+          "daysUntilPeak": 20,
+          "productionPrompt": "Clean vector graphic for Q1 Strategy Kickoff & Productivity: business team planning Q1 strategy on whiteboard, productivity workspace with planner and laptop. Sticker Pack, Layout Kartu Ucapan style, smooth bezier curves, editable vector paths, isolated on transparent background, print-ready, no text",
+          "seoTitle": "Sticker Pack Vector for Q1 Strategy Kickoff & Productivity",
+          "keywords": [
+            "q1 strategy",
+            "productivity",
+            "business planning",
+            "kickoff meeting",
+            "goals",
+            "workspace",
+            "vector graphic",
+            "flat vector",
+            "scalable vector",
+            "printable",
+            "icon set",
+            "sticker pack",
+            "layout kartu ucapan",
+            "print design",
+            "poster"
+          ],
+          "agentLogs": "Agen 01–05: Kickoff Strategi Q1 & Produktivitas · skor 68 · Low · 20 hari menuju puncak buyer."
+        }
+      ]
+    },
     {
       "date": "2026-11-24",
       "dateLabel": "24 November 2026",
